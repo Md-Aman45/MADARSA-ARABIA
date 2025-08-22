@@ -1,0 +1,32 @@
+[
+  {
+    "category": "Admissions",
+    "q": "How can I apply to the Tajweed program?",
+    "a": "Complete the online application form available on our website. Submit required documents including educational certificates and a letter of motivation. Entrance interviews are conducted for shortlisted candidates."
+  },
+  {
+    "category": "Facilities", 
+    "q": "Do you provide hostel facilities?",
+    "a": "Yes, we offer limited hostel facilities for full-time students from outside the city. Accommodation includes meals, study areas, and supervised living environment. Apply early as spaces are limited."
+  },
+  {
+    "category": "Resources",
+    "q": "How do I submit a question to Dar-ul-Ifta?",
+    "a": "Use the question submission form on our Resources page. Provide detailed context for your query. Our qualified scholars will respond via email within 7-10 business days."
+  },
+  {
+    "category": "Academic",
+    "q": "What are the class timings?",
+    "a": "Regular classes run from 8:00 AM to 2:00 PM, Saturday to Thursday. Evening programs are available from 4:00 PM to 8:00 PM. Friday is reserved for congregational prayers and community activities."
+  },
+  {
+    "category": "Fees",
+    "q": "What are the fee structures for different programs?",
+    "a": "Fees vary by program and duration. Basic programs start from $200/semester. Scholarships and payment plans are available for deserving students. Contact admissions office for detailed fee structure."
+  },
+  {
+    "category": "Academic",
+    "q": "Do you offer certificates upon completion?",
+    "a": "Yes, we provide certificates for all completed programs. Certificates are recognized by major Islamic institutions globally. Transcripts and recommendations are also available for further studies."
+  }
+]

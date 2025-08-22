@@ -1,0 +1,146 @@
+import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { Button } from './ui/button';
+
+interface HeaderProps {
+  currentPage: string;
+  onPageChange: (page: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigation = [
+    { name: 'Home', key: 'home' },
+    { name: 'About', key: 'about' },
+    { name: 'Programs', key: 'programs' },
+    { name: 'Our Mission', key: 'resources' },
+    { name: 'Notice', key: 'notice' },
+    { name: 'Contact', key: 'contact' },
+  ];
+
+  const handlePageChange = (page: string) => {
+    onPageChange(page);
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <motion.header 
+      className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <motion.div 
+            className="flex items-center space-x-3 cursor-pointer"
+            onClick={() => handlePageChange('home')}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="w-12 h-12 bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8] rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-xl">م</span>
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-[#0B0D0E]">
+                MADARSA ARABIA
+              </h1>
+              <p className="text-sm text-[#1F7A53]">TAJVEEDUL QURAN</p>
+            </div>
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-1">
+            {navigation.map((item, index) => (
+              <motion.div
+                key={item.key}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <Button
+                  variant={currentPage === item.key ? "default" : "ghost"}
+                  onClick={() => handlePageChange(item.key)}
+                  className={`relative px-4 py-2 transition-all duration-300 ${
+                    currentPage === item.key
+                      ? 'bg-[#1F7A53] text-white shadow-lg'
+                      : 'text-gray-700 hover:text-[#1F7A53] hover:bg-[#E8F5EF]'
+                  }`}
+                >
+                  {item.name}
+                  {currentPage === item.key && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1F7A53]"
+                      layoutId="activeTab"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                </Button>
+              </motion.div>
+            ))}
+          </nav>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-700 hover:text-[#1F7A53]"
+            >
+              <motion.div
+                animate={{ rotate: isMenuOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </motion.div>
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <motion.div
+          initial={false}
+          animate={{
+            height: isMenuOpen ? 'auto' : 0,
+            opacity: isMenuOpen ? 1 : 0
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="md:hidden overflow-hidden"
+        >
+          <nav className="py-4 space-y-2">
+            {navigation.map((item, index) => (
+              <motion.div
+                key={item.key}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ 
+                  opacity: isMenuOpen ? 1 : 0, 
+                  x: isMenuOpen ? 0 : -20 
+                }}
+                transition={{ delay: index * 0.1, duration: 0.3 }}
+              >
+                <Button
+                  variant={currentPage === item.key ? "default" : "ghost"}
+                  onClick={() => handlePageChange(item.key)}
+                  className={`w-full justify-start transition-all duration-300 ${
+                    currentPage === item.key
+                      ? 'bg-[#1F7A53] text-white'
+                      : 'text-gray-700 hover:text-[#1F7A53] hover:bg-[#E8F5EF]'
+                  }`}
+                >
+                  {item.name}
+                </Button>
+              </motion.div>
+            ))}
+          </nav>
+        </motion.div>
+      </div>
+    </motion.header>
+  );
+};
+
+export default Header;
