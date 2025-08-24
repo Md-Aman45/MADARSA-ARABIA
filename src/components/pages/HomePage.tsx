@@ -162,42 +162,56 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
   // Local madrasa photos for hero carousel
   const madrasaPhotos = [
      {
-      url: "/assets/p00.png",
+      url: "/assets/h1.png",
       title: "Main Academic Building",
       description: "Our state-of-the-art academic facilities"
     },
     {
-      url: "/assets/p01.png",
+      url: "/assets/h2.png",
       title: "Student Library",
       description: "Comprehensive collection of Islamic literature"
     },
     {
-      url: "/assets/p1.png",
+      url: "/assets/h1.png",
       title: "Main Academic Building",
       description: "Our state-of-the-art academic facilities"
     },
     {
-      url: "/assets/p2.png",
+      url: "/assets/h4.png",
       title: "Student Library",
       description: "Comprehensive collection of Islamic literature"
     },
     {
-      url: "/assets/p3.png",
+      url: "/assets/h5.png",
       title: "Prayer Hall & Mosque",
       description: "Beautiful mosque for daily prayers and gatherings"
     },
     {
-      url: "/assets/p2.png",
+      url: "/assets/h6.png",
       title: "Student Dormitories",
       description: "Comfortable accommodation for students"
     },
     {
-      url: "/assets/p5.png",
+      url: "/assets/h7.png",
       title: "Campus Courtyard",
       description: "Peaceful environment for reflection and study"
     },
     {
-      url: "/assets/p3.png",
+      url: "/assets/h8.png",
+      title: "Classroom Facilities",
+      description: "Modern learning environments with traditional values"
+    },
+    {
+      url: "/assets/h2.png",
+      title: "Classroom Facilities",
+      description: "Modern learning environments with traditional values"
+    },{
+      url: "/assets/h10.png",
+      title: "Classroom Facilities",
+      description: "Modern learning environments with traditional values"
+    },
+    {
+      url: "/assets/h11.png",
       title: "Classroom Facilities",
       description: "Modern learning environments with traditional values"
     }
@@ -217,10 +231,10 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       } catch (error) {
         // Fallback data
         setStats([
-          { label: "Years of Service", value: 25 },
-          { label: "Students", value: 1200 },
-          { label: "Programs", value: 9 },
-          { label: "Faculty", value: 80 }
+          { label: "Years of Service", value: 41 },
+          { label: "Students", value: 355 },
+          { label: "Branches", value: 12 },
+          { label: "Faculty", value: 26 }
         ]);
       }
     };
@@ -352,6 +366,11 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
     }
   ];
 
+  const handleDonateClick = () => {
+    const message = encodeURIComponent("I want to donate for your madarsa please provide me the details where I can donate and earn good deeds");
+    window.open(`https://wa.me/919801213788?text=${message}`, '_blank');
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section with Carousel - IMPROVED */}
@@ -436,9 +455,9 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
     transition={{ delay: 0.3, duration: 0.8 }}
     className="block"
   >
-    Precision in Recitation.{" "}
+    MADARSA {" "}
     <span className="text-[#1F7A53]">
-      Depth in Knowledge.
+      ARABIA
     </span>
   </motion.span>
   
@@ -449,7 +468,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
                 >
-                  Service to Community.
+               <h2>  TAJVEEDUL QURAN  </h2>
                 </motion.span>
               </motion.h1>
               
@@ -486,7 +505,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                     size="lg"
                     variant="outline"
                     className="border-blue text-black  text-[#1E5FA8] transition-all duration-300 text-base"
-                    onClick={() => onPageChange('contact')}
+                    onClick={handleDonateClick}
                   >
                     <Heart className="w-5 h-5 mr-2" />
                     Donate 
@@ -721,7 +740,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                 transition={{ duration: 0.3 }}
               >
                 <ImageWithFallback
-                  src="/assets/p1.png"
+                  src="/assets/h1.png"
                   alt="Islamic books and manuscripts"
                   className="rounded-2xl shadow-xl w-full h-[350px] object-cover"
                 />
@@ -1027,7 +1046,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                 size="lg"
                 variant="secondary"
                 className="bg-white text-[#1F7A53] hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
-                onClick={() => onPageChange('contact')}
+                onClick={handleDonateClick}
               >
                 Donate Now
               </Button>

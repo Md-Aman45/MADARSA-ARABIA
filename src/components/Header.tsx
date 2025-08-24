@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import React, { useState } from 'react';
 import { Button } from './ui/button';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface HeaderProps {
   currentPage: string;
@@ -41,9 +42,11 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">م</span>
-            </div>
+            <ImageWithFallback
+              src="/assets/lo.png"
+              alt="Madarsa Arabia Logo"
+              className="w-13 h-12 rounded-lg object-contain"
+            />
             <div>
               <h1 className="text-xl font-bold text-[#0B0D0E]">
                 MADARSA ARABIA

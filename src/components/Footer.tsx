@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import {
     Award,
     BookOpen,
-    Clock,
+    
     Heart,
     Mail,
     MapPin,
@@ -16,6 +16,13 @@ interface FooterProps {
   onPageChange: (page: string) => void;
 }
 
+// WhatsApp Donation Handler
+const handleDonateClick = () => {
+  const phoneNumber = '919801213788';
+  const message = encodeURIComponent("Assalamu Alaikum! I want to donate to your madrasa. Please provide me with the details where I can donate and earn good deeds.");
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+};
+
 const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
   const quickLinks = [
     { name: 'Home', key: 'home' },
@@ -27,12 +34,12 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
   ];
 
   const programs = [
-    'Qur\'anic Recitation (Tajweed)',
-    'Hifz Program',
-    'Hadith Studies',
-    'Fiqh & Usul',
-    'Arabic Language',
-    'Library Services'
+    'QURAN TAJWEED',
+    'PRIMARY EDUCATION (NAAJRAH)',
+    'FIVE YEAR ARABIC COURSE (AALIMIYAT)',
+    'DEPARTMENT OF COMPUTER SCIENCE ',
+    'DEPARTMENT OF ENGLISH',
+    'ARABIC LITERATURE'
   ];
 
   const containerVariants = {
@@ -87,7 +94,8 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Dedicated to preserving and teaching the sacred knowledge of Islam 
-              through traditional and modern methodologies since 1999.
+              through traditional and modern methodologies since 1404 Hijri./ 1984 Yr.
+
             </p>
             <div className="flex space-x-4">
               {[
@@ -161,17 +169,18 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                 <MapPin className="w-5 h-5 text-[#1F7A53] mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-gray-300 text-sm">
-                    123 Education Street<br />
-                    Islamic City, IC 12345<br />
-                    United States
+                    MASAUNI, POST OFFICE KALINJAR,<br />
+                    TEHSIL NARAINI, DISTRICT BANDA (UP)<br />
+                    PINCODE-210129
+
                   </p>
                 </div>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-[#1E5FA8] flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300 text-sm">+1 (555) 123-4567</p>
-                  <p className="text-gray-300 text-sm">+1 (555) 123-4568</p>
+                  <p className="text-gray-300 text-sm">+91 9452463669</p>
+                  <p className="text-gray-300 text-sm">+91 7880927738</p>
                 </div>
               </li>
               <li className="flex items-center space-x-3">
@@ -180,13 +189,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                   <p className="text-gray-300 text-sm">info@madarsa-arabia.edu</p>
                 </div>
               </li>
-              <li className="flex items-center space-x-3">
-                <Clock className="w-5 h-5 text-[#1E5FA8] flex-shrink-0" />
-                <div>
-                  <p className="text-gray-300 text-sm">Sat-Thu: 8:00 AM - 6:00 PM</p>
-                  <p className="text-gray-300 text-sm">Friday: Community Programs</p>
-                </div>
-              </li>
+              
             </ul>
           </motion.div>
         </div>
@@ -214,7 +217,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => onPageChange('contact')}
+                  onClick={handleDonateClick}
                   className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white"
                 >
                   <Heart className="w-4 h-4 mr-2" />
@@ -228,7 +231,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => onPageChange('programs')}
+                  onClick={() => onPageChange('contact')}
                   className="border-[#1E5FA8] text-[#1E5FA8] hover:bg-[#1E5FA8] hover:text-white"
                 >
                   <BookOpen className="w-4 h-4 mr-2" />

@@ -172,15 +172,15 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
 
   const galleryImages = [
     '/assets/p00.png',
-    '/assets/p01.png',
-    '/assets/p2.png',
-    '/assets/p6.png',
-    '/assets/p3.png',
-    '/assets/p5.png',
-    '/assets/p1.png',
-    '/assets/p3.png',
-    '/assets/p2.png',
-    '/assets/p5.png'
+    '/assets/h1.png',
+    '/assets/h2.png',
+    '/assets/h6.png',
+    '/assets/h4.png',
+    '/assets/h5.png',
+    '/assets/h1.png',
+    '/assets/h11.png',
+    '/assets/h10.png',
+    '/assets/h8.png'
   ];
 
   return (
@@ -268,64 +268,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
         </div>
       </motion.section>
 
-      {/* History Timeline */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={staggerChildren}
-        className="py-20 bg-gray-50"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <motion.h2 variants={fadeIn} className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-              Our Journey Through Time
-            </motion.h2>
-            <motion.p variants={fadeIn} className="text-xl text-gray-600">
-              Milestones in our commitment to Islamic education
-            </motion.p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-[#1F7A53] opacity-30"></div>
-
-            <div className="space-y-12">
-              {timeline.map((item, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeIn}
-                  className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
-                >
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <motion.div whileHover={scaleOnHover}>
-                      <Card className="border-0 shadow-card">
-                        <CardContent className="p-6">
-                          <div className="mb-2">
-                            <Badge variant="outline" className="bg-[#1F7A53] text-white border-[#1F7A53]">
-                              {item.year}
-                            </Badge>
-                          </div>
-                          <h3 className="text-xl font-semibold text-[#0B0D0E] mb-2">
-                            {item.title}
-                          </h3>
-                          <p className="text-gray-600">{item.description}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  </div>
-
-                  <motion.div
-                    whileHover={{ scale: 1.5, backgroundColor: "#1E5FA8" }}
-                    className="relative z-10 w-4 h-4 bg-[#1F7A53] rounded-full border-4 border-white shadow-md"
-                  ></motion.div>
-
-                  <div className="w-1/2"></div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.section>
+  
 
       {/* Leadership Team */}
       <motion.section
@@ -418,7 +361,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
               className="relative rounded-2xl overflow-hidden"
             >
               <ImageWithFallback
-                src="/assets/p5.png"
+                src="/assets/h4.png"
                 alt="Modern Islamic campus"
                 className="w-full h-[500px] object-cover"
               />
@@ -428,8 +371,8 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
                 whileHover={{ opacity: 1, y: 0 }}
                 className="absolute bottom-0 left-0 right-0 p-6 text-white"
               >
-                <h3 className="text-xl font-bold mb-2">Virtual Tour Available</h3>
-                <p className="text-white/90">Explore our campus facilities with our interactive virtual tour</p>
+                <h3 className="text-xl font-bold mb-2">Visit Our Madarsa</h3>
+                <p className="text-white/90">Explore our Madarsa facilities </p>
                 <Button className="mt-4 bg-white text-[#1F7A53] hover:bg-white/90">
                   Start Tour
                 </Button>

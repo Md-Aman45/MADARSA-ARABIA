@@ -716,6 +716,9 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
             variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
             {[
               {
@@ -827,7 +830,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-blue text-black  text-[#1F7A53]"
+                className="border-white text-white hover:bg-white hover:text-[#1F7A53]"
                 onClick={() => onPageChange('about')}
               >
                 Learn More

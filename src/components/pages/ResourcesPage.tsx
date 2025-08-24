@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo, memo, useCallback } from 'react';
 import { motion, useInView, LazyMotion, domAnimation, m } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
@@ -19,6 +20,13 @@ interface MissionVisionPageProps {
   // Optional prop for handling page changes, useful for parent components.
   onPageChange?: (page: string) => void;
 }
+
+// WhatsApp Donation Handler
+const handleDonateClick = () => {
+  const phoneNumber = '919801213788';
+  const message = encodeURIComponent("Assalamu Alaikum! I want to donate to your madrasa. Please provide me with the details where I can donate and earn good deeds.");
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+};
 
 // Optimized animation variants
 const containerVariants = {
@@ -82,10 +90,10 @@ const rotateVariants = {
 
 const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
   // Handles the click event for the "Join Us" button.
-  // It calls the onPageChange prop if it exists, navigating to the 'admissions' page.
+  // It calls the onPageChange prop if it exists, navigating to the 'contact' page.
   const handleJoinUs = useCallback(() => {
     if (onPageChange) {
-      onPageChange('admissions');
+      onPageChange('contact');
     }
   }, [onPageChange]);
 
@@ -344,7 +352,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Global impact card with a quote. */}
               <motion.div variants={itemVariants} className="order-2 lg:order-1">
-                <Card className="rounded-2xl p-8 lg:p-12 relative overflow-hidden h-full flex items-center justify-center shadow-md hover:shadow-xl transition-shadow duration-300">
+                <Card className="rounded-2xl p-8 lg:px-12 relative overflow-hidden h-full flex items-center justify-center shadow-md hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="relative text-center">
                     <motion.div
                       className="w-20 h-20 bg-[#F1F5F9] rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm"
@@ -532,11 +540,12 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     </p>
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button
-                        variant="outline"
-                        className="border-[#1e5fa8] text-[#1e5fa8]text-white w-full"
+                        onClick={handleDonateClick}
+
+                        className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white w-full"
                       >
                         Support Our Mission
-                        <Heart className="w-4 h-4 ml-2" />
+                        <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </motion.div>
                   </CardContent>

@@ -32,6 +32,20 @@ interface Department {
   facilities?: string[];
 }
 
+// WhatsApp Donation Handler
+const handleDonateClick = () => {
+  const phoneNumber = '919801213788';
+  const message = encodeURIComponent("Assalamu Alaikum! I want to donate to your madrasa. Please provide me with the details where I can donate and earn good deeds.");
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+};
+
+// WhatsApp Contact Handler for Program Inquiries
+const handleProgramContactClick = (programName: string) => {
+  const phoneNumber = '919801213788';
+  const message = encodeURIComponent(`Assalamu Alaikum! I'm interested in the ${programName} program at your madrasa. Please provide me with more information.`);
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+};
+
 // Optimized animation variants - keeping all original animations but with better performance
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -72,7 +86,7 @@ const cardVariants = {
 const FALLBACK_DEPARTMENTS: Department[] = [
   {
     slug: "tajweed",
-    name: "Qur'anic Recitation (Tajweed)",
+    name: "QURAN TAJWEED",
     summary: "Mastery of recitation rules and articulation with proper pronunciation and melody.",
     description: "Our comprehensive Tajweed program focuses on the precise articulation of Qur'anic verses according to classical rules. Students learn proper pronunciation, rhythm, and melody under expert guidance.",
     duration: "2 years",
@@ -80,7 +94,7 @@ const FALLBACK_DEPARTMENTS: Department[] = [
   },
   {
     slug: "hifz",
-    name: "Hifz Program", 
+    name: "PRIMARY EDUCATION (NAAJRAH)", 
     summary: "Memorization and revision methodology with dedicated mentoring and support.",
     description: "Complete memorization of the Holy Quran with systematic revision techniques. Our experienced teachers provide personalized guidance for each student's memorization journey.",
     duration: "3-5 years",
@@ -88,7 +102,7 @@ const FALLBACK_DEPARTMENTS: Department[] = [
   },
   {
     slug: "hadith",
-    name: "Hadith Studies",
+    name: "HAFIZ-UL-QURAN",
     summary: "Foundational texts, methodology, and commentary of Prophetic traditions.",
     description: "In-depth study of authentic Hadith collections including Sahih Bukhari, Sahih Muslim, and other classical works. Students learn the science of Hadith and its practical application.",
     duration: "4 years",
@@ -96,7 +110,7 @@ const FALLBACK_DEPARTMENTS: Department[] = [
   },
   {
     slug: "fiqh",
-    name: "Fiqh & Usul",
+    name: "FIVE YEAR ARABIC COURSE (AALIMIYAT)",
     summary: "Islamic jurisprudence principles and their practical application in daily life.",
     description: "Comprehensive study of Islamic law covering worship, transactions, family matters, and contemporary issues. Students develop skills in legal reasoning and fatwa methodology.",
     duration: "5 years", 
@@ -104,7 +118,7 @@ const FALLBACK_DEPARTMENTS: Department[] = [
   },
   {
     slug: "arabic",
-    name: "Arabic Language",
+    name: "DEPARTMENT OF COMPUTER SCIENCE ",
     summary: "Classical Arabic grammar, morphology, and comprehension skills development.",
     description: "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
     duration: "3 years",
@@ -112,24 +126,31 @@ const FALLBACK_DEPARTMENTS: Department[] = [
   },
   {
     slug: "library",
-    name: "Library Services",
+    name: "DEPARTMENT OF ENGLISH",
     summary: "Comprehensive catalog, reading rooms, and research access for scholarly pursuits.",
     description: "State-of-the-art library with over 15,000 books, manuscripts, and digital resources. Quiet study spaces and research assistance available for students and faculty.",
     facilities: ["Reading halls", "Digital archives", "Reference section", "Manuscript collection"]
   },
   {
     slug: "hostel",
-    name: "Student Hostel",
+    name: "ARABIC LITERATURE",
     summary: "On-campus accommodation with comprehensive student welfare services.",
     description: "Safe and comfortable accommodation for out-of-town students. Includes meals, study halls, recreational facilities, and 24/7 supervision.",
     facilities: ["Dormitory rooms", "Dining hall", "Study rooms", "Recreation area", "Medical care"]
   },
   {
     slug: "mosque",
-    name: "Campus Mosque",
+    name: "DAUR-E-HADITH",
     summary: "Central place of worship hosting congregational prayers and community programs.",
     description: "Beautiful mosque serving as the spiritual center of our campus. Regular congregational prayers, Friday sermons, and special programs throughout the year.",
     facilities: ["Prayer halls", "Ablution areas", "Community hall", "Audio system"]
+  },
+  {
+    slug: "hostel",
+    name: "ARABIC LITERATURE",
+    summary: "On-campus accommodation with comprehensive student welfare services.",
+    description: "Safe and comfortable accommodation for out-of-town students. Includes meals, study halls, recreational facilities, and 24/7 supervision.",
+    facilities: ["Dormitory rooms", "Dining hall", "Study rooms", "Recreation area", "Medical care"]
   }
 ];
 
@@ -174,31 +195,24 @@ const ProgramCard = memo(({
       key={dept.slug}
       variants={cardVariants}
       whileHover={{ 
-        y: -8,
+        y: -5,
         transition: { duration: 0.3, ease: "easeOut" }
       }}
     >
       <Card 
-        className="group h-full hover:shadow-xl transition-all duration-500 border-0 shadow-card cursor-pointer hover:bg-gradient-to-tr from-[#EAF2FB] to-[#E8F5EF]"
+        className="group h-full cursor-pointer rounded-xl shadow-md hover:shadow-lg transition-all duration-500 hover:bg-gradient-to-tr from-[#EAF2FB] to-[#E8F5EF]"
         onClick={handleClick}
       >
-        <CardHeader className="pb-4">
+        <CardHeader className="p-6">
           <motion.div 
-            className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-              isService 
-                ? 'bg-gradient-to-br from-[#1E5FA8] to-[#1F7A53]'
-                : 'bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8]'
-            }`}
-            whileHover={{ 
-              scale: 1.1,
-              rotate: 5
-            }}
+            className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-[#1F7A53] bg-white"
+            whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <IconComponent className="w-6 h-6 text-white" />
+            <IconComponent className="w-8 h-8 text-[#1F7A53]" />
           </motion.div>
-          <div className="flex items-start justify-between">
-            <CardTitle className="text-xl group-hover:text-[#1F7A53] transition-colors duration-300 leading-tight">
+          <div className="text-center">
+            <CardTitle className="text-2xl font-semibold text-[#0B0D0E] leading-tight mb-4 group-hover:text-[#1F7A53] transition-colors duration-300">
               {dept.name}
             </CardTitle>
             <Badge 
@@ -209,11 +223,11 @@ const ProgramCard = memo(({
             </Badge>
           </div>
         </CardHeader>
-        <CardContent>
-          <p className="text-gray-600 mb-4 line-clamp-3">{dept.summary}</p>
+        <CardContent className="p-6">
+          <p className="text-gray-600 text-base mb-4 line-clamp-3 text-center">{dept.summary}</p>
           
           {dept.duration && (
-            <div className="flex items-center text-sm text-gray-500 mb-4">
+            <div className="flex items-center justify-center text-sm text-gray-500 mb-4">
               <Clock className="w-4 h-4 mr-2" />
               {dept.duration}
             </div>
@@ -221,9 +235,9 @@ const ProgramCard = memo(({
           
           <Button 
             variant="ghost" 
-            className="p-0 h-auto text-[#1F7A53] hover:text-[#1F7A53]/80 group-hover:translate-x-2 transition-all duration-300"
+            className="w-full text-green-700 text-base font-medium flex items-center justify-center hover:text-green-800 hover:translate-x-2 transition-all duration-300"
           >
-            Learn More <ArrowRight className="w-4 h-4 ml-1" />
+            Learn More <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
         </CardContent>
       </Card>
@@ -255,19 +269,18 @@ const ServiceCard = memo(({
         y: -5,
         transition: { duration: 0.3 }
       }}
-    >
-      <Card className="border-0 shadow-card text-center hover:shadow-xl transition-all duration-500 hover:bg-gradient-to-tr from-white to-[#E8F5EF]">
-        <CardContent className="p-8">
+  >
+      <Card className="border-0 rounded-xl shadow-md text-center hover:shadow-lg transition-all duration-500 hover:bg-gradient-to-tr from-white to-[#E8F5EF]">
+        <CardContent className="p-6">
           <motion.div 
-            className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
-            style={{ backgroundColor: service.color }}
-            whileHover={{ scale: 1.1, rotate: 10 }}
+            className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-[#1F7A53] bg-white"
+            whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <IconComponent className="w-8 h-8 text-white" />
+            <IconComponent className="w-8 h-8 text-[#1F7A53]" />
           </motion.div>
-          <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">{service.title}</h3>
-          <p className="text-gray-600">{service.description}</p>
+          <h3 className="text-2xl font-semibold text-[#0B0D0E] mb-4 text-center">{service.title}</h3>
+          <p className="text-gray-600 text-base text-center">{service.description}</p>
         </CardContent>
       </Card>
     </motion.div>
@@ -287,9 +300,9 @@ const ProgramDetail = memo(({
 }) => {
   const IconComponent = ICON_MAP[department.slug] || BookOpen;
   
-  const handleApplyClick = useCallback(() => {
-    onPageChange('contact');
-  }, [onPageChange]);
+  const handleContactClick = useCallback(() => {
+    handleProgramContactClick(department.name);
+  }, [department.name]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -302,7 +315,7 @@ const ProgramDetail = memo(({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="mb-6"
+            className="mb-6 text-center"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -316,23 +329,23 @@ const ProgramDetail = memo(({
             </Button>
           </motion.div>
           <motion.div 
-            className="flex items-center space-x-4 mb-6"
+            className="flex flex-col items-center space-y-4 mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <motion.div 
-              className="w-16 h-16 bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8] rounded-xl flex items-center justify-center"
+              className="w-16 h-16 rounded-full flex items-center justify-center border-4 border-[#1F7A53] bg-white"
               whileHover={{ scale: 1.1, rotate: 5 }}
               transition={{ duration: 0.3 }}
             >
-              <IconComponent className="w-8 h-8 text-white" />
+              <IconComponent className="w-8 h-8 text-[#1F7A53]" />
             </motion.div>
-            <div>
-              <h1 className="text-4xl lg:text-5xl font-bold text-[#0B0D0E]">
+            <div className="text-center">
+              <h1 className="text-4xl lg:text-5xl font-semibold text-[#0B0D0E] leading-tight mb-2">
                 {department.name}
               </h1>
-              <p className="text-xl text-gray-600 mt-2">
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 {department.summary}
               </p>
             </div>
@@ -348,95 +361,61 @@ const ProgramDetail = memo(({
         variants={containerVariants}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <motion.div className="lg:col-span-2" variants={itemVariants}>
-              <Card className="border-0 shadow-card mb-8 hover:shadow-xl transition-all duration-500">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-[#0B0D0E] mb-4">Program Overview</h2>
-                  <p className="text-gray-700 leading-relaxed mb-6">
-                    {department.description}
-                  </p>
+          <motion.div variants={itemVariants}>
+            <Card className="rounded-xl shadow-md hover:shadow-lg transition-all duration-500 hover:bg-gradient-to-tr from-[#EAF2FB] to-[#E8F5EF]">
+              <CardContent className="p-6 text-center">
+                <h2 className="text-2xl font-semibold text-[#0B0D0E] mb-4">Program Overview</h2>
+                <p className="text-gray-600 text-base mb-6">{department.description}</p>
 
-                  {department.facilities && (
-                    <div>
-                      <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">Facilities Available</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {department.facilities.map((facility, index) => (
-                          <motion.div 
-                            key={index} 
-                            className="flex items-center space-x-3"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                          >
-                            <CheckCircle className="w-5 h-5 text-[#1F7A53] flex-shrink-0" />
-                            <span className="text-gray-700">{facility}</span>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div className="lg:col-span-1" variants={itemVariants}>
-              <Card className="border-0 shadow-card mb-6 hover:shadow-xl transition-all duration-500">
-                <CardHeader>
-                  <CardTitle className="text-[#1F7A53]">Program Details</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {department.duration && (
-                    <div className="flex items-center space-x-3">
-                      <Clock className="w-5 h-5 text-gray-500" />
-                      <div>
-                        <p className="font-medium">Duration</p>
-                        <p className="text-gray-600">{department.duration}</p>
-                      </div>
-                    </div>
-                  )}
-                  
-                  {department.prerequisites && (
-                    <div className="flex items-center space-x-3">
-                      <GraduationCap className="w-5 h-5 text-gray-500" />
-                      <div>
-                        <p className="font-medium">Prerequisites</p>
-                        <p className="text-gray-600">{department.prerequisites}</p>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex items-center space-x-3">
-                    <Users className="w-5 h-5 text-gray-500" />
-                    <div>
-                      <p className="font-medium">Class Size</p>
-                      <p className="text-gray-600">15-20 students</p>
+                {department.facilities && (
+                  <div className="mb-6">
+                    <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">Facilities Available</h3>
+                    <div className="flex flex-col items-center gap-2">
+                      {department.facilities.map((facility, index) => (
+                        <motion.div 
+                          key={index} 
+                          className="flex items-center space-x-2"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1, duration: 0.5 }}
+                        >
+                          <CheckCircle className="w-5 h-5 text-[#1F7A53] flex-shrink-0" />
+                          <span className="text-gray-600">{facility}</span>
+                        </motion.div>
+                      ))}
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                )}
 
-              <Card className="border-0 shadow-card hover:shadow-xl transition-all duration-500">
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-[#0B0D0E] mb-4">Ready to Apply?</h3>
-                  <p className="text-gray-600 mb-4">
-                    Contact our admissions office for more information about this program.
-                  </p>
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Button 
-                      className="w-full bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white"
-                      onClick={handleApplyClick}
-                    >
-                      Apply Now
-                    </Button>
-                  </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
+                {department.duration && (
+                  <div className="flex items-center justify-center text-sm text-gray-500 mb-4">
+                    <Clock className="w-4 h-4 mr-2" />
+                    {department.duration}
+                  </div>
+                )}
+
+                {department.prerequisites && (
+                  <div className="flex items-center justify-center text-sm text-gray-500 mb-4">
+                    <GraduationCap className="w-4 h-4 mr-2" />
+                    {department.prerequisites}
+                  </div>
+                )}
+
+                <div className="flex items-center justify-center text-sm text-gray-500 mb-6">
+                  <Users className="w-4 h-4 mr-2" />
+                  15-20 students
+                </div>
+
+                <Button 
+                  variant="ghost" 
+                  className="w-full text-green-700 text-base font-medium flex items-center justify-center hover:text-green-800 hover:translate-x-2 transition-all duration-300"
+                  onClick={handleContactClick}
+                >
+                  Contact Now <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </motion.section>
     </div>
@@ -622,7 +601,7 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
             </motion.div>
 
             <motion.div 
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24"
               variants={containerVariants}
             >
               {[
@@ -723,10 +702,11 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="border-blue text-green bg-white text-[#1F7A53] transition-all duration-300"
-                  onClick={handleLearnMoreClick}
+                  className="border-blue text-white bg-white text-[#1F7A53] transition-all duration-300"
+                  onClick={handleDonateClick}
                 >
-                  Learn More About Us
+                  <Heart className="w-5 h-5 mr-2" />
+                  Donate
                 </Button>
               </motion.div>
             </motion.div>
