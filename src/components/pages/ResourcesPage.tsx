@@ -1,19 +1,19 @@
-
-import React, { useState, useEffect, useMemo, memo, useCallback } from 'react';
-import { motion, useInView, LazyMotion, domAnimation, m } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Button } from '../ui/button';
+import { LazyMotion, domAnimation, motion } from 'framer-motion';
 import {
+  ArrowRight,
   BookOpen,
-  Users,
-  Heart,
-  Globe,
   Building,
+  Globe,
+  Heart,
   Star,
-  Award,
   Target,
-  ArrowRight
+  Users,
+  Hammer
 } from 'lucide-react';
+import React, { useCallback, useMemo } from 'react';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardTitle } from '../ui/card';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 // Define the component's props interface.
 interface MissionVisionPageProps {
@@ -23,8 +23,15 @@ interface MissionVisionPageProps {
 
 // WhatsApp Donation Handler
 const handleDonateClick = () => {
-  const phoneNumber = '919801213788';
+  const phoneNumber = '918423370548';
   const message = encodeURIComponent("Assalamu Alaikum! I want to donate to your madrasa. Please provide me with the details where I can donate and earn good deeds.");
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+};
+
+// WhatsApp Donation for Construction Project
+const handleDonateProject = () => {
+  const phoneNumber = '9155649575';
+  const message = encodeURIComponent("Assalamu Alaikum! I am interested in donating to the ongoing construction project. Please provide me with the details.");
   window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 };
 
@@ -90,7 +97,6 @@ const rotateVariants = {
 
 const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
   // Handles the click event for the "Join Us" button.
-  // It calls the onPageChange prop if it exists, navigating to the 'contact' page.
   const handleJoinUs = useCallback(() => {
     if (onPageChange) {
       onPageChange('contact');
@@ -132,6 +138,40 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
     { label: "Qualified Teachers", value: "50+" },
     { label: "Students Benefited", value: "1000+" },
     { label: "Programs", value: "10+" }
+  ], []);
+
+  // Data for the ongoing construction section
+  const constructionImages = useMemo(() => [
+    {
+      src: "/assets/c2.jpg",
+      subheading: "Phase 1: Foundation",
+      details: "Undergoing construction of main gate and Hazrat Abu bakr Siddiq (R.A) hostel"
+    },
+    {
+      src: "/assets/c1.jpg",
+      subheading: "Phase 2: Main Building",
+      details: "Undergoing construction of main gate and Hazrat Abu bakr Siddiq (R.A) hostel."
+    },
+    {
+      src: "/assets/c3.jpg",
+      subheading: "Phase 3: Classrooms",
+      details: "The Guest house and Nursing home is to be built here at the back of Madarsa. it's also in stay for very long time"
+    },
+    {
+      src: "/assets/c4.jpg",
+      subheading: "Phase 4: Library & Hall",
+      details: "The framework for our new library and assembly hall is in progress."
+    },
+    {
+      src: "/assets/c5.jpg",
+      subheading: "Phase 5: Student Hostel",
+      details: "Work has begun on the new student accommodation facilities."
+    },
+    {
+      src: "/assets/c7.jpg",
+      subheading: "Phase 6: Campus Mosque",
+      details: "It is the land where Madarsa is going to built their very important project For their students so they also get more good facilities "
+    }
   ], []);
 
   return (
@@ -218,11 +258,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                   </h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                  At our Madrasa, our mission is deeply rooted in the timeless teachings of the Qur'an and Sunnah.
-                  We are dedicated to nurturing a generation of students who are firmly connected to Allah ﷻ,
-                  His Book, and the noble teachings of Prophet Muhammad ﷺ. Our institution strives to create
-                  an environment that balances spiritual growth, academic excellence, and strong moral character,
-                  preparing students to face modern challenges while staying grounded in their faith.
+                  Maulana Siddiq Ahmad Sahab’s vision for developing this madrasa was to make Islamic education simple and accessible, instill confidence in children, and nurture them with Quranic knowledge, Islamic values, and moral strength so they could live as proud, disciplined, and faithful Muslims while contributing positively to society.
                 </p>
 
                 {/* Three-column grid for key mission values. */}
@@ -340,7 +376,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
           </div>
         </motion.section>
 
-        {/* Vision Section: A two-column layout for a vision quote and vision statement. */}
+        {/* New On-Going Construction Section */}
         <motion.section
           className="py-20 bg-white"
           initial="hidden"
@@ -349,72 +385,76 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
           variants={containerVariants}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Global impact card with a quote. */}
-              <motion.div variants={itemVariants} className="order-2 lg:order-1">
-                <Card className="rounded-2xl p-8 lg:px-12 relative overflow-hidden h-full flex items-center justify-center shadow-md hover:shadow-xl transition-shadow duration-300">
-                  <CardContent className="relative text-center">
-                    <motion.div
-                      className="w-20 h-20 bg-[#F1F5F9] rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm"
-                      whileHover={{ scale: 1.1, rotate: 10 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Globe className="w-10 h-10 text-[#1F7A53]" />
-                    </motion.div>
-                    <h3 className="text-2xl font-bold text-[#0B0D0E] mb-4">Global Impact</h3>
-                    <p className="text-gray-700 italic">
-                      "Spreading authentic Islamic knowledge to serve communities worldwide"
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              {/* Vision statement content */}
-              <motion.div variants={itemVariants} className="order-1 lg:order-2">
-                <div className="flex items-center mb-6">
-                  <motion.div
-                    className="w-12 h-12 bg-[#1F7A53] rounded-lg flex items-center justify-center mr-4"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Star className="w-6 h-6 text-white" />
-                  </motion.div>
-                  <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E]">
-                    Our Vision
-                  </h2>
-                </div>
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  We aspire to raise a generation of Muslims who are firm in Iman, deeply connected to the
-                  Qur'an and Sunnah, and grounded in Islamic history and values. Our students will be equipped
-                  to serve the Ummah with knowledge, character, and sincerity, becoming ambassadors of faith
-                  in every walk of life.
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                  With the mercy of Allah ﷻ, we aim to be a beacon of light, guiding families and communities
-                  toward true Islamic education, spirituality, and success in this world and the Hereafter.
-                </p>
-
-                {/* Badges for vision attributes. */}
-                <div className="flex flex-wrap gap-4">
-                  <motion.div
-                    className="flex items-center bg-[#F1F5F9] px-4 py-2 rounded-full"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Users className="w-5 h-5 text-[#1F7A53] mr-2" />
-                    <span className="text-[#1F7A53] font-medium">Community Leaders</span>
-                  </motion.div>
-                  <motion.div
-                    className="flex items-center bg-[#EAF2FB] px-4 py-2 rounded-full"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Heart className="w-5 h-5 text-[#1e5fa8] mr-2" />
-                    <span className="text-[#1e5fa8] font-medium">Spiritual Excellence</span>
-                  </motion.div>
+            <div className="text-center mb-16">
+              <motion.div variants={itemVariants} className="flex justify-center mb-6">
+                <div className="w-20 h-20 bg-[#1e5fa8] rounded-full flex items-center justify-center">
+                  <Hammer className="w-10 h-10 text-white" />
                 </div>
               </motion.div>
+              <motion.h2 variants={itemVariants} className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
+                On-Going Construction
+              </motion.h2>
+              <motion.p variants={itemVariants} className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Witness our vision taking shape. Your support is building the future of our institution.
+              </motion.p>
             </div>
+            
+            {/* Grid for construction images */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+              variants={containerVariants}
+            >
+              {constructionImages.map((project, index) => (
+                <motion.div
+                  key={index}
+                  variants={cardVariants}
+                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                >
+                  <Card className="border-0 shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+                    <div className="relative overflow-hidden rounded-t-xl h-64">
+                      <ImageWithFallback
+                        src={project.src}
+                        alt={project.subheading}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <CardContent className="p-6 flex flex-col items-start">
+                      <CardTitle className="text-xl font-bold text-[#0B0D0E] mb-2">
+                        {project.subheading}
+                      </CardTitle>
+                      <p className="text-gray-700 leading-relaxed">{project.details}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Donate button */}
+<motion.div
+  className="text-center mt-12"
+  variants={itemVariants}
+>
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    animate={{
+      scale: [1, 1.02, 1],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    }}
+  >
+    <Button
+      onClick={handleDonateProject}
+      className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white text-lg px-10 py-6 font-semibold rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#1F7A53]/50 transition-all duration-300"
+    >
+      <Heart className="w-5 h-5 mr-2" />
+      Donate for the Project
+    </Button>
+  </motion.div>
+</motion.div>
           </div>
         </motion.section>
 
@@ -541,7 +581,6 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button
                         onClick={handleDonateClick}
-
                         className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white w-full"
                       >
                         Support Our Mission

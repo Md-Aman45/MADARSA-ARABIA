@@ -1,0 +1,295 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About Us",
+    "programs": "Programs",
+    "ourMission": "Our Mission",
+    "notice": "Notice",
+    "contact": "Contact",
+    "logoTitle": "Madrasa Al-Noor",
+    "logoSubtitle": "Islamic Education and Guidance",
+    "logoAriaLabel": "Madrasa Al-Noor Home",
+    "languageSwitcherAriaLabel": "Language Switcher",
+    "mainNavigation": "Main Navigation",
+    "mobileNavigation": "Mobile Navigation",
+    "openMenu": "Open Menu",
+    "closeMenu": "Close Menu",
+    "languages": {
+      "en": "English",
+      "hi": "Hindi",
+      "ur": "Urdu",
+      "enAriaLabel": "Switch to English",
+      "hiAriaLabel": "Switch to Hindi",
+      "urAriaLabel": "Switch to Urdu"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "Excellence in Islamic Education",
+      "title1": "Precision in Recitation.",
+      "title2": "Depth in Knowledge.",
+      "title3": "Service to Community.",
+      "description": "Join our esteemed institution dedicated to preserving and teaching the sacred knowledge of Islam through traditional and modern methodologies.",
+      "explorePrograms": "Explore Programs",
+      "donate": "Donate",
+      "photos": {
+        "academicBuilding": {
+          "title": "Main Academic Building",
+          "description": "Our state-of-the-art academic facilities"
+        },
+        "studentLibrary": {
+          "title": "Student Library",
+          "description": "Extensive collection of Islamic literature"
+        },
+        "prayerHall": {
+          "title": "Prayer Hall and Mosque",
+          "description": "Beautiful mosque for daily prayers and gatherings"
+        },
+        "dormitories": {
+          "title": "Dormitories",
+          "description": "Comfortable accommodation for students"
+        },
+        "courtyard": {
+          "title": "Campus Courtyard",
+          "description": "Peaceful environment for reflection and study"
+        },
+        "classrooms": {
+          "title": "Classroom Facilities",
+          "description": "Modern learning environment with traditional values"
+        }
+      }
+    },
+    "stats": {
+      "yearsOfService": "Years of Service",
+      "students": "Students",
+      "programs": "Programs",
+      "faculty": "Faculty"
+    },
+    "programs": {
+      "title": "Our Programs and Courses",
+      "description": "Comprehensive Islamic education across various disciplines taught by qualified scholars and experienced teachers.",
+      "learnMore": "Learn More",
+      "viewAll": "View All Programs",
+      "departments": {
+        "tajweed": {
+          "name": "Qur'anic Recitation (Tajweed)",
+          "summary": "Mastery of recitation rules and articulation with proper pronunciation and melody."
+        },
+        "hifz": {
+          "name": "Hifz Program",
+          "summary": "Memorization and revision methodology with dedicated mentoring and support."
+        },
+        "hadith": {
+          "name": "Hadith Studies",
+          "summary": "Foundational texts, methodology, and commentary of Prophetic traditions."
+        },
+        "fiqh": {
+          "name": "Fiqh & Usul",
+          "summary": "Islamic jurisprudence principles and their practical application in daily life."
+        },
+        "arabic": {
+          "name": "Arabic Language",
+          "summary": "Classical Arabic grammar, morphology, and comprehension skills development."
+        },
+        "library": {
+          "name": "Library Services",
+          "summary": "Comprehensive catalog, reading rooms, and research access for scholarly pursuits."
+        }
+      }
+    },
+    "darUlIfta": {
+      "title": "Dar-ul-Ifta Services",
+      "description": "Get authentic Islamic guidance on contemporary issues from our qualified scholars. Submit your questions and receive scholarly answers based on the Quran and Sunnah.",
+      "badges": {
+        "family": "Family Matters",
+        "business": "Business and Finance",
+        "worship": "Worship and Rituals"
+      },
+      "submitQuestion": "Submit Question",
+      "imageAlt": "Islamic Books and Manuscripts"
+    },
+    "news": {
+      "title": "Latest Notices and Announcements",
+      "description": "Stay updated with our latest announcements and events",
+      "viewAll": "View All Notices",
+      "readMore": "Read More",
+      "admissions-open": {
+        "title": "Admissions 2025 Open",
+        "tag": "Announcement",
+        "excerpt": "Applications are now open for the new academic year. Early bird discounts available."
+      },
+      "ramadan-schedule": {
+        "title": "Ramadan Schedule Update",
+        "tag": "Event",
+        "excerpt": "Special prayer times and iftar arrangements for the holy month of Ramadan."
+      },
+      "scholarship-program": {
+        "title": "Merit Scholarship Program",
+        "tag": "Announcement",
+        "excerpt": "New scholarship opportunities for outstanding students across all programs."
+      },
+      "digital-library": {
+        "title": "Digital Library Expansion",
+        "tag": "Notice",
+        "excerpt": "Our digital collection now includes over 5,000 Islamic manuscripts and texts."
+      },
+      "graduation-ceremony": {
+        "title": "Annual Graduation Ceremony",
+        "tag": "Event",
+        "excerpt": "Celebrating the achievements of the 2024 graduating class."
+      },
+      "community-outreach": {
+        "title": "Community Outreach Program",
+        "tag": "Notice",
+        "excerpt": "Students and faculty engaging with local communities through various initiatives."
+      }
+    },
+    "testimonials": {
+      "title": "What Our Students Say",
+      "description": "Hear from our graduates and current students about their experiences",
+      "ahmad": {
+        "name": "Ahmad Hasan",
+        "program": "Hifz Graduate 2023",
+        "content": "The structured approach and caring teachers helped me successfully complete my Hifz journey. The environment here nurtures spiritual and academic growth."
+      },
+      "fatima": {
+        "name": "Fatima Al-Zahra",
+        "program": "Arabic Language Student",
+        "content": "Excellent faculty and comprehensive curriculum. The Arabic program provided me with a strong foundation to understand classical Islamic texts."
+      },
+      "mohammad": {
+        "name": "Mohammad Ali",
+        "program": "Tajweed Graduate 2024",
+        "content": "The Tajweed program completely transformed my recitation. The personal attention and practice sessions were exceptional."
+      },
+      "aisha": {
+        "name": "Aisha Rahman",
+        "program": "Fiqh Studies 2024",
+        "content": "The comprehensive approach to Islamic jurisprudence and practical application have been invaluable to my understanding."
+      },
+      "omar": {
+        "name": "Omar Abdullah",
+        "program": "Hadith Studies 2023",
+        "content": "Learning under renowned scholars has been a privilege. The depth of knowledge and methodology taught here is unmatched."
+      },
+      "maryam": {
+        "name": "Maryam Yusuf",
+        "program": "Quranic Studies 2024",
+        "content": "The holistic approach to Quranic studies, including recitation, memorization, and understanding, has greatly enriched my faith."
+      }
+    },
+    "donation": {
+      "title": "Support Islamic Education",
+      "description": "Your contribution helps us provide quality Islamic education, maintain our facilities, and support deserving students through scholarships.",
+      "donateNow": "Donate Now",
+      "learnMore": "Learn More"
+    }
+  },
+  "programs": {
+    "title": "Programs & Courses",
+    "description": "Comprehensive Islamic education across various disciplines, designed to nurture knowledge, character, and spiritual growth.",
+    "backToPrograms": "Back to Programs",
+    "learnMore": "Learn More",
+    "loading": "Loading programs...",
+    "categories": {
+      "all": "All Programs",
+      "academic": "Academic Programs",
+      "services": "Services & Facilities"
+    },
+    "supportingJourney": {
+      "title": "Supporting Your Educational Journey",
+      "description": "Beyond academics, we provide comprehensive support services"
+    },
+    "services": {
+      "digital": {
+        "title": "Digital Resources",
+        "description": "Access to online library, digital manuscripts, and e-learning platforms for enhanced learning experience."
+      },
+      "dining": {
+        "title": "Dining Services",
+        "description": "Nutritious halal meals served in our dining hall, with special arrangements for dietary requirements."
+      },
+      "welfare": {
+        "title": "Student Welfare",
+        "description": "Comprehensive student support including counseling, medical care, and guidance for development."
+      }
+    },
+    "cta": {
+      "title": "Ready to Begin Your Journey?",
+      "description": "Join our community of scholars and embark on a transformative educational experience rooted in Islamic tradition and contemporary understanding.",
+      "applyNow": "Apply Now",
+      "learnMore": "Learn More About Us"
+    },
+    "detail": {
+      "overview": "Program Overview",
+      "facilities": "Facilities Available",
+      "details": "Program Details",
+      "duration": "Duration",
+      "prerequisites": "Prerequisites",
+      "classSize": "Class Size",
+      "students": "students",
+      "readyToApply": "Ready to Apply?",
+      "applyDescription": "Contact our admissions office for more information about this program."
+    },
+    "departments": {
+      "tajweed": {
+        "name": "Qur'anic Recitation (Tajweed)",
+        "summary": "Mastery of recitation rules and articulation with proper pronunciation and melody.",
+        "description": "Our comprehensive Tajweed program focuses on the precise articulation of Qur'anic verses according to classical rules. Students learn proper pronunciation, rhythm, and melody under expert guidance.",
+        "duration": "2 years",
+        "prerequisites": "Basic Arabic reading ability",
+        "facilities": ["Reading halls", "Practice rooms", "Audio resources"]
+      },
+      "hifz": {
+        "name": "Hifz Program",
+        "summary": "Memorization and revision methodology with dedicated mentoring and support.",
+        "description": "Complete memorization of the Holy Quran with systematic revision techniques. Our experienced teachers provide personalized guidance for each student's memorization journey.",
+        "duration": "3-5 years",
+        "prerequisites": "Age 8-16 preferred",
+        "facilities": ["Memorization rooms", "Revision halls", "Counseling support"]
+      },
+      "hadith": {
+        "name": "Hadith Studies",
+        "summary": "Foundational texts, methodology, and commentary of Prophetic traditions.",
+        "description": "In-depth study of authentic Hadith collections including Sahih Bukhari, Sahih Muslim, and other classical works. Students learn the science of Hadith and its practical application.",
+        "duration": "4 years",
+        "prerequisites": "Intermediate Arabic proficiency",
+        "facilities": ["Study rooms", "Manuscript access", "Research support"]
+      },
+      "fiqh": {
+        "name": "Fiqh & Usul",
+        "summary": "Islamic jurisprudence principles and their practical application in daily life.",
+        "description": "Comprehensive study of Islamic law covering worship, transactions, family matters, and contemporary issues. Students develop skills in legal reasoning and fatwa methodology.",
+        "duration": "5 years",
+        "prerequisites": "Advanced Arabic and basic Islamic studies",
+        "facilities": ["Lecture halls", "Case study rooms", "Legal library"]
+      },
+      "arabic": {
+        "name": "Arabic Language",
+        "summary": "Classical Arabic grammar, morphology, and comprehension skills development.",
+        "description": "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
+        "duration": "3 years",
+        "prerequisites": "Basic literacy",
+        "facilities": ["Language labs", "Grammar resources", "Literature collection"]
+      },
+      "library": {
+        "name": "Library Services",
+        "summary": "Comprehensive catalog, reading rooms, and research access for scholarly pursuits.",
+        "description": "State-of-the-art library with over 15,000 books, manuscripts, and digital resources. Quiet study spaces and research assistance available for students and faculty.",
+        "facilities": ["Reading halls", "Digital archives", "Reference section", "Manuscript collection"]
+      },
+      "hostel": {
+        "name": "Student Hostel",
+        "summary": "On-campus accommodation with comprehensive student welfare services.",
+        "description": "Safe and comfortable accommodation for out-of-town students. Includes meals, study halls, recreational facilities, and 24/7 supervision.",
+        "facilities": ["Dormitory rooms", "Dining hall", "Study rooms", "Recreation area", "Medical care"]
+      },
+      "mosque": {
+        "name": "Campus Mosque",
+        "summary": "Central place of worship hosting congregational prayers and community programs.",
+        "description": "Beautiful mosque serving as the spiritual center of our campus. Regular congregational prayers, Friday sermons, and special programs throughout the year.",
+        "facilities": ["Prayer halls", "Ablution areas", "Community hall", "Audio system"]
+      }
+    }
+  }
+}
