@@ -409,3 +409,19 @@ html {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+.highlighted-text {
+  color: #fff; /* A bright, contrasting color like white or a pale yellow */
+  font-weight: bold; /* Makes the text heavier and more prominent */
+  text-shadow: 
+    0 0 10px #000,   /* A black shadow for depth */
+    0 0 20px #000, 
+    0 0 30px #000;
+}
+
+.highlighted-text:first-child {
+  color: #fff; /* MADARSA in white */
+}
+
+.highlighted-text:last-child {
+  color: #FFC0CB; /* ARABIA in a light pink */
+}

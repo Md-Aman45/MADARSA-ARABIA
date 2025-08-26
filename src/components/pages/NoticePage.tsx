@@ -81,12 +81,12 @@ const getFallbackNewsData = (): NewsItem[] => [
     category: "admissions"
   },
   {
-    slug: "ramadan-schedule-2025",
-    title: "Special Ramadan Schedule and Programs",
+    slug: "shasmahi-ke-imtihaan-2025",
+    title: "Shasmahi ke imtihaan",
     date: "2025-03-10",
     tag: "Event",
-    excerpt: "Special prayer times, iftar arrangements, and spiritual programs during the holy month of Ramadan.",
-    content: "During the blessed month of Ramadan, our madrasa will implement a special schedule to accommodate students and faculty. This includes adjusted class timings, special Tarawih prayers, and community iftar programs.",
+    excerpt: "31st August se lekar 8th September Tak honge",
+    content: "Will be Updated Soon",
     author: "Academic Affairs",
     category: "events"
   },
@@ -830,7 +830,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-[#1F7A53]"
+                className="border-blue  bg-white text-[#1F7A53]"
                 onClick={() => onPageChange('about')}
               >
                 Learn More

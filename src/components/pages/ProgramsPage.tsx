@@ -34,14 +34,14 @@ interface Department {
 
 // WhatsApp Donation Handler
 const handleDonateClick = () => {
-  const phoneNumber = '919801213788';
+  const phoneNumber = '918423370548';
   const message = encodeURIComponent("Assalamu Alaikum! I want to donate to your madrasa. Please provide me with the details where I can donate and earn good deeds.");
   window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 };
 
 // WhatsApp Contact Handler for Program Inquiries
 const handleProgramContactClick = (programName: string) => {
-  const phoneNumber = '919801213788';
+  const phoneNumber = '918423370548';
   const message = encodeURIComponent(`Assalamu Alaikum! I'm interested in the ${programName} program at your madrasa. Please provide me with more information.`);
   window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 };
@@ -102,7 +102,7 @@ const FALLBACK_DEPARTMENTS: Department[] = [
   },
   {
     slug: "hadith",
-    name: "HAFIZ-UL-QURAN",
+    name: "DEPARTMENT OF HAFIZ-UL-QURAN",
     summary: "Foundational texts, methodology, and commentary of Prophetic traditions.",
     description: "In-depth study of authentic Hadith collections including Sahih Bukhari, Sahih Muslim, and other classical works. Students learn the science of Hadith and its practical application.",
     duration: "4 years",
@@ -118,7 +118,7 @@ const FALLBACK_DEPARTMENTS: Department[] = [
   },
   {
     slug: "arabic",
-    name: "DEPARTMENT OF COMPUTER SCIENCE ",
+    name: "COMPUTER SCIENCE & LABS ",
     summary: "Classical Arabic grammar, morphology, and comprehension skills development.",
     description: "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
     duration: "3 years",
@@ -147,11 +147,27 @@ const FALLBACK_DEPARTMENTS: Department[] = [
   },
   {
     slug: "hostel",
-    name: "ARABIC LITERATURE",
+    name: "GIRLS EDUCATION",
     summary: "On-campus accommodation with comprehensive student welfare services.",
     description: "Safe and comfortable accommodation for out-of-town students. Includes meals, study halls, recreational facilities, and 24/7 supervision.",
     facilities: ["Dormitory rooms", "Dining hall", "Study rooms", "Recreation area", "Medical care"]
-  }
+  },
+    {
+    slug: "arabic",
+    name: "MAZLIS-E-TALABA ",
+    summary: "Classical Arabic grammar, morphology, and comprehension skills development.",
+    description: "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
+    duration: "3 years",
+    prerequisites: "Basic literacy"
+  },
+    {
+    slug: "arabic",
+    name: "BAZM- SIDDIQ ",
+    summary: "Classical Arabic grammar, morphology, and comprehension skills development.",
+    description: "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
+    duration: "3 years",
+    prerequisites: "Basic literacy"
+  },
 ];
 
 const ICON_MAP: { [key: string]: React.ComponentType<any> } = {

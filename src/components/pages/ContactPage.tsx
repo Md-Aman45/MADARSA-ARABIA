@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import {
-  CheckCircle,
-  Clock,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Heart,
-  ExternalLink
+    CheckCircle,
+    Clock,
+    ExternalLink,
+    Heart,
+    Mail,
+    MapPin,
+    Phone,
+    Send
 } from 'lucide-react';
 import React, { useState } from 'react';
 
@@ -88,7 +88,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
     Contact me at: ${formData.email} ${formData.phone ? `or ${formData.phone}` : ''}`;
     
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/919801213788?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/918423370548?text=${encodedMessage}`, '_blank');
     setIsSubmitted(true);
     
     // Reset form after success message
@@ -506,17 +506,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button 
-                size="lg"
-                className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center mx-auto"
-                onClick={() => {
-                  const message = encodeURIComponent("Assalamu Alaikum, I would like to get more information about donation options and how I can support specific projects.");
-                  window.open(`https://wa.me/919801213788?text=${message}`, '_blank');
-                }}
-              >
-                <Heart className="w-5 h-5 mr-2"  />
-                Contact Donate
-              </Button>
+            
             </motion.div>
           </motion.div>
         </div>

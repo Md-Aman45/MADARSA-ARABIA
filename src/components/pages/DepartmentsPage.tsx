@@ -52,7 +52,7 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
         setDepartments([
           {
             slug: "tajweed",
-            name: "Qur'anic Recitation (Tajweed)",
+            name: "QURAN TAJWEED",
             summary: "Mastery of recitation rules and articulation with proper pronunciation and melody.",
             description: "Our comprehensive Tajweed program focuses on the precise articulation of Qur'anic verses according to classical rules. Students learn proper pronunciation, rhythm, and melody under expert guidance.",
             duration: "2 years",

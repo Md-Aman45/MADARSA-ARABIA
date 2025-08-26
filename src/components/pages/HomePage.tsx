@@ -1,28 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
+import {
+  ArrowRight,
+  BookOpen,
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  Star
+} from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Badge } from '../ui/badge';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/effect-fade';
-import { 
-  BookOpen, 
-  Users, 
-  Award, 
-  GraduationCap, 
-  Star,
-  ArrowRight,
-  Calendar,
-  MapPin,
-  Heart,
-  ChevronLeft,
-  ChevronRight
-} from 'lucide-react';
 
 interface HomePageProps {
   onPageChange: (page: string) => void;
@@ -253,11 +249,11 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         // Fallback data
         setDepartments([
           { slug: "tajweed", name: "QURAN TAJWEED", summary: "Mastery of recitation rules and articulation." },
-          { slug: "hifz", name: "PRIMARY EDUCATION (NAAJRAH)", summary: "Memorization and revision methodology with mentoring." },
-          { slug: "hadith", name: "HAFIZ-UL-QURAN", summary: "Foundational texts, methodology, commentary." },
-          { slug: "fiqh", name: "FIVE YEAR ARABIC COURSE (AALIMIYAT)", summary: "Jurisprudence principles and application." },
-          { slug: "arabic", name: "DEPARTMENT OF COMPUTER SCIENCE", summary: "Classical Arabic grammar and literature." },
-          { slug: "library", name: "DEPARTMENT OF ENGLISH", summary: "Comprehensive resources and study facilities." }
+          { slug: "hifz", name: "GIRLS EDUCATION ", summary: "Memorization and revision methodology with mentoring." },
+          { slug: "hadith", name: "ARABIC LITERATURE", summary: "Foundational texts, methodology, commentary." },
+          { slug: "fiqh", name: "DAUR-E-HADITH", summary: "Jurisprudence principles and application." },
+          { slug: "arabic", name: "Arabic Language", summary: "Classical Arabic grammar and literature." },
+          { slug: "library", name: "COMPUTER SCIENCE & LABS", summary: "Comprehensive resources and study facilities." }
         ]);
       }
     };
@@ -335,7 +331,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       rating: 5
     },
     {
-      name: "Fatima Al-Zahra",
+      name: "Faisal Khan",
       program: "Arabic Language Student",
       content: "Excellent faculty and comprehensive curriculum. The Arabic program gave me a strong foundation for understanding classical Islamic texts.",
       rating: 5
@@ -347,7 +343,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       rating: 5
     },
     {
-      name: "Aisha Rahman",
+      name: "Aman Kalim",
       program: "Fiqh Studies 2024",
       content: "The comprehensive approach to Islamic jurisprudence and the practical applications have been invaluable for my understanding.",
       rating: 5
@@ -359,7 +355,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       rating: 5
     },
     {
-      name: "Maryam Yusuf",
+      name: "Yusuf Rahman",
       program: "Quranic Studies 2024",
       content: "The holistic approach to Quranic studies, combining recitation, memorization, and understanding, has enriched my faith immensely.",
       rating: 5
@@ -368,165 +364,166 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
 
   const handleDonateClick = () => {
     const message = encodeURIComponent("I want to donate for your madarsa please provide me the details where I can donate and earn good deeds");
-    window.open(`https://wa.me/919801213788?text=${message}`, '_blank');
+    window.open(`https://wa.me/918423370548?text=${message}`, '_blank');
   };
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Carousel - IMPROVED */}
-      <motion.section 
-        ref={heroRef}
-        className="relative h-screen overflow-hidden"
-        initial="hidden"
-        animate={heroControls}
-        variants={containerVariants}
-      >
-        {/* Hero Carousel */}
-        <div className="absolute inset-0">
-          <Swiper
-            modules={[Autoplay, Pagination, EffectFade]}
-            effect="fade"
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-              bulletActiveClass: 'swiper-pagination-bullet-active bg-[#1F7A53]',
-              bulletClass: 'swiper-pagination-bullet bg-white/50'
-            }}
-            loop={true}
-            className="w-full h-full"
-          >
-            {madrasaPhotos.map((photo, index) => (
-              <SwiperSlide key={index}>
-                <div className="relative w-full h-full">
-                  <ImageWithFallback
-                    src={photo.url}
-                    alt={photo.title}
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Enhanced Overlay for better text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-                  
-                  {/* Photo Info - Improved positioning */}
-                  <motion.div 
-                    className="absolute bottom-16 left-8 text-white z-20"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                  >
-                    <h3 className="text-2xl md:text-3xl font-semibold mb-2">{photo.title}</h3>
-                    <p className="text-lg text-white/90 max-w-md">{photo.description}</p>
-                  </motion.div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-
-        {/* Hero Content Overlay - CENTERED LAYOUT */}
-        <div className="absolute inset-0 flex items-center justify-center text-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
-            <motion.div 
-              className="text-white"
-              variants={containerVariants}
-            >
-              <motion.div 
-                className="mb-6"
-                variants={itemVariants}
-              >
-                <Badge variant="outline" className="bg-white/20 text-white border-white/30 hover:bg-white/30 transition-colors duration-300 text-sm md:text-base">
-                  Excellence in Islamic Education
-                </Badge>
-              </motion.div>
-              
-              <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-                variants={itemVariants}
-              >
-               <motion.h1 
-  className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-  variants={itemVariants}
+     {/* Hero Section with Carousel - IMPROVED */}
+<motion.section
+  ref={heroRef}
+  className="relative h-screen overflow-hidden"
+  initial="hidden"
+  animate={heroControls}
+  variants={containerVariants}
 >
-  <motion.span
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 0.3, duration: 0.8 }}
-    className="block"
-  >
-    MADARSA {" "}
-    <span className="text-[#1F7A53]">
-      ARABIA
-    </span>
-  </motion.span>
-  
-</motion.h1>
-                <motion.span 
-                  className="text-[#1E5FA8] block"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                >
-               <h2>  TAJVEEDUL QURAN  </h2>
-                </motion.span>
-              </motion.h1>
-              
-              <motion.p 
-                className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto"
-                variants={itemVariants}
-              >
-                Join our distinguished institution dedicated to preserving and teaching 
-                the sacred knowledge of Islam through traditional and modern methodologies.
-              </motion.p>
-              
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-                variants={itemVariants}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button 
-                    size="lg"
-                    className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-base"
-                    onClick={() => onPageChange('programs')}
-                  >
-                    <BookOpen className="w-5 h-5 mr-2" />
-                    Explore Programs
-                  </Button>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button 
-                    size="lg"
-                    variant="outline"
-                    className="border-blue text-black  text-[#1E5FA8] transition-all duration-300 text-base"
-                    onClick={handleDonateClick}
-                  >
-                    <Heart className="w-5 h-5 mr-2" />
-                    Donate 
-                  </Button>
-                </motion.div>
-              </motion.div>
+  {/* Hero Carousel */}
+  <div className="absolute inset-0">
+    <Swiper
+      modules={[Autoplay, Pagination, EffectFade]}
+      effect="fade"
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
+      pagination={{
+        clickable: true,
+        bulletActiveClass: 'swiper-pagination-bullet-active bg-[#1F7A53]',
+        bulletClass: 'swiper-pagination-bullet bg-white/50'
+      }}
+      loop={true}
+      className="w-full h-full"
+    >
+      {madrasaPhotos.map((photo, index) => (
+        <SwiperSlide key={index}>
+          <div className="relative w-full h-full">
+            <ImageWithFallback
+              src={photo.url}
+              alt={photo.title}
+              className="w-full h-full object-cover"
+            />
+            {/* Enhanced Overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+            
+            {/* Photo Info - Improved positioning */}
+            <motion.div
+              className="absolute bottom-16 left-8 text-white z-20"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              <h3 className="text-2xl md:text-3xl font-semibold mb-2">{photo.title}</h3>
+              <p className="text-lg text-white/90 max-w-md">{photo.description}</p>
             </motion.div>
           </div>
-        </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
 
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white z-20"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+  {/* Hero Content Overlay - CENTERED LAYOUT */}
+  <div className="absolute inset-0 flex items-center justify-center text-center">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+      <motion.div
+        className="text-white"
+        variants={containerVariants}
+      >
+        <motion.div
+          className="mb-6"
+          variants={itemVariants}
         >
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/70 rounded-full mt-2"></div>
-          </div>
+          <Badge variant="outline" className="bg-white/20 text-white border-white/30 hover:bg-white/30 transition-colors duration-300 text-sm md:text-base">
+            Excellence in Islamic Education
+          </Badge>
         </motion.div>
-      </motion.section>
+        
+        {/* UPDATED HEADLINE FOR BOLD AND BIG TEXT */}
+        <motion.h1
+          className="font-extrabold mb-6 leading-tight text-shadow-lg"
+          variants={itemVariants}
+        >
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="block text-white"
+            style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}
+          >
+            
+              <span className="font-bold text-3xl md:text-4xl lg:text-5xl">
+                MADARSA ARABIA
+            </span>
+          </motion.span>
+          
+          <motion.span
+            className="text-[#1E5FA8] block text-shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}
+          >
+           <span className="font-bold text-6xl md:text-7xl lg:text-8xl">
+                TAJVEEDUL QURAN
+            </span>
+          </motion.span>
+        </motion.h1>
+        
+        <motion.p
+          className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto"
+          variants={itemVariants}
+          style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.5)' }}
+        >
+          Join our distinguished institution dedicated to preserving and teaching
+          the sacred knowledge of Islam through traditional and modern methodologies.
+        </motion.p>
+        
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+          variants={itemVariants}
+        >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button
+              size="lg"
+              className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-base"
+              onClick={() => onPageChange('programs')}
+            >
+              <BookOpen className="w-5 h-5 mr-2" />
+              Explore Programs
+            </Button>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-blue text-black text-[#1E5FA8] transition-all duration-300 text-base"
+              onClick={handleDonateClick}
+            >
+              <Heart className="w-5 h-5 mr-2" />
+              Donate
+            </Button>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </div>
+  </div>
+
+  {/* Scroll indicator */}
+  <motion.div
+    className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white z-20"
+    animate={{ y: [0, 10, 0] }}
+    transition={{ duration: 2, repeat: Infinity }}
+  >
+    <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+      <div className="w-1 h-3 bg-white/70 rounded-full mt-2"></div>
+    </div>
+  </motion.div>
+</motion.section>
 
       {/* Stats Counter Section */}
       <motion.section 
@@ -646,109 +643,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         </div>
       </motion.section>
 
-      {/* Dar-ul-Ifta Teaser */}
-      <motion.section 
-        className="py-20 bg-gradient-to-r from-[#1E5FA8] to-[#1F7A53] text-white relative overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* Animated background elements */}
-        <motion.div
-          className="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full"
-          animate={{
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-10 left-10 w-24 h-24 bg-white/5 rounded-full"
-          animate={{
-            y: [0, 15, 0],
-            scale: [1, 0.9, 1]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-                Dar-ul-Ifta Services
-              </h2>
-              <p className="text-xl text-white/90 mb-8 leading-relaxed">
-                Get authentic Islamic guidance on contemporary issues from our 
-                qualified scholars. Submit your questions and receive scholarly 
-                responses based on Quran and Sunnah.
-              </p>
-              <motion.div 
-                className="flex flex-wrap gap-4 mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30 transition-colors duration-300">
-                  Family Matters
-                </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30 transition-colors duration-300">
-                  Business & Finance
-                </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30 transition-colors duration-300">
-                  Worship & Rituals
-                </Badge>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button 
-                  size="lg"
-                  variant="secondary"
-                  className="bg-white text-[#1E5FA8] hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
-                  onClick={() => onPageChange('resources')}
-                >
-                  Submit Question
-                </Button>
-              </motion.div>
-            </motion.div>
-            <motion.div 
-              className="relative"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ImageWithFallback
-                  src="/assets/h1.png"
-                  alt="Islamic books and manuscripts"
-                  className="rounded-2xl shadow-xl w-full h-[350px] object-cover"
-                />
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
+  
 
       {/* Latest Notice Carousel */}
       <motion.section 
