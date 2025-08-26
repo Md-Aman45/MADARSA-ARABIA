@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
   const navigation = [
     { name: 'Home', key: 'home' },
     { name: 'About', key: 'about' },
-    { name: 'Programs', key: 'programs' },
+    { name: 'Courses', key: 'programs' },
     { name: 'Our Mission', key: 'resources' },
     { name: 'Notice', key: 'notice' },
     { name: 'Contact', key: 'contact' },

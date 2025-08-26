@@ -6,7 +6,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Heart,
-  Star
+  Star,
+  Play,
+  Pause
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import 'swiper/css';
@@ -86,6 +88,16 @@ const cardVariants = {
   }
 };
 
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.8
+    }
+  }
+};
+
 // Animated Counter Component
 const AnimatedCounter: React.FC<{ value: number; duration?: number }> = ({ value, duration = 2 }) => {
   const [count, setCount] = useState(0);
@@ -122,6 +134,8 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
   const [stats, setStats] = useState<Stat[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);
   const [news, setNews] = useState<NewsItem[]>([]);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const galleryRef = useRef<HTMLDivElement>(null);
 
   // Animation controls
   const heroControls = useAnimation();
@@ -136,6 +150,21 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" });
   const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
   const departmentsInView = useInView(departmentsRef, { once: true, margin: "-100px" });
+
+  // Campus Life gallery images
+  const galleryImages = [
+    '/assets/p00.png',
+    '/assets/h1.png',
+    '/assets/h2.png',
+    '/assets/h6.png',
+    '/assets/m1.png',
+    '/assets/m3.png',
+    '/assets/m2.png',
+    '/assets/m1.png',
+    '/assets/h4.png',
+    '/assets/h5.png',
+    '/assets/h1.png',
+  ];
 
   useEffect(() => {
     if (heroInView) {
@@ -154,6 +183,33 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       departmentsControls.start("visible");
     }
   }, [departmentsInView, departmentsControls]);
+
+  // Auto-scroll effect for gallery
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+
+    let animationId: number;
+    let speed = 1;
+    let position = 0;
+
+    const animate = () => {
+      if (isPlaying) {
+        position += speed;
+        if (position >= gallery.scrollWidth / 2) {
+          position = 0;
+        }
+        gallery.scrollLeft = position;
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, [isPlaying]);
 
   // Local madrasa photos for hero carousel
   const madrasaPhotos = [
@@ -228,8 +284,8 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         // Fallback data
         setStats([
           { label: "Years of Service", value: 41 },
-          { label: "Students", value: 355 },
-          { label: "Branches", value: 12 },
+          { label: "Students", value: 550 },
+          { label: "Branches", value: 13 },
           { label: "Faculty", value: 26 }
         ]);
       }
@@ -271,41 +327,6 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       } catch (error) {
         // Extended fallback data with more items
         setNews([
-          { 
-            slug: "admissions-open", 
-            title: "Admissions Open 2025", 
-            date: "2025-05-10", 
-            tag: "Announcement", 
-            excerpt: "Applications are now open for the new academic year. Early bird discounts available." 
-          },
-          { 
-            slug: "ramadan-schedule", 
-            title: "Ramadan Schedule Updates", 
-            date: "2025-03-15", 
-            tag: "Event", 
-            excerpt: "Special prayer times and iftar arrangements for the holy month of Ramadan." 
-          },
-          { 
-            slug: "scholarship-program", 
-            title: "Merit Scholarship Program", 
-            date: "2025-02-20", 
-            tag: "Announcement", 
-            excerpt: "New scholarship opportunities for outstanding students in all programs." 
-          },
-          { 
-            slug: "digital-library", 
-            title: "Digital Library Expansion", 
-            date: "2025-01-30", 
-            tag: "Notice", 
-            excerpt: "Our digital collection now includes over 5,000 Islamic manuscripts and texts." 
-          },
-          { 
-            slug: "graduation-ceremony", 
-            title: "Annual Graduation Ceremony", 
-            date: "2024-12-15", 
-            tag: "Event", 
-            excerpt: "Celebrating the achievements of our graduating class of 2024." 
-          },
           { 
             slug: "community-outreach", 
             title: "Community Outreach Program", 
@@ -878,6 +899,63 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         </div>
       </motion.section>
 
+      {/* Campus Life Section - NEW */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeIn}
+        className="py-16 bg-gray-50"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 flex items-center justify-center">
+            <h2 className="text-3xl font-bold text-[#0B0D0E] mb-4 mr-4">Campus Life</h2>
+            <Button
+              onClick={() => setIsPlaying(!isPlaying)}
+              size="sm"
+              variant="outline"
+              className="mb-4"
+            >
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+            </Button>
+          </div>
+
+          <div
+            ref={galleryRef}
+            className="flex overflow-x-hidden gap-4 py-4 cursor-grab active:cursor-grabbing"
+          >
+            {galleryImages.map((image, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05, zIndex: 10 }}
+                className={`flex-shrink-0 rounded-xl overflow-hidden shadow-lg w-80 h-48`}
+              >
+                <ImageWithFallback
+                  src={image}
+                  alt={`Campus life ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            ))}
+
+            {/* Duplicate images for seamless looping */}
+            {galleryImages.map((image, index) => (
+              <motion.div
+                key={`dup-${index}`}
+                whileHover={{ scale: 1.05, zIndex: 10 }}
+                className={`flex-shrink-0 rounded-xl overflow-hidden shadow-lg w-80 h-48`}
+              >
+                <ImageWithFallback
+                  src={image}
+                  alt={`Campus life ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+      
       {/* Donation CTA */}
       <motion.section 
         className="py-16 bg-gradient-to-r from-[#1F7A53] to-[#1E5FA8] text-white relative overflow-hidden"
@@ -901,6 +979,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
             ease: "linear"
           }}
         />
+       
         
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div

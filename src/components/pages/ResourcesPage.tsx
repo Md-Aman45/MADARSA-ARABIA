@@ -199,32 +199,32 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
   const constructionImages = useMemo(() => [
     {
       src: "/assets/c2.jpg",
-      subheading: "Phase 1: Foundation",
+      subheading: "Phase 1",
       details: "Undergoing construction of main gate and Hazrat Abu bakr Siddiq (R.A) hostel"
     },
     {
       src: "/assets/c1.jpg",
-      subheading: "Phase 2: Main Building",
+      subheading: "Phase 2",
       details: "Undergoing construction of main gate and Hazrat Abu bakr Siddiq (R.A) hostel."
     },
     {
       src: "/assets/c3.jpg",
-      subheading: "Phase 3: Classrooms",
+      subheading: "Phase 3",
       details: "The Guest house and Nursing home is to be built here at the back of Madarsa. it's also in stay for very long time"
     },
-    {
-      src: "/assets/c4.jpg",
-      subheading: "Phase 4: Library & Hall",
-      details: "The framework for our new library and assembly hall is in progress."
-    },
+    // {
+    //   src: "/assets/c4.jpg",
+    //   subheading: "Phase 4: Library & Hall",
+    //   details: "The framework for our new library and assembly hall is in progress."
+    // },
     {
       src: "/assets/c5.jpg",
-      subheading: "Phase 5: Student Hostel",
+      subheading: "Phase 4",
       details: "Work has begun on the new student accommodation facilities."
     },
     {
       src: "/assets/c7.jpg",
-      subheading: "Phase 6: Campus Mosque",
+      subheading: "Phase 5",
       details: "It is the land where Madarsa is going to built their very important project For their students so they also get more good facilities "
     }
   ], []);

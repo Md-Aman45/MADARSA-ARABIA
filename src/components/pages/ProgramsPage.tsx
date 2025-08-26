@@ -39,14 +39,7 @@ const handleDonateClick = () => {
   window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 };
 
-// WhatsApp Contact Handler for Program Inquiries
-const handleProgramContactClick = (programName: string) => {
-  const phoneNumber = '918423370548';
-  const message = encodeURIComponent(`Assalamu Alaikum! I'm interested in the ${programName} program at your madrasa. Please provide me with more information.`);
-  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-};
-
-// Optimized animation variants - keeping all original animations but with better performance
+// Optimized animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -82,129 +75,164 @@ const cardVariants = {
   }
 };
 
-// Fallback data as constant to avoid recreation
-const FALLBACK_DEPARTMENTS: Department[] = [
+// Fallback data - Separated into academic and services
+const ACADEMIC_DEPARTMENTS: Department[] = [
   {
     slug: "tajweed",
     name: "QURAN TAJWEED",
     summary: "Mastery of recitation rules and articulation with proper pronunciation and melody.",
     description: "Our comprehensive Tajweed program focuses on the precise articulation of Qur'anic verses according to classical rules. Students learn proper pronunciation, rhythm, and melody under expert guidance.",
-    duration: "2 years",
     prerequisites: "Basic Arabic reading ability"
   },
   {
-    slug: "hifz",
+    slug: "naajrah",
     name: "PRIMARY EDUCATION (NAAJRAH)", 
+    summary: "Foundational Islamic education for young students with comprehensive curriculum.",
+    description: "Our primary education program provides a strong foundation in Islamic studies, Arabic language, and general education subjects. Designed specifically for young learners to build a solid knowledge base.",
+    prerequisites: "Age 6-10 preferred"
+  },
+  {
+    slug: "hifz",
+    name: "DEPARTMENT OF HIFZ QURAN",
     summary: "Memorization and revision methodology with dedicated mentoring and support.",
     description: "Complete memorization of the Holy Quran with systematic revision techniques. Our experienced teachers provide personalized guidance for each student's memorization journey.",
-    duration: "3-5 years",
     prerequisites: "Age 8-16 preferred"
   },
   {
-    slug: "hadith",
-    name: "DEPARTMENT OF HAFIZ-UL-QURAN",
-    summary: "Foundational texts, methodology, and commentary of Prophetic traditions.",
-    description: "In-depth study of authentic Hadith collections including Sahih Bukhari, Sahih Muslim, and other classical works. Students learn the science of Hadith and its practical application.",
-    duration: "4 years",
+    slug: "aalimiyat",
+    name: "DEPARTMENT OF ARABIC (AALIMIYAT)",
+    summary: "Comprehensive Islamic scholarship program covering advanced Islamic sciences.",
+    description: "In-depth study of Islamic sciences including Tafseer, Hadith, Fiqh, Arabic literature, and more. Prepares students for Islamic scholarship and leadership roles.",
     prerequisites: "Intermediate Arabic proficiency"
   },
   {
-    slug: "fiqh",
-    name: "FIVE YEAR ARABIC COURSE (AALIMIYAT)",
-    summary: "Islamic jurisprudence principles and their practical application in daily life.",
-    description: "Comprehensive study of Islamic law covering worship, transactions, family matters, and contemporary issues. Students develop skills in legal reasoning and fatwa methodology.",
-    duration: "5 years", 
-    prerequisites: "Advanced Arabic and basic Islamic studies"
+    slug: "computer-science",
+    name: "COMPUTER SCIENCE & LABS",
+    summary: "Modern computer education integrated with Islamic studies curriculum.",
+    description: "Comprehensive computer science program that includes programming, software applications, and digital literacy. Equips students with essential modern skills while maintaining Islamic values.",
+    prerequisites: "Basic literacy and numeracy"
   },
   {
-    slug: "arabic",
-    name: "COMPUTER SCIENCE & LABS ",
-    summary: "Classical Arabic grammar, morphology, and comprehension skills development.",
-    description: "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
-    duration: "3 years",
-    prerequisites: "Basic literacy"
+    slug: "ncert",
+    name: "NCERT Courses",
+    summary: "Government-recognized curriculum integrated with Islamic education.",
+    description: "NCERT curriculum offered alongside Islamic studies, providing students with recognized qualifications while maintaining their Islamic education. Available within Aalimiyat, Naajrah, and Hifz programs.",
+    prerequisites: "Varies by program"
   },
   {
-    slug: "library",
-    name: "DEPARTMENT OF ENGLISH",
-    summary: "Comprehensive catalog, reading rooms, and research access for scholarly pursuits.",
-    description: "State-of-the-art library with over 15,000 books, manuscripts, and digital resources. Quiet study spaces and research assistance available for students and faculty.",
-    facilities: ["Reading halls", "Digital archives", "Reference section", "Manuscript collection"]
+    slug: "bazm-siddiq",
+    name: "BAZM-E-SIDDIQ",
+    summary: "Extra-curricular activities and student development programs.",
+    description: "Student organization focused on character development, public speaking, leadership skills, and community service. Enhances overall personality development alongside academic studies.",
   },
   {
-    slug: "hostel",
+    slug: "arabic-literature",
     name: "ARABIC LITERATURE",
-    summary: "On-campus accommodation with comprehensive student welfare services.",
-    description: "Safe and comfortable accommodation for out-of-town students. Includes meals, study halls, recreational facilities, and 24/7 supervision.",
-    facilities: ["Dormitory rooms", "Dining hall", "Study rooms", "Recreation area", "Medical care"]
+    summary: "Advanced study of classical and modern Arabic literature.",
+    description: "In-depth exploration of Arabic poetry, prose, and literary criticism. Develops advanced language skills and appreciation for Arabic literary heritage.",
+    prerequisites: "Advanced Arabic proficiency"
   },
   {
-    slug: "mosque",
-    name: "DAUR-E-HADITH",
-    summary: "Central place of worship hosting congregational prayers and community programs.",
-    description: "Beautiful mosque serving as the spiritual center of our campus. Regular congregational prayers, Friday sermons, and special programs throughout the year.",
-    facilities: ["Prayer halls", "Ablution areas", "Community hall", "Audio system"]
+    slug: "mazlis-talaba",
+    name: "MAJLIS-E-TALABA",
+    summary: "Student council and leadership development program.",
+    description: "Student-led organization that fosters leadership skills, responsibility, and community engagement. Provides platform for student voice and initiative.",
   },
   {
-    slug: "hostel",
+    slug: "girls-education",
     name: "GIRLS EDUCATION",
-    summary: "On-campus accommodation with comprehensive student welfare services.",
-    description: "Safe and comfortable accommodation for out-of-town students. Includes meals, study halls, recreational facilities, and 24/7 supervision.",
-    facilities: ["Dormitory rooms", "Dining hall", "Study rooms", "Recreation area", "Medical care"]
-  },
-    {
-    slug: "arabic",
-    name: "MAZLIS-E-TALABA ",
-    summary: "Classical Arabic grammar, morphology, and comprehension skills development.",
-    description: "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
-    duration: "3 years",
-    prerequisites: "Basic literacy"
-  },
-    {
-    slug: "arabic",
-    name: "BAZM- SIDDIQ ",
-    summary: "Classical Arabic grammar, morphology, and comprehension skills development.",
-    description: "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
-    duration: "3 years",
-    prerequisites: "Basic literacy"
-  },
+    summary: "Specialized educational programs for female students.",
+    description: "Comprehensive Islamic education program designed specifically for female students, with appropriate facilities and female instructors. Covers all aspects of Islamic studies in a comfortable environment.",
+  }
 ];
+
+const SERVICE_DEPARTMENTS: Department[] = [
+  {
+    slug: "dining-hall",
+    name: "Dining Hall",
+    summary: "Nutritious meals served in a clean and comfortable environment.",
+    description: "Spacious dining facility providing hygienic, nutritious meals prepared according to Islamic dietary guidelines. Regular meal services for all residential students.",
+    facilities: ["Hygeinic kitchen", "Spacious seating", "Regular meal service", "Special dietary accommodations"]
+  },
+  {
+    slug: "playground",
+    name: "Playground",
+    summary: "Outdoor recreational facilities for sports and physical activities.",
+    description: "Well-maintained outdoor sports facilities including cricket pitch, football field, and running track. Encourages physical fitness and team sports among students.",
+    facilities: ["Cricket pitch", "Football field", "Running track", "Sports equipment"]
+  },
+  {
+    slug: "medical-room",
+    name: "Medical Room",
+    summary: "Healthcare services and medical assistance for students.",
+    description: "Fully equipped medical facility with trained staff to handle routine healthcare needs and emergencies. Regular health check-ups and first aid services available.",
+    facilities: ["First aid", "Emergency care", "Regular check-ups", "Medication dispensation"]
+  },
+  {
+    slug: "lecture-hall",
+    name: "Lecture Hall",
+    summary: "Modern teaching facilities with audio-visual equipment.",
+    description: "Well-equipped lecture halls with comfortable seating, audio-visual systems, and climate control. Ideal for lectures, seminars, and educational events.",
+    facilities: ["Audio-visual systems", "Climate control", "Comfortable seating", "Presentation equipment"]
+  },
+  {
+    slug: "kitchen",
+    name: "Big Mess (Kitchen)",
+    summary: "Large-scale kitchen facilities for meal preparation.",
+    description: "Industrial-grade kitchen facility equipped to prepare meals for all students and staff. Maintains highest standards of cleanliness and food safety.",
+    facilities: ["Industrial equipment", "Hygeinic preparation", "Storage facilities", "Professional staff"]
+  }
+];
+
+const FALLBACK_DEPARTMENTS: Department[] = [...ACADEMIC_DEPARTMENTS, ...SERVICE_DEPARTMENTS];
 
 const ICON_MAP: { [key: string]: React.ComponentType<any> } = {
   tajweed: BookOpen,
+  naajrah: GraduationCap,
   hifz: Heart,
-  hadith: BookOpen,
-  fiqh: GraduationCap,
-  arabic: BookOpen,
-  library: BookOpen,
-  hostel: Home,
-  mosque: Building
+  aalimiyat: BookOpen,
+  "computer-science": GraduationCap,
+  ncert: BookOpen,
+  "bazm-siddiq": Users,
+  "arabic-literature": BookOpen,
+  "mazlis-talaba": Users,
+  "girls-education": GraduationCap,
+  "dining-hall": Utensils,
+  playground: Home,
+  "medical-room": Heart,
+  "lecture-hall": BookOpen,
+  kitchen: Utensils
 };
 
 const CATEGORIES = {
-  all: 'All Programs',
-  academic: 'Academic Programs',
+  all: 'All Courses',
+  academic: 'Academic Courses',
   services: 'Services & Facilities'
 };
 
-const SERVICE_SLUGS = new Set(['library', 'hostel', 'mosque']);
+const ACADEMIC_SLUGS = new Set(ACADEMIC_DEPARTMENTS.map(dept => dept.slug));
+const SERVICE_SLUGS = new Set(SERVICE_DEPARTMENTS.map(dept => dept.slug));
 
-// Memoized components for better performance
+// Memoized ProgramCard component
 const ProgramCard = memo(({ 
   dept, 
   onSelect,
+  onPageChange,
   index 
 }: { 
   dept: Department; 
   onSelect: (dept: Department) => void;
+  onPageChange: (page: string) => void;
   index: number;
 }) => {
   const IconComponent = ICON_MAP[dept.slug] || BookOpen;
   const isService = SERVICE_SLUGS.has(dept.slug);
   
   const handleClick = useCallback(() => {
-    onSelect(dept);
-  }, [dept, onSelect]);
+    if (!isService) {
+      onPageChange('contact');
+    }
+  }, [isService, onPageChange]);
 
   return (
     <motion.div
@@ -217,7 +245,7 @@ const ProgramCard = memo(({
     >
       <Card 
         className="group h-full cursor-pointer rounded-xl shadow-md hover:shadow-lg transition-all duration-500 hover:bg-gradient-to-tr from-[#EAF2FB] to-[#E8F5EF]"
-        onClick={handleClick}
+        onClick={isService ? undefined : handleClick}
       >
         <CardHeader className="p-6">
           <motion.div 
@@ -249,12 +277,15 @@ const ProgramCard = memo(({
             </div>
           )}
           
-          <Button 
-            variant="ghost" 
-            className="w-full text-green-700 text-base font-medium flex items-center justify-center hover:text-green-800 hover:translate-x-2 transition-all duration-300"
-          >
-            Learn More <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
+          {!isService && (
+            <Button 
+              variant="ghost" 
+              className="w-full text-green-700 text-base font-medium flex items-center justify-center hover:text-green-800 hover:translate-x-2 transition-all duration-300"
+              onClick={handleClick}
+            >
+               More Info <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          )}
         </CardContent>
       </Card>
     </motion.div>
@@ -263,6 +294,7 @@ const ProgramCard = memo(({
 
 ProgramCard.displayName = 'ProgramCard';
 
+// Memoized ServiceCard component
 const ServiceCard = memo(({ 
   service, 
   index 
@@ -285,7 +317,7 @@ const ServiceCard = memo(({
         y: -5,
         transition: { duration: 0.3 }
       }}
-  >
+    >
       <Card className="border-0 rounded-xl shadow-md text-center hover:shadow-lg transition-all duration-500 hover:bg-gradient-to-tr from-white to-[#E8F5EF]">
         <CardContent className="p-6">
           <motion.div 
@@ -305,6 +337,7 @@ const ServiceCard = memo(({
 
 ServiceCard.displayName = 'ServiceCard';
 
+// ProgramDetail component
 const ProgramDetail = memo(({ 
   department, 
   onBack, 
@@ -317,12 +350,13 @@ const ProgramDetail = memo(({
   const IconComponent = ICON_MAP[department.slug] || BookOpen;
   
   const handleContactClick = useCallback(() => {
-    handleProgramContactClick(department.name);
+    const phoneNumber = '918423370548';
+    const message = encodeURIComponent(`Assalamu Alaikum! I'm interested in the ${department.name} program at your madrasa. Please provide me with more information.`);
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   }, [department.name]);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <motion.section 
         className="bg-gradient-to-r from-[#E8F5EF] via-white to-[#EAF2FB] py-16"
         initial={{ opacity: 0, y: 20 }}
@@ -369,7 +403,6 @@ const ProgramDetail = memo(({
         </div>
       </motion.section>
 
-      {/* Content */}
       <motion.section 
         className="py-16"
         initial="hidden"
@@ -446,14 +479,15 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
   const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Memoized filtered departments
   const filteredDepartments = useMemo(() => {
-    if (selectedCategory === 'all') return departments;
-    const isServices = selectedCategory === 'services';
-    return departments.filter(dept => SERVICE_SLUGS.has(dept.slug) === isServices);
+    if (selectedCategory === 'all') {
+      return departments.filter(dept => ACADEMIC_SLUGS.has(dept.slug));
+    } else {
+      const isServices = selectedCategory === 'services';
+      return departments.filter(dept => SERVICE_SLUGS.has(dept.slug) === isServices);
+    }
   }, [departments, selectedCategory]);
 
-  // Memoized callbacks
   const handleDepartmentSelect = useCallback((dept: Department) => {
     setSelectedDepartment(dept);
   }, []);
@@ -470,11 +504,9 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
     onPageChange('about');
   }, [onPageChange]);
 
-  // Fast data loading with preloaded fallback
   useEffect(() => {
     const loadDepartments = async () => {
       try {
-        // Faster timeout for quicker fallback
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 800);
         
@@ -491,7 +523,6 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
       } catch (error) {
         console.log('Using fallback data for better performance');
       } finally {
-        // Quick loading transition
         setTimeout(() => setIsLoading(false), 50);
       }
     };
@@ -499,7 +530,6 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
     loadDepartments();
   }, []);
 
-  // Minimal loading state
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -542,7 +572,7 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
-              Programs & Courses
+              Courses
             </motion.h1>
             <motion.p 
               className="text-xl text-gray-600 max-w-3xl mx-auto"
@@ -587,6 +617,7 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
                     key={dept.slug}
                     dept={dept}
                     onSelect={handleDepartmentSelect}
+                    onPageChange={onPageChange}
                     index={index}
                   />
                 ))}
@@ -646,7 +677,7 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
           </div>
         </motion.section>
 
-        {/* CTA Section with animated background */}
+        {/* CTA Section */}
         <motion.section 
           className="py-16 bg-gradient-to-r from-[#1F7A53] to-[#1E5FA8] text-white relative overflow-hidden"
           initial={{ opacity: 0 }}
@@ -654,11 +685,10 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          {/* Animated background */}
           <motion.div
             className="absolute inset-0"
             style={{
-              background: "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.05) 0%, transparent 50%)"
+              background: "Radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.05) 0%, transparent 50%)"
             }}
             animate={{
               backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"]

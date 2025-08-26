@@ -70,16 +70,16 @@ const cardVariants = {
 
 // Fallback data function
 const getFallbackNewsData = (): NewsItem[] => [
-  {
-    slug: "admissions-open-2025",
-    title: "Admissions Open for Academic Year 2025",
-    date: "2025-01-15",
-    tag: "Announcement",
-    excerpt: "Applications are now open for the new academic year. Early bird discounts available until March 31st.",
-    content: "We are pleased to announce that admissions for the Academic Year 2025 are now open. This year, we are offering expanded programs and new scholarship opportunities for deserving students. The application process has been streamlined to make it easier for prospective students and their families.",
-    author: "Admin Office",
-    category: "admissions"
-  },
+//  {
+    // slug: "admissions-open-2025",
+    // title: "Admissions Open for Academic Year 2025",
+    // date: "2025-01-15",
+    // tag: "Announcement",
+    // excerpt: "Applications are now open for the new academic year. Early bird discounts available until March 31st.",
+    // content: "We are pleased to announce that admissions for the Academic Year 2025 are now open. This year, we are offering expanded programs and new scholarship opportunities for deserving students. The application process has been streamlined to make it easier for prospective students and their families.",
+    // author: "Admin Office",
+    // category: "admissions"
+  //},
   {
     slug: "shasmahi-ke-imtihaan-2025",
     title: "Shasmahi ke imtihaan",
@@ -90,66 +90,66 @@ const getFallbackNewsData = (): NewsItem[] => [
     author: "Academic Affairs",
     category: "events"
   },
-  {
-    slug: "merit-scholarship-2025",
-    title: "Merit-Based Scholarship Program Launched",
-    date: "2025-02-20",
-    tag: "Announcement",
-    excerpt: "New scholarship opportunities for outstanding students across all programs.",
-    content: "We are excited to announce our new Merit-Based Scholarship Program, designed to support exceptional students in their educational journey. The program covers partial to full tuition fees based on academic performance and need assessment.",
-    author: "Financial Aid Office",
-    category: "scholarships"
-  },
-  {
-    slug: "digital-library-expansion",
-    title: "Digital Library Collection Expanded",
-    date: "2025-01-30",
-    tag: "Notice",
-    excerpt: "Our digital collection now includes over 5,000 Islamic manuscripts, books, and multimedia resources.",
-    content: "The library is proud to announce a significant expansion of our digital collection. Students and faculty now have access to an extensive range of Islamic texts, historical manuscripts, and modern research materials.",
-    author: "Library Services",
-    category: "academics"
-  },
-  {
-    slug: "graduation-ceremony-2024",
-    title: "Annual Graduation Ceremony 2024",
-    date: "2024-12-15",
-    tag: "Event",
-    excerpt: "Celebrating the achievements of our graduating class with distinguished guests and scholars.",
-    content: "Our annual graduation ceremony was a remarkable celebration of academic achievement and spiritual growth. We honored our graduates who have completed their studies in various Islamic disciplines.",
-    author: "Event Committee",
-    category: "events"
-  },
-  {
-    slug: "community-outreach-program",
-    title: "Community Outreach Initiative Launched",
-    date: "2024-11-20",
-    tag: "Notice",
-    excerpt: "Students and faculty engaging with local communities through educational and service initiatives.",
-    content: "Our new Community Outreach Program aims to strengthen ties with the local community through educational workshops, charity drives, and volunteer services.",
-    author: "Community Relations",
-    category: "community"
-  },
-  {
-    slug: "faculty-training-workshop",
-    title: "Faculty Development Workshop Series",
-    date: "2024-10-25",
-    tag: "Notice",
-    excerpt: "Professional development opportunities for faculty members to enhance teaching methodologies.",
-    content: "A comprehensive workshop series designed to enhance teaching skills and incorporate modern pedagogical approaches while maintaining traditional Islamic educational values.",
-    author: "Human Resources",
-    category: "faculty"
-  },
-  {
-    slug: "technology-upgrade-2024",
-    title: "Campus Technology Infrastructure Upgraded",
-    date: "2024-09-18",
-    tag: "Notice",
-    excerpt: "New high-speed internet, modern classrooms, and enhanced digital learning platforms.",
-    content: "Our commitment to modern education includes significant technology upgrades across the campus, providing students and faculty with better digital tools for learning and research.",
-    author: "IT Department",
-    category: "infrastructure"
-  }
+  // {
+  //   slug: "merit-scholarship-2025",
+  //   title: "Merit-Based Scholarship Program Launched",
+  //   date: "2025-02-20",
+  //   tag: "Announcement",
+  //   excerpt: "New scholarship opportunities for outstanding students across all programs.",
+  //   content: "We are excited to announce our new Merit-Based Scholarship Program, designed to support exceptional students in their educational journey. The program covers partial to full tuition fees based on academic performance and need assessment.",
+  //   author: "Financial Aid Office",
+  //   category: "scholarships"
+  // },
+  // {
+  //   slug: "digital-library-expansion",
+  //   title: "Digital Library Collection Expanded",
+  //   date: "2025-01-30",
+  //   tag: "Notice",
+  //   excerpt: "Our digital collection now includes over 5,000 Islamic manuscripts, books, and multimedia resources.",
+  //   content: "The library is proud to announce a significant expansion of our digital collection. Students and faculty now have access to an extensive range of Islamic texts, historical manuscripts, and modern research materials.",
+  //   author: "Library Services",
+  //   category: "academics"
+  // },
+  // {
+  //   slug: "graduation-ceremony-2024",
+  //   title: "Annual Graduation Ceremony 2024",
+  //   date: "2024-12-15",
+  //   tag: "Event",
+  //   excerpt: "Celebrating the achievements of our graduating class with distinguished guests and scholars.",
+  //   content: "Our annual graduation ceremony was a remarkable celebration of academic achievement and spiritual growth. We honored our graduates who have completed their studies in various Islamic disciplines.",
+  //   author: "Event Committee",
+  //   category: "events"
+  // },
+  // {
+  //   slug: "community-outreach-program",
+  //   title: "Community Outreach Initiative Launched",
+  //   date: "2024-11-20",
+  //   tag: "Notice",
+  //   excerpt: "Students and faculty engaging with local communities through educational and service initiatives.",
+  //   content: "Our new Community Outreach Program aims to strengthen ties with the local community through educational workshops, charity drives, and volunteer services.",
+  //   author: "Community Relations",
+  //   category: "community"
+  // },
+  // {
+  //   slug: "faculty-training-workshop",
+  //   title: "Faculty Development Workshop Series",
+  //   date: "2024-10-25",
+  //   tag: "Notice",
+  //   excerpt: "Professional development opportunities for faculty members to enhance teaching methodologies.",
+  //   content: "A comprehensive workshop series designed to enhance teaching skills and incorporate modern pedagogical approaches while maintaining traditional Islamic educational values.",
+  //   author: "Human Resources",
+  //   category: "faculty"
+  // },
+  // {
+  //   slug: "technology-upgrade-2024",
+  //   title: "Campus Technology Infrastructure Upgraded",
+  //   date: "2024-09-18",
+  //   tag: "Notice",
+  //   excerpt: "New high-speed internet, modern classrooms, and enhanced digital learning platforms.",
+  //   content: "Our commitment to modern education includes significant technology upgrades across the campus, providing students and faculty with better digital tools for learning and research.",
+  //   author: "IT Department",
+  //   category: "infrastructure"
+  // }
 ];
 
 // Category Tabs Component

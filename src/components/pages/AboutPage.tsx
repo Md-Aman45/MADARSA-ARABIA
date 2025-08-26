@@ -217,7 +217,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
               className="text-xl text-gray-600 max-w-3xl mx-auto"
             >
               Committed to excellence in Islamic education, spiritual development,
-              and community service for over 25 years.
+              and community service for over 40 years.
             </motion.p>
           </div>
         </div>
@@ -250,7 +250,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
               <strong>Elders/Patrons:</strong> Hazrat Maulana Qari Sayyed Siddiq Ahmad Sahab Bandvi (rahimahullah) and Hazrat Maulana Mufti Mahmudul Hasan Sahab Deobandi (rahimahullah).
             </p>
             <p className="text-center">
-              <strong>Founder:</strong> Hazrat Maulana Siddiq Ahmad Sahab (rahimahullah).
+              <strong>Founder:</strong> Hazrat Maulana Sayyed Siddiqui Ahmad Sahab.
             </p>
 
             <p className="mt-8">
@@ -279,11 +279,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
               <div className="w-16 h-16 bg-[#1E5FA8] rounded-full flex items-center justify-center flex-shrink-0">
                 <Heart className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-[#1E5FA8] text-center">Jamia-Fatima-Al-Zehra-Lil Banaat (Girls' Section)</h3>
+              <h3 className="text-2xl font-bold text-[#1E5FA8] text-center">JAMIA-FATIMA-ZAHRA-LIL BANAAT (Girls' Section)</h3>
             </div>
             <p className="text-gray-700 text-lg leading-relaxed text-justify mb-4">
-              Madrasa Arabia Tajweedul Qur'an is also running an Islamic institution for girls, which is currently being managed in a small house with a total of **90 local students**. Due to the high demand for girls' education, the madrasa is unable to meet its expenses and cannot provide them with proper comfort. Although the educational facilities are good, there is no proper building or necessary resources for the girls’ studies. By the grace of Allah and through your prayers, land for the madrasa has already been arranged. Now, only the construction of the building and other requirements remain, for which we need your wishes and your presence in this project.
-            </p>
+Madarsa Arabia Tajweedul Quran is also running an Islamic institution for girls, which is currently being managed in a small house,with a total of students girls is 90.Which are from locals area only. the peoples from surrounding areas and different cities want to send their girl child to this Girl's institute but due to lack of accommodation and hostel facilities we are unable to meet its expenses and cannot provide them with proper comfort. Although the educational facilities are good,and it is same as good and better which we provide for boys. By the grace of Allah and through your prayers, land for the madrasa has already been arranged. Now, only the construction of the building and other requirements remain, for which we need your wishes and your presence in this project .            </p>
           </motion.div>
 
         </div>
@@ -569,10 +568,12 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <motion.h2 variants={fadeIn} className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-              Affiliations & Recognition
+              Affiliated 
             </motion.h2>
             <motion.p variants={fadeIn} className="text-xl text-gray-600">
-              Proud member of prestigious Islamic educational organizations
+             DARUL ULOOM NADWATUL ULAMA,
+LUCKNOW (U.P), INDIA 
+
             </motion.p>
           </div>
 
