@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect, useMemo, memo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, memo, useCallback, useRef } from 'react';
 import { motion, useInView, LazyMotion, domAnimation, m } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
@@ -88,6 +87,38 @@ const rotateVariants = {
   }
 };
 
+// Animated Counter Component
+const AnimatedCounter: React.FC<{ value: number; duration?: number }> = ({ value, duration = 2 }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      let startTime: number;
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+        
+        setCount(Math.floor(progress * value));
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setCount(value);
+        }
+      };
+      requestAnimationFrame(animate);
+    }
+  }, [isInView, value, duration]);
+
+  return (
+    <div ref={ref} className="text-4xl lg:text-5xl font-bold text-white mb-2">
+      {count}+
+    </div>
+  );
+};
+
 const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
   // Handles the click event for the "Join Us" button.
   // It calls the onPageChange prop if it exists, navigating to the 'contact' page.
@@ -96,6 +127,16 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
       onPageChange('contact');
     }
   }, [onPageChange]);
+
+  // Mission points data
+  const missionPoints = useMemo(() => [
+    "To promote the knowledge of the Shari'ah and the religious sciences.",
+    "To create in students a taste for religion and an Islamic outlook.",
+    "To bring them closer to the faith and to Allah, to train them in Islamic manners, and—by showing clear proofs—to protect them from wrong ideas and falsehood and to guide them towards reform and righteousness.",
+    "To remove ignorance from the area and to work for the reform and guidance of the common Muslims.",
+    "The chief aim of the Madrasah is to prepare such scholars and callers to Islam who, along with sound knowledge, are adorned with piety, God-consciousness and fine character; whose mission is to safeguard the principles and rulings of Islam, spread its teachings, strengthen the Muslims' adherence to the straight path, and acquaint our fellow countrymen with the fragrance of Islamic teachings.",
+    "To make students aware of new ideas and trends; to improve methods of teaching and raise academic as well as spiritual standards; and, by including suitable contemporary subjects in the syllabus, to keep students informed of the conditions and demands of the age."
+  ], []);
 
   // Data for the core goals section.
   const coreGoals = useMemo(() => [
@@ -126,12 +167,12 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
     }
   ], []);
 
-  // Data for the quick stats section.
+  // Data for the quick stats section - changed to numbers for counter animation
   const stats = useMemo(() => [
-    { label: "Huffaz Under Training", value: "500+" },
-    { label: "Qualified Teachers", value: "50+" },
-    { label: "Students Benefited", value: "1000+" },
-    { label: "Programs", value: "10+" }
+    { label: "Huffaz Under Training", value: 500 },
+    { label: "Qualified Teachers", value: 50 },
+    { label: "Students Benefited", value: 1000 },
+    { label: "Programs", value: 10 }
   ], []);
 
   return (
@@ -217,13 +258,20 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     Our Mission
                   </h2>
                 </div>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                  At our Madrasa, our mission is deeply rooted in the timeless teachings of the Qur'an and Sunnah.
-                  We are dedicated to nurturing a generation of students who are firmly connected to Allah ﷻ,
-                  His Book, and the noble teachings of Prophet Muhammad ﷺ. Our institution strives to create
-                  an environment that balances spiritual growth, academic excellence, and strong moral character,
-                  preparing students to face modern challenges while staying grounded in their faith.
-                </p>
+                
+                <ul className="text-lg text-gray-700 leading-relaxed mb-8 space-y-4 list-disc pl-5">
+                  {missionPoints.map((point, index) => (
+                    <motion.li 
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                    >
+                      {point}
+                    </motion.li>
+                  ))}
+                </ul>
 
                 {/* Three-column grid for key mission values. */}
                 <div className="grid grid-cols-3 gap-4">
@@ -384,10 +432,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                   </h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  We aspire to raise a generation of Muslims who are firm in Iman, deeply connected to the
-                  Qur'an and Sunnah, and grounded in Islamic history and values. Our students will be equipped
-                  to serve the Ummah with knowledge, character, and sincerity, becoming ambassadors of faith
-                  in every walk of life.
+                  Maulana Siddiq Ahmad Sahab's vision for developing this madrasa was to make Islamic education simple and accessible, instill confidence in children, and nurture them with Quranic knowledge, Islamic values, and moral strength so they could live as proud, disciplined, and faithful Muslims while contributing positively to society.
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed mb-8">
                   With the mercy of Allah ﷻ, we aim to be a beacon of light, guiding families and communities
@@ -418,7 +463,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
           </div>
         </motion.section>
 
-        {/* Stats Section: Displays key metrics in a simple grid. */}
+        {/* Stats Section: Displays key metrics with counting animation */}
         <motion.section
           className="py-20 bg-[#1F7A53]"
           initial="hidden"
@@ -452,9 +497,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="bg-white/10 rounded-xl p-6 border border-white/20">
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-2">
-                      {stat.value}
-                    </div>
+                    <AnimatedCounter value={stat.value} duration={2} />
                     <div className="text-white/90 font-medium">
                       {stat.label}
                     </div>
@@ -541,7 +584,6 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button
                         onClick={handleDonateClick}
-
                         className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white w-full"
                       >
                         Support Our Mission

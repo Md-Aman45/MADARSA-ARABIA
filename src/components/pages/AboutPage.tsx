@@ -90,6 +90,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
     return () => clearInterval(scrollInterval);
   }, [isPlaying]);
 
+  const handleStartTour = () => {
+    window.open('https://maps.app.goo.gl/a4mLk2aSqVi9q7Uq5', '_blank');
+  };
+
   const timeline = [
     {
       year: '1999',
@@ -268,8 +272,6 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
         </div>
       </motion.section>
 
-  
-
       {/* Leadership Team */}
       <motion.section
         initial="hidden"
@@ -373,7 +375,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
               >
                 <h3 className="text-xl font-bold mb-2">Visit Our Madarsa</h3>
                 <p className="text-white/90">Explore our Madarsa facilities </p>
-                <Button className="mt-4 bg-white text-[#1F7A53] hover:bg-white/90">
+                <Button 
+                  className="mt-4 bg-white text-[#1F7A53] hover:bg-white/90"
+                  onClick={handleStartTour}
+                >
                   Start Tour
                 </Button>
               </motion.div>
@@ -500,27 +505,27 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
             and everything you need to know about joining our institution.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-    <Button
-      size="lg"
-      variant="secondary"
-      className="bg-white text-[#1F7A53] hover:bg-white/90"
-    >
-      <Download className="w-5 h-5 mr-2" />
-      Download PDF
-    </Button>
-  </motion.div>
-  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-    <Button
-      size="lg"
-      variant="secondary"
-      className="bg-white text-[#1F7A53] hover:bg-white/90"
-      onClick={() => onPageChange('contact')}
-    >
-      Contact Admissions
-    </Button>
-  </motion.div>
-</div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-[#1F7A53] hover:bg-white/90"
+              >
+                <Download className="w-5 h-5 mr-2" />
+                Download PDF
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-[#1F7A53] hover:bg-white/90"
+                onClick={() => onPageChange('contact')}
+              >
+                Contact Admissions
+              </Button>
+            </motion.div>
+          </div>
         </div>
       </motion.section>
     </div>

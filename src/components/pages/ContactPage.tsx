@@ -11,13 +11,6 @@ import {
 } from 'lucide-react';
 import React, { useState } from 'react';
 
-// Assumed to be available components (shadcn/ui or custom)
-// import { Button } from '../ui/button';
-// import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-// import { Input } from '../ui/input';
-// import { Label } from '../ui/label';
-// import { Textarea } from '../ui/textarea';
-
 // Mock components for self-containment
 const Button = ({ children, ...props }) => (
   <button {...props} className={`p-4 rounded-md font-semibold transition-colors duration-200 ${props.className}`}>{children}</button>
@@ -29,7 +22,6 @@ const CardContent = ({ children }) => <div className="p-6 pt-0">{children}</div>
 const Input = (props) => <input {...props} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none transition-all duration-300" />;
 const Label = ({ htmlFor, children }) => <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700 mb-1">{children}</label>;
 const Textarea = (props) => <textarea {...props} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none transition-all duration-300" />;
-
 
 interface ContactPageProps {
   onPageChange: (page: string) => void;
@@ -166,13 +158,13 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                   {
                     icon: MapPin,
                     title: "Address",
-                    content: ["123 Education Street", "Islamic City, IC 12345", "United States"],
+                    content: ["MASAUNI, POST OFFICE KALINJAR,", "TEHSIL NARAINI, DISTRICT BANDA (UP)", "PINCODE-210129"],
                     color: "#1F7A53"
                   },
                   {
                     icon: Phone,
                     title: "Phone",
-                    content: ["+1 (555) 123-4567", "+1 (555) 123-4568"],
+                    content: ["+91 9452463669", "+91 7880927738"],
                     color: "#1E5FA8"
                   },
                   {
@@ -181,12 +173,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                     content: ["info@madarsa-arabia.edu", "admissions@madarsa-arabia.edu"],
                     color: "#1F7A53"
                   },
-                  {
-                    icon: Clock,
-                    title: "Office Hours",
-                    content: ["Saturday - Thursday: 8:00 AM - 6:00 PM", "Friday: Community Programs"],
-                    color: "#1E5FA8"
-                  }
+                 
                 ].map((item, index) => {
                   const IconComponent = item.icon;
                   return (
@@ -521,14 +508,14 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
             >
               <Button 
                 size="lg"
-                className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center mx-auto"
                 onClick={() => {
                   const message = encodeURIComponent("Assalamu Alaikum, I would like to get more information about donation options and how I can support specific projects.");
                   window.open(`https://wa.me/919801213788?text=${message}`, '_blank');
                 }}
               >
-                <Heart className="w-5 h-5 mr-2" />
-                Contact Donation Department
+                <Heart className="w-5 h-5 mr-2"  />
+                Contact Donate
               </Button>
             </motion.div>
           </motion.div>

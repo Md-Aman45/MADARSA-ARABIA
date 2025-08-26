@@ -252,12 +252,12 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       } catch (error) {
         // Fallback data
         setDepartments([
-          { slug: "tajweed", name: "Qur'anic Recitation (Tajweed)", summary: "Mastery of recitation rules and articulation." },
-          { slug: "hifz", name: "Hifz Program", summary: "Memorization and revision methodology with mentoring." },
-          { slug: "hadith", name: "Hadith Studies", summary: "Foundational texts, methodology, commentary." },
-          { slug: "fiqh", name: "Fiqh & Usul", summary: "Jurisprudence principles and application." },
-          { slug: "arabic", name: "Arabic Language", summary: "Classical Arabic grammar and literature." },
-          { slug: "library", name: "Library Services", summary: "Comprehensive resources and study facilities." }
+          { slug: "tajweed", name: "QURAN TAJWEED", summary: "Mastery of recitation rules and articulation." },
+          { slug: "hifz", name: "PRIMARY EDUCATION (NAAJRAH)", summary: "Memorization and revision methodology with mentoring." },
+          { slug: "hadith", name: "HAFIZ-UL-QURAN", summary: "Foundational texts, methodology, commentary." },
+          { slug: "fiqh", name: "FIVE YEAR ARABIC COURSE (AALIMIYAT)", summary: "Jurisprudence principles and application." },
+          { slug: "arabic", name: "DEPARTMENT OF COMPUTER SCIENCE", summary: "Classical Arabic grammar and literature." },
+          { slug: "library", name: "DEPARTMENT OF ENGLISH", summary: "Comprehensive resources and study facilities." }
         ]);
       }
     };
