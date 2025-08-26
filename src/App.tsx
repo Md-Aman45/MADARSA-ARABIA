@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/Header';
@@ -12,21 +12,9 @@ import ContactPage from './components/pages/ContactPage';
 
 // Page transition variants
 const pageVariants = {
-  initial: {
-    opacity: 0,
-    y: 20,
-    scale: 0.98
-  },
-  in: {
-    opacity: 1,
-    y: 0,
-    scale: 1
-  },
-  out: {
-    opacity: 0,
-    y: -20,
-    scale: 0.98
-  }
+  initial: { opacity: 0, y: 20, scale: 0.98 },
+  in: { opacity: 1, y: 0, scale: 1 },
+  out: { opacity: 0, y: -20, scale: 0.98 }
 };
 
 const pageTransition = {
@@ -37,11 +25,17 @@ const pageTransition = {
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  const mainRef = useRef(null);
 
-  // This useEffect hook watches for changes in currentPage.
-  // When currentPage changes, it scrolls the window to the top.
+  // Scroll to top on page change (works on desktop & mobile)
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Scroll window to top
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    
+    // Also reset main container scroll if exists
+    if (mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
   }, [currentPage]);
 
   const renderPage = () => {
@@ -67,7 +61,7 @@ export default function App() {
     <LanguageProvider>
       <div className="min-h-screen flex flex-col">
         <Header currentPage={currentPage} onPageChange={setCurrentPage} />
-        <main className="flex-1">
+        <main ref={mainRef} className="flex-1 overflow-y-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentPage}
@@ -75,12 +69,7 @@ export default function App() {
               animate="in"
               exit="out"
               variants={pageVariants}
-              transition={{
-                ...pageTransition,
-                type: "tween",
-                ease: "anticipate",
-                duration: 0.6
-              }}
+              transition={pageTransition}
             >
               {renderPage()}
             </motion.div>

@@ -369,161 +369,170 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
 
   return (
     <div className="min-h-screen">
-     {/* Hero Section with Carousel - IMPROVED */}
-<motion.section
-  ref={heroRef}
-  className="relative h-screen overflow-hidden"
-  initial="hidden"
-  animate={heroControls}
-  variants={containerVariants}
->
-  {/* Hero Carousel */}
-  <div className="absolute inset-0">
-    <Swiper
-      modules={[Autoplay, Pagination, EffectFade]}
-      effect="fade"
-      autoplay={{
-        delay: 3000,
-        disableOnInteraction: false,
-      }}
-      pagination={{
-        clickable: true,
-        bulletActiveClass: 'swiper-pagination-bullet-active bg-[#1F7A53]',
-        bulletClass: 'swiper-pagination-bullet bg-white/50'
-      }}
-      loop={true}
-      className="w-full h-full"
-    >
-      {madrasaPhotos.map((photo, index) => (
-        <SwiperSlide key={index}>
-          <div className="relative w-full h-full">
-            <ImageWithFallback
-              src={photo.url}
-              alt={photo.title}
-              className="w-full h-full object-cover"
-            />
-            {/* Enhanced Overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-            
-            {/* Photo Info - Improved positioning */}
-            <motion.div
-              className="absolute bottom-16 left-8 text-white z-20"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-            >
-              <h3 className="text-2xl md:text-3xl font-semibold mb-2">{photo.title}</h3>
-              <p className="text-lg text-white/90 max-w-md">{photo.description}</p>
-            </motion.div>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  </div>
-
-  {/* Hero Content Overlay - CENTERED LAYOUT */}
-  <div className="absolute inset-0 flex items-center justify-center text-center">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
-      <motion.div
-        className="text-white"
+      {/* Hero Section with Carousel - IMPROVED */}
+      <motion.section
+        ref={heroRef}
+        className="relative h-screen overflow-hidden"
+        initial="hidden"
+        animate={heroControls}
         variants={containerVariants}
       >
-        <motion.div
-          className="mb-6"
-          variants={itemVariants}
-        >
-          <Badge variant="outline" className="bg-white/20 text-white border-white/30 hover:bg-white/30 transition-colors duration-300 text-sm md:text-base">
-            Excellence in Islamic Education
-          </Badge>
-        </motion.div>
-        
-        {/* UPDATED HEADLINE FOR BOLD AND BIG TEXT */}
-        <motion.h1
-          className="font-extrabold mb-6 leading-tight text-shadow-lg"
-          variants={itemVariants}
-        >
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="block text-white"
-            style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}
+        {/* Hero Carousel */}
+        <div className="absolute inset-0">
+          <Swiper
+            modules={[Autoplay, Pagination, EffectFade]}
+            effect="fade"
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+              bulletActiveClass: 'swiper-pagination-bullet-active bg-[#1F7A53]',
+              bulletClass: 'swiper-pagination-bullet bg-white/50'
+            }}
+            loop={true}
+            className="w-full h-full"
           >
-            
-              <span className="font-bold text-3xl md:text-4xl lg:text-5xl">
-                MADARSA ARABIA
-            </span>
-          </motion.span>
-          
-          <motion.span
-            className="text-[#1E5FA8] block text-shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.5)' }}
-          >
-           <span className="font-bold text-6xl md:text-7xl lg:text-8xl">
-                TAJVEEDUL QURAN
-            </span>
-          </motion.span>
-        </motion.h1>
-        
-        <motion.p
-          className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto"
-          variants={itemVariants}
-          style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.5)' }}
-        >
-          Join our distinguished institution dedicated to preserving and teaching
-          the sacred knowledge of Islam through traditional and modern methodologies.
-        </motion.p>
-        
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-          variants={itemVariants}
-        >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              size="lg"
-              className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-base"
-              onClick={() => onPageChange('programs')}
-            >
-              <BookOpen className="w-5 h-5 mr-2" />
-              Explore Programs
-            </Button>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-blue text-black text-[#1E5FA8] transition-all duration-300 text-base"
-              onClick={handleDonateClick}
-            >
-              <Heart className="w-5 h-5 mr-2" />
-              Donate
-            </Button>
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </div>
-  </div>
+            {madrasaPhotos.map((photo, index) => (
+              <SwiperSlide key={index}>
+                <div className="relative w-full h-full">
+                  <ImageWithFallback
+                    src={photo.url}
+                    alt={photo.title}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Enhanced Overlay for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+                  
+                  {/* Photo Info - Improved positioning */}
+                  <motion.div
+                    className="absolute bottom-16 left-8 text-white z-20"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                  >
+                    <h3 className="text-2xl md:text-3xl font-semibold mb-2">{photo.title}</h3>
+                    <p className="text-lg text-white/90 max-w-md">{photo.description}</p>
+                  </motion.div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
-  {/* Scroll indicator */}
-  <motion.div
-    className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white z-20"
-    animate={{ y: [0, 10, 0] }}
-    transition={{ duration: 2, repeat: Infinity }}
-  >
-    <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-      <div className="w-1 h-3 bg-white/70 rounded-full mt-2"></div>
-    </div>
-  </motion.div>
-</motion.section>
+        {/* Hero Content Overlay - CENTERED LAYOUT */}
+        <div className="absolute inset-0 flex items-center justify-center text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
+            <motion.div
+              className="text-white"
+              variants={containerVariants}
+            >
+              <motion.div
+                className="mb-8"
+                variants={itemVariants}
+              >
+                <Badge variant="outline" className="bg-white/30 text-white border-white/40 hover:bg-white/40 transition-colors duration-300 text-base md:text-lg py-2 px-4">
+                  Excellence in Islamic Education
+                </Badge>
+              </motion.div>
+              
+              {/* UPDATED HEADLINE FOR BETTER VISIBILITY */}
+              <motion.h1
+                className="font-extrabold mb-6 leading-tight"
+                variants={itemVariants}
+
+              >
+                 <motion.span
+                  className="block text-[#FFD700]"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                  style={{ 
+                    textShadow: '2px 2px 8px rgba(0,0,0,0.7)',
+                    fontFamily: 'Arial, sans-serif',
+                    fontWeight: 800,
+                    fontSize: 'clamp(2.5rem, 5vw, 4.5rem)'
+                  }}
+                >
+                  MADARSA ARABIA
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="block text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4"
+                  style={{ 
+                    textShadow: '3px 3px 12px rgba(0,0,0,0.7), 1px 1px 4px rgba(0,0,0,0.5)',
+                    fontFamily: 'Arial, sans-serif',
+                    fontWeight: 900
+                  }}
+                >
+                  TAJVEEDUL QURAN
+                </motion.span>
+                
+               
+              </motion.h1>
+              
+              <motion.p
+                className="text-xl md:text-2xl text-white/95 mb-10 leading-relaxed max-w-3xl mx-auto font-medium"
+                variants={itemVariants}
+                style={{ 
+                  textShadow: '2px 2px 6px rgba(0,0,0,0.7)',
+                  fontFamily: 'Arial, sans-serif'
+                }}
+              >
+                Join our distinguished institution dedicated to preserving and teaching
+                the sacred knowledge of Islam through traditional and modern methodologies.
+              </motion.p>
+              
+              <motion.div
+                className="flex flex-col sm:flex-row gap-6 justify-center"
+                variants={itemVariants}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    size="lg"
+                    className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold py-6 px-8"
+                    onClick={() => onPageChange('programs')}
+                  >
+                    <BookOpen className="w-6 h-6 mr-2" />
+                    Explore Programs
+                  </Button>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-[#1F7A53] hover:bg-[#1F7553]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold py-6 px-8"
+                    onClick={handleDonateClick}
+                  >
+                    <Heart className="w-6 h-6 mr-2" />
+                    Donate
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white z-20"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-6 h-10 border-2 border-white/70 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/90 rounded-full mt-2"></div>
+          </div>
+        </motion.div>
+      </motion.section>
 
       {/* Stats Counter Section */}
       <motion.section 
@@ -642,8 +651,6 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
           </motion.div>
         </div>
       </motion.section>
-
-  
 
       {/* Latest Notice Carousel */}
       <motion.section 

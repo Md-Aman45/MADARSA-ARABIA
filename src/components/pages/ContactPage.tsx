@@ -375,9 +375,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                       >
                         <Button 
                           type="submit" 
-                          size="lg" 
                           disabled={isSubmitting}
-                          className="w-full bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70"
+                          className="flex items-center justify-center w-full bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70"
                         >
                           {isSubmitting ? (
                             <motion.div
@@ -564,8 +563,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button 
-                  size="lg"
-                  variant="secondary"
                   className="bg-white text-[#1F7A53] hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
                   onClick={() => onPageChange('departments')}
                 >
@@ -577,8 +574,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button 
-                  size="lg"
-                  variant="outline"
                   className="border-white text-white hover:bg-white/10"
                   onClick={() => onPageChange('about')}
                 >

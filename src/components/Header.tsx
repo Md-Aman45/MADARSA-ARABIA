@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Heart } from 'lucide-react';
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
@@ -24,6 +24,11 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
   const handlePageChange = (page: string) => {
     onPageChange(page);
     setIsMenuOpen(false);
+  };
+
+  const handleDonateClick = () => {
+    const message = encodeURIComponent("I want to donate for your madarsa please provide me the details where I can donate and earn good deeds");
+    window.open(`https://wa.me/918423370548?text=${message}`, '_blank');
   };
 
   return (
@@ -55,40 +60,72 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
             </div>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-1">
-            {navigation.map((item, index) => (
-              <motion.div
-                key={item.key}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <Button
-                  variant={currentPage === item.key ? "default" : "ghost"}
-                  onClick={() => handlePageChange(item.key)}
-                  className={`relative px-4 py-2 transition-all duration-300 ${
-                    currentPage === item.key
-                      ? 'bg-[#1F7A53] text-white shadow-lg'
-                      : 'text-gray-700 hover:text-[#1F7A53] hover:bg-[#E8F5EF]'
-                  }`}
+          {/* Desktop Navigation and Donate Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <nav className="flex space-x-1">
+              {navigation.map((item, index) => (
+                <motion.div
+                  key={item.key}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
                 >
-                  {item.name}
-                  {currentPage === item.key && (
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1F7A53]"
-                      layoutId="activeTab"
-                      initial={false}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                    />
-                  )}
-                </Button>
-              </motion.div>
-            ))}
-          </nav>
+                  <Button
+                    variant={currentPage === item.key ? "default" : "ghost"}
+                    onClick={() => handlePageChange(item.key)}
+                    className={`relative px-4 py-2 transition-all duration-300 ${
+                      currentPage === item.key
+                        ? 'bg-[#1F7A53] text-white shadow-lg'
+                        : 'text-gray-700 hover:text-[#1F7A53] hover:bg-[#E8F5EF]'
+                    }`}
+                  >
+                    {item.name}
+                    {currentPage === item.key && (
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1F7A53]"
+                        layoutId="activeTab"
+                        initial={false}
+                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      />
+                    )}
+                  </Button>
+                </motion.div>
+              ))}
+            </nav>
+            
+            {/* Donate Now Button */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              <Button
+                onClick={handleDonateClick}
+                className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <Heart className="w-4 h-4 mr-2" />
+                Donate Now
+              </Button>
+            </motion.div>
+          </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            {/* Donate Now Button for Mobile */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Button
+                size="sm"
+                onClick={handleDonateClick}
+                className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <Heart className="w-4 h-4" />
+              </Button>
+            </motion.div>
+
             <Button
               variant="ghost"
               size="icon"
@@ -139,6 +176,24 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                 </Button>
               </motion.div>
             ))}
+            {/* Donate Now Button in Mobile Menu */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ 
+                opacity: isMenuOpen ? 1 : 0, 
+                x: isMenuOpen ? 0 : -20 
+              }}
+              transition={{ delay: navigation.length * 0.1, duration: 0.3 }}
+              className="pt-4"
+            >
+              <Button
+                onClick={handleDonateClick}
+                className="w-full bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white"
+              >
+                <Heart className="w-4 h-4 mr-2" />
+                Donate Now
+              </Button>
+            </motion.div>
           </nav>
         </motion.div>
       </div>

@@ -10,7 +10,7 @@ import {
   Users,
   Hammer
 } from 'lucide-react';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState, useEffect, useRef } from 'react';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardTitle } from '../ui/card';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
@@ -127,6 +127,29 @@ const AnimatedCounter: React.FC<{ value: number; duration?: number }> = ({ value
   );
 };
 
+// Hook to check if element is in viewport
+const useInView = (ref: React.RefObject<HTMLElement>, options?: IntersectionObserverInit) => {
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsInView(entry.isIntersecting);
+    }, options);
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [ref, options]);
+
+  return isInView;
+};
+
 const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
   // Handles the click event for the "Join Us" button.
   const handleJoinUs = useCallback(() => {
@@ -134,16 +157,6 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
       onPageChange('contact');
     }
   }, [onPageChange]);
-
-  // Mission points data
-  const missionPoints = useMemo(() => [
-    "To promote the knowledge of the Shari'ah and the religious sciences.",
-    "To create in students a taste for religion and an Islamic outlook.",
-    "To bring them closer to the faith and to Allah, to train them in Islamic manners, and—by showing clear proofs—to protect them from wrong ideas and falsehood and to guide them towards reform and righteousness.",
-    "To remove ignorance from the area and to work for the reform and guidance of the common Muslims.",
-    "The chief aim of the Madrasah is to prepare such scholars and callers to Islam who, along with sound knowledge, are adorned with piety, God-consciousness and fine character; whose mission is to safeguard the principles and rulings of Islam, spread its teachings, strengthen the Muslims' adherence to the straight path, and acquaint our fellow countrymen with the fragrance of Islamic teachings.",
-    "To make students aware of new ideas and trends; to improve methods of teaching and raise academic as well as spiritual standards; and, by including suitable contemporary subjects in the syllabus, to keep students informed of the conditions and demands of the age."
-  ], []);
 
   // Data for the core goals section.
   const coreGoals = useMemo(() => [
@@ -174,12 +187,12 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
     }
   ], []);
 
-  // Data for the quick stats section - changed to numbers for counter animation
+  // Data for the quick stats section.
   const stats = useMemo(() => [
-    { label: "Huffaz Under Training", value: "500+" },
-    { label: "Qualified Teachers", value: "50+" },
-    { label: "Students Benefited", value: "1000+" },
-    { label: "Programs", value: "10+" }
+    { label: "Huffaz Under Training", value: 500 },
+    { label: "Qualified Teachers", value: 50 },
+    { label: "Students Benefited", value: 1000 },
+    { label: "Programs", value: 10 }
   ], []);
 
   // Data for the ongoing construction section
@@ -500,7 +513,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
           </div>
         </motion.section>
 
-        {/* Stats Section: Displays key metrics with counting animation */}
+        {/* Stats Section: Displays key metrics with animated counters. */}
         <motion.section
           className="py-20 bg-[#1F7A53]"
           initial="hidden"
@@ -534,7 +547,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="bg-white/10 rounded-xl p-6 border border-white/20">
-                    <AnimatedCounter value={stat.value} duration={2} />
+                    <AnimatedCounter value={stat.value} />
                     <div className="text-white/90 font-medium">
                       {stat.label}
                     </div>

@@ -289,7 +289,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
         </div>
       </motion.section>
 
-      {/* --- Our founder Section (EXISTING) --- */}
+      {/* --- Our Founder Section (UPDATED) --- */}
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -297,55 +297,54 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
         variants={fadeIn}
         className="py-20 bg-gray-100"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          {/* Circular Image on the Left */}
-          <motion.div
-            variants={fadeIn}
-            className="flex justify-center"
-          >
-            <div className="w-64 h-64 rounded overflow-hidden shadow-xl border-4 border-white">
-              <ImageWithFallback
-                src="/assets/principle.png"
-                alt="Our Principle"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </motion.div>
-
-          {/* Our Founder Section on the Right */}
-          <motion.div variants={fadeIn}>
-            <h2 className="text-3xl font-bold text-[#0B0D0E] mb-4">Founder</h2>
-            <h1>Words from Our Founder</h1>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Message of founder
-
-              DEAR MUSLIM BROTHERS
-
-              It is with pride and privilege that I present the following introduction to the services provided by Madrasa Arabia tajveedul Quran, located in,Village Masauni , post office kalinjar, tehsil Naraini, District BANDA (UP) 210129.INDIA
-              <br /><br />
-              In 1984, I was deeply shocked to witness the emergence of Muslim conversions in my village and surrounding areas where a few Muslims had already renounced Islam.
-              <br /><br />
-              I realized that this situation was due to the absence of a Madrasa in this village that could provide Islamic teachings to those in need.
-
-              For Me, education was never limited to literacy alone; it was a means of building character, nurturing the soul, and preparing future generations to walk upon the path shown by Allah ﷻ and His beloved Messenger Prophet Muhammad ﷺ. He firmly believed in the words of the Prophet ﷺ:
-              "The seeking of knowledge is obligatory upon every Muslim (male and female)."
-              This teaching inspired me to establish an institution where children could learn not only how to read and write, but also how to embody Islamic values such as honesty, compassion, humility, and respect.
-              <br /><br />
-              Whatever time I could spare, I dedicated that time to teach the students. This situation persisted for several days until Allah’s blessings eased our circumstances. Generous individuals donated land, and construction began. As a result, parents started sending their children to the Madrasa.
-              <br /><br />
-              Initially, we constructed a few rooms with earthen walls and Khaprail roofs. Students from outside began residing there. Over time, with the students’ assistance, construction continued, and our teaching classes remained steady. Despite facing significant challenges, the students persevered with unwavering courage.
-              <br /><br />
-              The dedication and resilience of the teaching staff, who persevered despite limited resources and hardships, deserve commendation. May Allah grant them abundant blessings in return. (Ameen)
-              May this endeavor thrive and may Allah alleviate their hardships. (Ameen)
-              <br /><br />
-              Hazrat Maulana Sayyed Siddique Ahmad Masaunvi (R.A),
-              Founder, MADARSA ARABIA TAJVEEDUL QURAN MASAUNI
-            </p>
-          </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-12 text-center">Our Esteemed Founder</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <motion.div
+              variants={fadeIn}
+              className="flex justify-center"
+            >
+              <div className="w-80 h-80 rounded-full overflow-hidden shadow-xl border-4 border-white">
+                <ImageWithFallback
+                  src="/assets/pr.jpg"
+                  alt="Hazrat Maulana Sayyed Siddique Ahmad Masaunvi (R.A)"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+            <motion.div variants={fadeIn}>
+              <Card className="border-0 shadow-card bg-gradient-to-br from-[#E8F5EF] to-white">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-[#1F7A53] mb-4">Words from Our Founder</CardTitle>
+                </CardHeader>
+                <CardContent className="text-gray-700 text-lg leading-relaxed space-y-4">
+                  <p><strong>Dear Muslim Brothers,</strong></p>
+                  <p>
+                    It is with pride and privilege that I present the introduction to the services of Madrasa Arabia Tajveedul Quran, located in Village Masauni, Post Office Kalinjar, Tehsil Naraini, District BANDA (UP) 210129, India.
+                  </p>
+                  <p>
+                    In 1984, I was deeply shocked to witness the emergence of Muslim conversions in my village and surrounding areas, where a few had already renounced Islam. I realized this was due to the absence of a Madrasa providing Islamic teachings.
+                  </p>
+                  <p>
+                    For me, education was never limited to literacy alone; it was a means of building character, nurturing the soul, and preparing future generations to follow the path shown by Allah ﷻ and His beloved Prophet Muhammad ﷺ. Inspired by the Prophet’s words, "The seeking of knowledge is obligatory upon every Muslim (male and female)," I established this institution where children learn to embody Islamic values such as honesty, compassion, humility, and respect.
+                  </p>
+                  <p>
+                    Initially, I dedicated my spare time to teaching students. With Allah’s blessings, generous individuals donated land, and construction began. We started with a few rooms with earthen walls and Khaprail roofs, and students from outside began residing there. Over time, with students’ assistance, construction continued despite significant challenges.
+                  </p>
+                  <p>
+                    The dedication of our teaching staff, who persevered despite limited resources, deserves commendation. May Allah grant them abundant blessings (Ameen). May this endeavor thrive and alleviate their hardships (Ameen).
+                  </p>
+                  <p className="text-right italic text-sm text-gray-500 mt-6">
+                    - Hazrat Maulana Sayyed Siddique Ahmad Masaunvi (R.A), Founder
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
         </div>
       </motion.section>
 
-      {/* New Section: Nazim's Message (Requested Layout) */}
+      {/* New Section: Nazim's Message (UPDATED) */}
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -354,52 +353,40 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
         className="py-20 bg-gray-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row-reverse items-start gap-10">
-            {/* Image on the right (top corner) */}
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-12 text-center">Nazim's Message</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <motion.div variants={fadeIn}>
+              <Card className="border-0 shadow-card bg-gradient-to-br from-[#EAF2FB] to-white">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-[#1E5FA8] mb-4">Message from Maulana Abdul Tawwab Sahab</CardTitle>
+                </CardHeader>
+                <CardContent className="text-gray-700 text-lg leading-relaxed space-y-4">
+                  <p>It is with deep reverence that we inform all friends and concerned individuals that Hazrat Maulana Sayyed Siddiq Ahmad Masaunvi (R.A), the esteemed founder of Madarsa Arabia Tajveedul Quran Masauni, passed away on June 6th, 2013 (1418 Hijri).</p>
+                  <p>Despite my reluctance and Maulana’s reservations, I was entrusted with continuing his legacy. <strong>Alhamdulillah</strong>, over the past twelve years, with the grace of the founder, guidance of our revered elders, and support of well-wishers, I have carried forward this work, bringing a sense of fulfillment.</p>
+                  <p>Beyond the Madrasa, we strive to meet the religious and cultural needs of our community consistently.</p>
+                  <p><strong>Introducing Madarsa Arabia Tajveedul Quran Masauni:</strong> We have created an introductory website with essential information, images, and my father’s 1984 appeal. We hope it proves valuable to all well-wishers.</p>
+                  <p>I earnestly invite everyone to visit our institution in person. Your presence will be a source of encouragement. <strong>May Allah bless us all.</strong></p>
+                  <p className="text-right italic text-sm text-gray-500 mt-6">
+                    - Maulana Abdul Tawwab Sahab, Nazim
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
             <motion.div
               variants={fadeIn}
-              className="w-full lg:w-1/2 flex justify-end"
+              className="flex justify-center"
             >
-              <div className="w-full h-auto overflow-hidden rounded-lg shadow-xl">
+              <div className="w-80 h-80 rounded-full overflow-hidden shadow-xl border-4 border-white">
                 <ImageWithFallback
-                  src="/assets/pr.jpg" // You can replace this with a different image if you have one
-                  alt="Nazim Maulana Abdul Tawab Sahab"
+                  src="/assets/pr.jpg"
+                  alt="Maulana Abdul Tawwab Sahab"
                   className="w-full h-full object-cover"
                 />
               </div>
             </motion.div>
-
-            {/* Heading and text on the left */}
-            <motion.div variants={fadeIn} className="w-full lg:w-1/2">
-              <h2 className="text-3xl font-bold text-[#0B0D0E] mb-4">
-                Nazim's Message
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">
-                It is with deep reverence that we inform all friends and concerned individuals that Hazrat Maulana Sayyed Siddiq Ahmad Masaunvi (R.A), the esteemed founder of Madarsa Arabia Tajweedul Quran Masauni, passed away on June 6th, 2013 (1418 Hijri).
-                <br /><br />
-                Despite my own reluctance and Maulana’s own reservations, I was entrusted with the responsibility of continuing the legacy of Madarsa Arabia after his passing. Alhamdulillah, over the past twelve years, we have navigated this journey with the grace of the founder, the guidance of our revered elders, and the unwavering support of well-wishers. Their cooperation has allowed me to carry forward the work initiated by my father, bringing a sense of fulfillment.
-                <br /><br />
-                Beyond the confines of Madarsa, we strive to meet the religious and cultural needs of our community consistently.
-                <br /><br />
-                Introducing Madarsa Arabia Tajweedul Quran Masauni: A Glimpse
-                <br /><br />
-                To provide an introduction of Madarsa Arabia, we have created an introductory website. This platform includes essential information, images, and a fervent appeal made by my father in 1984. We hope it proves valuable to all our well-wishers.
-                <br /><br />
-                I earnestly invite everyone to visit Madarsa Arabia Tajweedul Quran Masauni in person, gaining firsthand knowledge of our institution. Your presence will be a source of encouragement for us.
-                <br /><br />
-                May Allah bless us all.
-                <br /><br />
-                NAZIM.
-                <br />
-                MAULANA ABDUL TAWWAB SAHAB
-                <br />
-                MADARSA ARABIA TAJVEEDUL QURAN MASAUNI.
-              </p>
-            </motion.div>
           </div>
         </div>
       </motion.section>
-
 
       {/* Mission & Vision */}
       <motion.section
