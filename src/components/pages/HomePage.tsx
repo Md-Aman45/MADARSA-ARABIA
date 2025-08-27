@@ -223,7 +223,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       description: "Our state-of-the-art academic facilities"
     },
      {
-      url: "/assets/m3.png",
+      url: "/assets/group.png",
       title: "Student Library",
       description: "Comprehensive collection of Islamic literature"
     },
@@ -233,7 +233,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       description: "Comprehensive collection of Islamic literature"
     },
      {
-      url: "/assets/m2.png",
+      url: "/assets/m3.png",
       title: "Student Library",
       description: "Comprehensive collection of Islamic literature"
     },
@@ -242,7 +242,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       title: "Main Academic Building",
       description: "Our state-of-the-art academic facilities"
     }, {
-      url: "/assets/m1.png",
+      url: "/assets/m2.png",
       title: "Student Library",
       description: "Comprehensive collection of Islamic literature"
     },
@@ -250,16 +250,23 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       url: "/assets/h4.png",
       title: "Student Library",
       description: "Comprehensive collection of Islamic literature"
-    }, {
-      url: "/assets/m4.png",
-      title: "Student Library",
-      description: "Comprehensive collection of Islamic literature"
-    },
+      },
+    //  {
+    //   url: "/assets/m4.png",
+    //   title: "Student Library",
+    //   description: "Comprehensive collection of Islamic literature"
+    // },
+    
     {
       url: "/assets/h5.png",
       title: "Prayer Hall & Mosque",
       description: "Beautiful mosque for daily prayers and gatherings"
     },
+    // {
+    //   url: "/assets/m1.png",
+    //   title: "Student Library",
+    //   description: "Comprehensive collection of Islamic literature"
+    // },
     {
       url: "/assets/h6.png",
       title: "Student Dormitories",
@@ -351,10 +358,10 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         setNews([
           { 
             slug: "community-outreach", 
-            title: "Community Outreach Program", 
-            date: "2024-11-20", 
+            title: "Shasmahi ke imtihaan", 
+            date: "2024-08-25", 
             tag: "Notice", 
-            excerpt: "Students and faculty engaging with local communities through various initiatives." 
+            excerpt: "Final Exam will start from 31st August and end on 8th September. And the madrasa will reopen from 23rd September." 
           }
         ]);
       }

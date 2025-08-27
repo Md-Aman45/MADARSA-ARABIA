@@ -433,35 +433,36 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
+              // {
+              //   title: "Bank Transfer",
+              //   description: "Direct bank transfer to our account",
+              //   details: [
+              //     "Bank Name: Islamic Bank",
+              //     "Account Name: Madarsa Arabia",
+              //     "Account Number: 1234 5678 9012 3456",
+              //     "IBAN: IBAN1234567890123456",
+              //     "SWIFT/BIC: ISLAMICBANK"
+              //   ]
+              // },
+              // {
+              //   title: "Online Payment",
+              //   description: "Secure online payment through our portal",
+              //   details: [
+              //     "Credit/Debit Card",
+              //     "PayPal",
+              //     "Islamic Payment Gateways",
+              //     "Recurring donations available"
+              //   ]
+              // },
               {
-                title: "Bank Transfer",
-                description: "Direct bank transfer to our account",
-                details: [
-                  "Bank Name: Islamic Bank",
-                  "Account Name: Madarsa Arabia",
-                  "Account Number: 1234 5678 9012 3456",
-                  "IBAN: IBAN1234567890123456",
-                  "SWIFT/BIC: ISLAMICBANK"
-                ]
-              },
-              {
-                title: "Online Payment",
-                description: "Secure online payment through our portal",
-                details: [
-                  "Credit/Debit Card",
-                  "PayPal",
-                  "Islamic Payment Gateways",
-                  "Recurring donations available"
-                ]
-              },
-              {
-                title: "In-Person Donation",
+                title: "Zakat for Donation",
                 description: "Visit our campus to make a donation",
                 details: [
-                  "Cash donations accepted",
-                  "Office hours: Saturday - Thursday, 8AM-6PM",
-                  "Receipt provided immediately",
-                  "Zakat and Sadaqah both accepted"
+                  "100% of your Zakat goes directly to eligible students",
+                  "Distributed according to Islamic guidelines",
+                  "Helps provide food, education, and essentials",
+                  "Receipt provided immediately upon donation",
+                  "Supports both short-term needs and long-term education"
                 ]
               }
             ].map((method, index) => (

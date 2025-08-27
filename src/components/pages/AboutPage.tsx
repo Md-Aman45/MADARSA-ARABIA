@@ -349,8 +349,7 @@ Madarsa Arabia Tajweedul Quran is also running an Islamic institution for girls,
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeIn}
-        className="py-20 bg-gray-50"
-      >
+        className="py-20 bg-gray-50" >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-12 text-center">Nazim's Message</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
