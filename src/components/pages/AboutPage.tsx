@@ -224,7 +224,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
       </motion.section>
 
       {/* Our Journey Section with Updated UI */}
-      <motion.section
+      <section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -233,15 +233,15 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <motion.h2 variants={fadeIn} className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
+            <h2 variants={fadeIn} className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
               Our Journey & Legacy
-            </motion.h2>
-            <motion.p variants={fadeIn} className="text-xl text-gray-600">
+            </h2>
+            <p variants={fadeIn} className="text-xl text-gray-600">
               A rich history of spreading knowledge, rooted in the dedication of our founders.
-            </motion.p>
+            </p>
           </div>
 
-          <motion.div variants={fadeIn} className="text-gray-700 text-lg leading-relaxed text-justify space-y-6">
+          <div variants={fadeIn} className="text-gray-700 text-lg leading-relaxed text-justify space-y-6">
             <h3 className="text-2xl font-bold text-[#1F7A53] mb-4 text-center">Madrasah Arabia Tajweed-ul-Qur’an</h3>
             <p className="text-center">
               <strong>Establishment:</strong> 1404 Hijri. / 1984 Yr.
@@ -268,10 +268,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
             <p>
               Currently, about 515 students are receiving education here. Each year, nearly 80–100 students complete the Nazira Qur’an (recitation with tajweed). Along with this, the madrasa provides a department of **Hifz** and a department of **Aalimiyat**. All these courses are maintained through the curriculum of **Darul Uloom Nadwa, Lucknow**. The madrasa also contains multiple departments and courses that help students shine in the future like a diamond. These children then become a source of happiness for their parents and a means of continuous reward for the founders of the madrasa.
             </p>
-          </motion.div>
+          </div>
 
           {/* New Section for Girls' Madrasa */}
-          <motion.div
+          <div
             variants={fadeIn}
             className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-[#EAF2FB] to-white shadow-card"
           >
@@ -283,13 +283,13 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
             </div>
             <p className="text-gray-700 text-lg leading-relaxed text-justify mb-4">
 Madarsa Arabia Tajweedul Quran is also running an Islamic institution for girls, which is currently being managed in a small house,with a total of students girls is 90.Which are from locals area only. the peoples from surrounding areas and different cities want to send their girl child to this Girl's institute but due to lack of accommodation and hostel facilities we are unable to meet its expenses and cannot provide them with proper comfort. Although the educational facilities are good,and it is same as good and better which we provide for boys. By the grace of Allah and through your prayers, land for the madrasa has already been arranged. Now, only the construction of the building and other requirements remain, for which we need your wishes and your presence in this project .            </p>
-          </motion.div>
+          </div>
 
         </div>
-      </motion.section>
+      </section>
 
       {/* --- Our Founder Section (UPDATED) --- */}
-      <motion.section
+      <section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -305,7 +305,7 @@ Madarsa Arabia Tajweedul Quran is also running an Islamic institution for girls,
             >
               <div className="w-80 h-80 rounded-full overflow-hidden shadow-xl border-4 border-white">
                 <ImageWithFallback
-                  src="/assets/pr.jpg"
+                  src="/assets/foun.png"
                   alt="Hazrat Maulana Sayyed Siddique Ahmad Masaunvi (R.A)"
                   className="w-full h-full object-cover"
                 />
@@ -341,7 +341,7 @@ Madarsa Arabia Tajweedul Quran is also running an Islamic institution for girls,
             </motion.div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* New Section: Nazim's Message (UPDATED) */}
       <motion.section

@@ -154,9 +154,13 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
   // Campus Life gallery images
   const galleryImages = [
     '/assets/p00.png',
+    '/assets/m3.png',
     '/assets/h1.png',
+    '/assets/m4.png',
     '/assets/h2.png',
+    '/assets/m1.png',
     '/assets/h6.png',
+    '/assets/m2.png',
     '/assets/m1.png',
     '/assets/m3.png',
     '/assets/m2.png',
@@ -218,8 +222,18 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       title: "Main Academic Building",
       description: "Our state-of-the-art academic facilities"
     },
+     {
+      url: "/assets/m3.png",
+      title: "Student Library",
+      description: "Comprehensive collection of Islamic literature"
+    },
     {
       url: "/assets/h2.png",
+      title: "Student Library",
+      description: "Comprehensive collection of Islamic literature"
+    },
+     {
+      url: "/assets/m2.png",
       title: "Student Library",
       description: "Comprehensive collection of Islamic literature"
     },
@@ -227,9 +241,17 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       url: "/assets/h1.png",
       title: "Main Academic Building",
       description: "Our state-of-the-art academic facilities"
+    }, {
+      url: "/assets/m1.png",
+      title: "Student Library",
+      description: "Comprehensive collection of Islamic literature"
     },
     {
       url: "/assets/h4.png",
+      title: "Student Library",
+      description: "Comprehensive collection of Islamic literature"
+    }, {
+      url: "/assets/m4.png",
       title: "Student Library",
       description: "Comprehensive collection of Islamic literature"
     },
