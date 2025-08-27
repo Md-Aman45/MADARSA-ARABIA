@@ -85,7 +85,7 @@ const getFallbackNewsData = (): NewsItem[] => [
     title: "Shasmahi ke imtihaan",
     date: "2025-03-10",
     tag: "Event",
-    excerpt: "31st August se lekar 8th September Tak honge",
+    excerpt: "Final Exam will start from 31st August and end on 8th September. And the madrasa will reopen from 23rd September",
     content: "Will be Updated Soon",
     author: "Academic Affairs",
     category: "events"

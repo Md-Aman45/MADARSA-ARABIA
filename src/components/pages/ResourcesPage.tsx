@@ -189,8 +189,8 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
 
   // Data for the quick stats section.
   const stats = useMemo(() => [
-    { label: "Huffaz Under Training", value: 500 },
-    { label: "Qualified Teachers", value: 50 },
+    { label: "Huffaz Under Training", value: 200 },
+    { label: "Qualified Teachers", value: 30 },
     { label: "Students Benefited", value: 1000 },
     { label: "Programs", value: 10 }
   ], []);

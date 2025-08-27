@@ -134,33 +134,33 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
 
   const leadership = [
     {
-      name: 'Maulana Abdul Rahman Al-Hakeem',
-      position: 'Principal & Chief Scholar',
-      qualification: 'PhD in Islamic Studies, Al-Azhar University',
-      experience: '30+ years in Islamic education',
-      specialization: 'Quranic Studies & Hadith'
+      name: 'MAULANA ABDUL TAWWAB',
+      position: 'Principal',
+      // qualification: 'PhD in Islamic Studies, Al-Azhar University',
+      // experience: '30+ years in Islamic education',
+      // specialization: 'Quranic Studies & Hadith'
     },
     {
-      name: 'Dr. Muhammad Yusuf Qadri',
+      name: 'HAFIZ YASEEN SAHAB',
       position: 'Vice Principal',
-      qualification: 'MA Islamic Law, Jamia Millia Islamia',
-      experience: '25+ years in academia',
-      specialization: 'Islamic Jurisprudence & Fatwa'
-    },
-    {
-      name: 'Qari Hafiz Ahmad Nazir',
-      position: 'Head of Qiraat Department',
-      qualification: 'Ijazah in 10 Qiraat',
-      experience: '20+ years teaching Tajweed',
-      specialization: 'Quranic Recitation & Memorization'
-    },
-    {
-      name: 'Ustadh Ibrahim Al-Baghdadi',
-      position: 'Head of Arabic Department',
-      qualification: 'MA Arabic Literature, Baghdad University',
-      experience: '18+ years in language instruction',
-      specialization: 'Classical Arabic & Grammar'
+      // qualification: 'MA Islamic Law, Jamia Millia Islamia',
+      // experience: '25+ years in academia',
+      // specialization: 'Islamic Jurisprudence & Fatwa'
     }
+    // {
+    //   name: 'Qari Hafiz Ahmad Nazir',
+    //   position: 'Head of Qiraat Department',
+    //   qualification: 'Ijazah in 10 Qiraat',
+    //   experience: '20+ years teaching Tajweed',
+    //   specialization: 'Quranic Recitation & Memorization'
+    // },
+    // {
+    //   name: 'Ustadh Ibrahim Al-Baghdadi',
+    //   position: 'Head of Arabic Department',
+    //   qualification: 'MA Arabic Literature, Baghdad University',
+    //   experience: '18+ years in language instruction',
+    //   specialization: 'Classical Arabic & Grammar'
+    // }
   ];
 
   const affiliations = [
@@ -171,7 +171,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
   ];
 
   const facilities = [
-    { name: 'Modern Classrooms', description: '20 well-equipped classrooms with audio-visual facilities' },
+    // { name: 'Modern Classrooms', description: '20 well-equipped classrooms with audio-visual facilities' },
     { name: 'Comprehensive Library', description: '15,000+ books, manuscripts, and digital resources' },
     { name: 'Student Hostel', description: 'Accommodation for 200+ students with dining facilities' },
     { name: 'Campus Mosque', description: 'Beautiful mosque accommodating 500+ worshippers' },
@@ -472,13 +472,13 @@ Madarsa Arabia Tajweedul Quran is also running an Islamic institution for girls,
                       <CardTitle className="text-lg">{leader.name}</CardTitle>
                       <p className="text-[#1F7A53] font-medium">{leader.position}</p>
                     </CardHeader>
-                    <CardContent>
+                    {/* <CardContent>
                       <div className="space-y-2 text-sm text-gray-600">
                         <p><strong>Qualification:</strong> {leader.qualification}</p>
                         <p><strong>Experience:</strong> {leader.experience}</p>
                         <p><strong>Specialization:</strong> {leader.specialization}</p>
                       </div>
-                    </CardContent>
+                    </CardContent> */}
                   </Card>
                 </motion.div>
               </motion.div>
@@ -558,14 +558,14 @@ Madarsa Arabia Tajweedul Quran is also running an Islamic institution for girls,
       </motion.section>
 
       {/* Affiliations & Accreditations */}
-      <motion.section
+      {/* <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={staggerChildren}
         className="py-20 bg-white"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> */}
           <div className="text-center mb-12">
             <motion.h2 variants={fadeIn} className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
               Affiliated 
@@ -577,7 +577,7 @@ LUCKNOW (U.P), INDIA 
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {affiliations.map((affiliation, index) => (
               <motion.div key={index} variants={fadeIn}>
                 <motion.div whileHover={scaleOnHover}>
@@ -598,7 +598,7 @@ LUCKNOW (U.P), INDIA 
             ))}
           </div>
         </div>
-      </motion.section>
+      </motion.section> */}
 
       {/* Gallery Strip with Auto Scroll */}
       <motion.section
