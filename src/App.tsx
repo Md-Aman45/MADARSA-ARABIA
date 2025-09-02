@@ -1,56 +1,47 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { LanguageProvider } from './contexts/LanguageContext';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './components/pages/HomePage';
-import AboutPage from './components/pages/AboutPage';
-import ProgramsPage from './components/pages/ProgramsPage';
-import ResourcesPage from './components/pages/ResourcesPage';
-import NoticePage from './components/pages/NoticePage';
-import ContactPage from './components/pages/ContactPage';
+// src/App.tsx
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import HomePage from "./components/pages/HomePage";
+import AboutPage from "./components/pages/AboutPage";
+import ProgramsPage from "./components/pages/ProgramsPage";
+import ResourcesPage from "./components/pages/ResourcesPage";
+import NoticePage from "./components/pages/NoticePage";
+import ContactPage from "./components/pages/ContactPage";
+import "./i18n";
 
-// Page transition variants
 const pageVariants = {
   initial: { opacity: 0, y: 20, scale: 0.98 },
   in: { opacity: 1, y: 0, scale: 1 },
-  out: { opacity: 0, y: -20, scale: 0.98 }
+  out: { opacity: 0, y: -20, scale: 0.98 },
 };
 
-const pageTransition = {
-  type: "tween",
-  ease: "anticipate",
-  duration: 0.6
-};
+const pageTransition = { type: "tween", ease: "anticipate", duration: 0.6 };
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const mainRef = useRef(null);
+  const [currentPage, setCurrentPage] = useState("home");
+  const mainRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to top on page change (works on desktop & mobile)
   useEffect(() => {
-    // Scroll window to top
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    
-    // Also reset main container scroll if exists
-    if (mainRef.current) {
-      mainRef.current.scrollTop = 0;
-    }
+    if (mainRef.current) mainRef.current.scrollTop = 0;
   }, [currentPage]);
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'home':
+      case "home":
         return <HomePage onPageChange={setCurrentPage} />;
-      case 'about':
+      case "about":
         return <AboutPage onPageChange={setCurrentPage} />;
-      case 'programs':
+      case "programs":
         return <ProgramsPage onPageChange={setCurrentPage} />;
-      case 'resources':
+      case "resources":
         return <ResourcesPage onPageChange={setCurrentPage} />;
-      case 'notice':
+      case "notice":
         return <NoticePage onPageChange={setCurrentPage} />;
-      case 'contact':
+      case "contact":
         return <ContactPage onPageChange={setCurrentPage} />;
       default:
         return <HomePage onPageChange={setCurrentPage} />;

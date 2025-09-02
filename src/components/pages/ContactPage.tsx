@@ -1,30 +1,43 @@
 import { motion } from 'framer-motion';
 import {
-    CheckCircle,
-    Clock,
-    ExternalLink,
-    Heart,
-    Mail,
-    MapPin,
-    Phone,
-    Send
+  CheckCircle,
+  Clock,
+  ExternalLink,
+  Heart,
+  Mail,
+  MapPin,
+  Phone,
+  Send
 } from 'lucide-react';
 import React, { useState } from 'react';
-
-// Mock components for self-containment
-const Button = ({ children, ...props }) => (
-  <button {...props} className={`p-4 rounded-md font-semibold transition-colors duration-200 ${props.className}`}>{children}</button>
-);
-const Card = ({ children, className }) => <div className={`bg-white rounded-lg shadow-md ${className}`}>{children}</div>;
-const CardHeader = ({ children }) => <div className="p-6">{children}</div>;
-const CardTitle = ({ children, className }) => <h2 className={`text-2xl font-bold ${className}`}>{children}</h2>;
-const CardContent = ({ children }) => <div className="p-6 pt-0">{children}</div>;
-const Input = (props) => <input {...props} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none transition-all duration-300" />;
-const Label = ({ htmlFor, children }) => <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700 mb-1">{children}</label>;
-const Textarea = (props) => <textarea {...props} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none transition-all duration-300" />;
+import { useTranslation } from 'react-i18next';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+import { Textarea } from '../ui/textarea';
+import { Badge } from '../ui/badge';
+import ArticleView from './news/ArticleView';
+import NewsCard from './news/NewsCard';
+import CategoryTabs from './news/CategoryTabs';
+import Pagination from './news/Pagination';
+import { ITEMS_PER_PAGE } from './news/constants';
+import { FALLBACK_NEWS_DATA } from './news/fallbackData';
+import { filterNews, paginateNews } from './news/utils';
 
 interface ContactPageProps {
   onPageChange: (page: string) => void;
+}
+
+interface NewsItem {
+  slug: string;
+  title: string;
+  date: string;
+  tag: string;
+  excerpt: string;
+  content?: string;
+  author?: string;
+  category?: string;
 }
 
 interface FormData {
@@ -35,6 +48,7 @@ interface FormData {
   message: string;
 }
 
+// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -58,7 +72,20 @@ const itemVariants = {
   }
 };
 
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
 const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -80,18 +107,16 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // For all form submissions, redirect to WhatsApp
+
     const message = `Assalamu Alaikum, my name is ${formData.name}. 
     Subject: ${formData.subject}
     ${formData.message ? `Message: ${formData.message}` : ''}
     Contact me at: ${formData.email} ${formData.phone ? `or ${formData.phone}` : ''}`;
-    
+
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/918423370548?text=${encodedMessage}`, '_blank');
     setIsSubmitted(true);
-    
-    // Reset form after success message
+
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
@@ -111,34 +136,34 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <motion.section 
+      <motion.section
         className="bg-gradient-to-r from-[#E8F5EF] via-white to-[#EAF2FB] py-20"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1 
+          <motion.h1
             className="text-4xl lg:text-5xl font-bold text-[#0B0D0E] mb-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            Contact Us
+            {t('contactPage.header.title')}
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Get in touch with us for admissions, inquiries, or to learn more about our programs
+            {t('contactPage.header.subtitle')}
           </motion.p>
         </div>
       </motion.section>
 
       {/* Contact Information and Form */}
-      <motion.section 
+      <motion.section
         className="py-20 bg-white"
         initial="hidden"
         whileInView="visible"
@@ -150,41 +175,40 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
             {/* Contact Information */}
             <motion.div variants={itemVariants}>
               <h2 className="text-3xl font-bold text-[#0B0D0E] mb-8">
-                Get in Touch
+                {t('contactPage.info.title')}
               </h2>
-              
+
               <div className="space-y-6 mb-8">
                 {[
                   {
                     icon: MapPin,
-                    title: "Address",
-                    content: ["MASAUNI, POST OFFICE KALINJAR,", "TEHSIL NARAINI, DISTRICT BANDA (UP)", "PINCODE-210129"],
+                    title: t('contactPage.info.address.title'),
+                    content: [t('contactPage.info.address.line1'), t('contactPage.info.address.line2'), t('contactPage.info.address.line3')],
                     color: "#1F7A53"
                   },
                   {
                     icon: Phone,
-                    title: "Phone",
-                    content: ["+91 9452463669", "+91 7880927738"],
+                    title: t('contactPage.info.phone.title'),
+                    content: [t('contactPage.info.phone.number1'), t('contactPage.info.phone.number2')],
                     color: "#1E5FA8"
                   },
                   {
                     icon: Mail,
-                    title: "Email",
-                    content: ["info@madarsa-arabia.edu", "admissions@madarsa-arabia.edu"],
+                    title: t('contactPage.info.email.title'),
+                    content: [t('contactPage.info.email.address1'), t('contactPage.info.email.address2')],
                     color: "#1F7A53"
-                  },
-                 
+                  }
                 ].map((item, index) => {
                   const IconComponent = item.icon;
                   return (
-                    <motion.div 
+                    <motion.div
                       key={index}
                       className="flex items-start space-x-4"
                       variants={itemVariants}
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <motion.div 
+                      <motion.div
                         className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                         style={{ backgroundColor: item.color }}
                         whileHover={{ scale: 1.1, rotate: 5 }}
@@ -204,14 +228,13 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
               </div>
 
               {/* Map Preview */}
-              <motion.div 
+              <motion.div
                 className="rounded-lg h-64 relative overflow-hidden cursor-pointer group"
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 onClick={handleMapClick}
               >
-                {/* Embedded Google Maps Iframe */}
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3596.162799307399!2d80.4543818!3d25.021086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39833f600f2a7453%3A0x845346b3ee64c093!2sMadarsa%20arabia%20tajveedul%20quran!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                   width="100%"
@@ -222,7 +245,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="rounded-lg"
                 ></iframe>
-                
+
                 {/* Overlay with button */}
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                   <motion.div
@@ -230,21 +253,15 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                     whileHover={{ scale: 1.05 }}
                   >
                     <ExternalLink className="w-4 h-4 text-[#1F7A53] mr-2" />
-                    <span className="text-sm font-medium text-[#1F7A53]">Open in Google Maps</span>
+                    <span className="text-sm font-medium text-[#1F7A53]">{t('contactPage.map.openText')}</span>
                   </motion.div>
                 </div>
-                
+
                 {/* Location pin indicator */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <motion.div
-                    animate={{
-                      y: [0, -10, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   >
                     <MapPin className="w-8 h-8 text-red-500 drop-shadow-lg" fill="red" />
                   </motion.div>
@@ -256,9 +273,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
             <motion.div variants={itemVariants}>
               <Card className="border-0 shadow-card hover:shadow-xl transition-all duration-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-[#0B0D0E]">Send us a Message</CardTitle>
+                  <CardTitle className="text-2xl text-[#0B0D0E]">{t('contactPage.form.title')}</CardTitle>
                   <p className="text-gray-600">
-                    Fill out the form below and we'll get back to you via WhatsApp.
+                    {t('contactPage.form.subtitle')}
                   </p>
                 </CardHeader>
                 <CardContent>
@@ -276,20 +293,17 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                         <CheckCircle className="w-16 h-16 text-[#1F7A53] mx-auto mb-4" />
                       </motion.div>
                       <h3 className="text-xl font-semibold text-[#1F7A53] mb-2">
-                        Redirecting to WhatsApp!
+                        {t('contactPage.form.successTitle')}
                       </h3>
                       <p className="text-gray-600">
-                        Thank you for contacting us. You will be redirected to WhatsApp to continue the conversation.
+                        {t('contactPage.form.successText')}
                       </p>
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <motion.div
-                          variants={itemVariants}
-                          whileFocus={{ scale: 1.02 }}
-                        >
-                          <Label htmlFor="name">Full Name *</Label>
+                        <motion.div variants={itemVariants} whileFocus={{ scale: 1.02 }}>
+                          <Label htmlFor="name">{t('contactPage.form.nameLabel')}</Label>
                           <Input
                             id="name"
                             name="name"
@@ -299,11 +313,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                             className="transition-all duration-300 focus:ring-2 focus:ring-[#1F7A53]/50 focus:border-[#1F7A53] hover:border-[#1F7A53]/50"
                           />
                         </motion.div>
-                        <motion.div
-                          variants={itemVariants}
-                          whileFocus={{ scale: 1.02 }}
-                        >
-                          <Label htmlFor="email">Email Address *</Label>
+                        <motion.div variants={itemVariants} whileFocus={{ scale: 1.02 }}>
+                          <Label htmlFor="email">{t('contactPage.form.emailLabel')}</Label>
                           <Input
                             id="email"
                             name="email"
@@ -317,11 +328,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <motion.div
-                          variants={itemVariants}
-                          whileFocus={{ scale: 1.02 }}
-                        >
-                          <Label htmlFor="phone">Phone Number</Label>
+                        <motion.div variants={itemVariants} whileFocus={{ scale: 1.02 }}>
+                          <Label htmlFor="phone">{t('contactPage.form.phoneLabel')}</Label>
                           <Input
                             id="phone"
                             name="phone"
@@ -330,10 +338,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                             className="transition-all duration-300 focus:ring-2 focus:ring-[#1F7A53]/50 focus:border-[#1F7A53] hover:border-[#1F7A53]/50"
                           />
                         </motion.div>
-                        <motion.div
-                          variants={itemVariants}
-                        >
-                          <Label htmlFor="subject">Subject *</Label>
+                        <motion.div variants={itemVariants}>
+                          <Label htmlFor="subject">{t('contactPage.form.subjectLabel')}</Label>
                           <select
                             id="subject"
                             name="subject"
@@ -342,39 +348,33 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1F7A53]/50 focus:border-[#1F7A53] hover:border-[#1F7A53]/50 transition-all duration-300"
                             required
                           >
-                            <option value="">Select Subject</option>
-                            <option value="admissions">Admissions Inquiry</option>
-                            <option value="programs">Program Information</option>
-                            <option value="facilities">Facilities & Services</option>
-                            <option value="donation">Donation & Support</option>
-                            <option value="general">General Inquiry</option>
+                            <option value="">{t('contactPage.form.selectSubject')}</option>
+                            <option value="admissions">{t('contactPage.form.subjects.admissions')}</option>
+                            <option value="programs">{t('contactPage.form.subjects.programs')}</option>
+                            <option value="facilities">{t('contactPage.form.subjects.facilities')}</option>
+                            <option value="donation">{t('contactPage.form.subjects.donation')}</option>
+                            <option value="general">{t('contactPage.form.subjects.general')}</option>
                           </select>
                         </motion.div>
                       </div>
 
-                      <motion.div
-                        variants={itemVariants}
-                        whileFocus={{ scale: 1.02 }}
-                      >
-                        <Label htmlFor="message">Message *</Label>
+                      <motion.div variants={itemVariants} whileFocus={{ scale: 1.02 }}>
+                        <Label htmlFor="message">{t('contactPage.form.messageLabel')}</Label>
                         <Textarea
                           id="message"
                           name="message"
                           value={formData.message}
                           onChange={handleInputChange}
                           rows={6}
-                          placeholder="Please provide details about your inquiry..."
+                          placeholder={t('contactPage.form.messagePlaceholder')}
                           required
                           className="transition-all duration-300 focus:ring-2 focus:ring-[#1F7A53]/50 focus:border-[#1F7A53] hover:border-[#1F7A53]/50"
                         />
                       </motion.div>
 
-                      <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <Button 
-                          type="submit" 
+                      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                        <Button
+                          type="submit"
                           disabled={isSubmitting}
                           className="flex items-center justify-center w-full bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-70"
                         >
@@ -387,7 +387,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                           ) : (
                             <>
                               <Send className="w-5 h-5 mr-2" />
-                              Send via WhatsApp
+                              {t('contactPage.form.submitButton')}
                             </>
                           )}
                         </Button>
@@ -402,7 +402,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
       </motion.section>
 
       {/* Donation Information Section */}
-      <motion.section 
+      <motion.section
         className="py-16 bg-gradient-to-r from-[#E8F5EF] to-[#EAF2FB]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -411,58 +411,37 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <motion.h2 
+            <motion.h2
               className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              Support Our Mission
+              {t('contactPage.donation.title')}
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-xl text-gray-600 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Your donations help us continue providing quality Islamic education to our students
+              {t('contactPage.donation.subtitle')}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              // {
-              //   title: "Bank Transfer",
-              //   description: "Direct bank transfer to our account",
-              //   details: [
-              //     "Bank Name: Islamic Bank",
-              //     "Account Name: Madarsa Arabia",
-              //     "Account Number: 1234 5678 9012 3456",
-              //     "IBAN: IBAN1234567890123456",
-              //     "SWIFT/BIC: ISLAMICBANK"
-              //   ]
-              // },
-              // {
-              //   title: "Online Payment",
-              //   description: "Secure online payment through our portal",
-              //   details: [
-              //     "Credit/Debit Card",
-              //     "PayPal",
-              //     "Islamic Payment Gateways",
-              //     "Recurring donations available"
-              //   ]
-              // },
               {
-                title: "Zakat for Donation",
-                description: "Visit our campus to make a donation",
+                title: t('contactPage.donation.zakatCard.title'),
+                description: t('contactPage.donation.zakatCard.description'),
                 details: [
-                  "100% of your Zakat goes directly to eligible students",
-                  "Distributed according to Islamic guidelines",
-                  "Helps provide food, education, and essentials",
-                  "Receipt provided immediately upon donation",
-                  "Supports both short-term needs and long-term education"
+                  t('contactPage.donation.zakatCard.detail1'),
+                  t('contactPage.donation.zakatCard.detail2'),
+                  t('contactPage.donation.zakatCard.detail3'),
+                  t('contactPage.donation.zakatCard.detail4'),
+                  t('contactPage.donation.zakatCard.detail5')
                 ]
               }
             ].map((method, index) => (
@@ -473,7 +452,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-white p-6 rounded-lg shadow-card hover:shadow-xl transition-all duration-300"
+                className="bg-white p-6 rounded-2xl shadow-card hover:shadow-xl transition-all duration-300"
               >
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold text-[#1F7A53] mb-2">{method.title}</h3>
@@ -491,7 +470,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
             ))}
           </div>
 
-          <motion.div 
+          <motion.div
             className="text-center mt-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -499,28 +478,33 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <p className="text-lg text-gray-700 mb-6">
-              For more information about donations or to discuss specific projects you'd like to support, 
-              please contact our donation department directly via WhatsApp.
+              {t('contactPage.donation.ctaText')}
             </p>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-            
+              <Button
+                size="lg"
+                className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white"
+                onClick={() => window.open(`https://wa.me/918423370548?text=${encodeURIComponent(t('contactPage.donation.whatsappMessage'))}`, '_blank')}
+              >
+                <Heart className="w-5 h-5 mr-2" />
+                {t('contactPage.donation.whatsappButton')}
+              </Button>
             </motion.div>
           </motion.div>
         </div>
       </motion.section>
 
       {/* Quick Actions */}
-      <motion.section 
+      <motion.section
         className="py-16 bg-gradient-to-r from-[#1F7A53] to-[#1E5FA8] text-white relative overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        {/* Animated background */}
         <motion.div
           className="absolute inset-0"
           style={{
@@ -535,7 +519,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
             ease: "linear"
           }}
         />
-        
+
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <motion.div
@@ -545,14 +529,13 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl font-bold mb-4">
-                Ready to Join Us?
+                {t('contactPage.quickActions.title')}
               </h2>
               <p className="text-xl text-white/90">
-                Take the first step towards quality Islamic education. 
-                Our admissions team is here to guide you through the process.
+                {t('contactPage.quickActions.subtitle')}
               </p>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -563,26 +546,867 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button 
+                <Button
                   className="bg-white text-[#1F7A53] hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
                   onClick={() => onPageChange('departments')}
                 >
-                  View Programs
+                  {t('contactPage.quickActions.viewPrograms')}
                 </Button>
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button 
+                <Button
                   className="border-white text-white hover:bg-white/10"
                   onClick={() => onPageChange('about')}
                 >
-                  Learn More
+                  {t('contactPage.quickActions.learnMore')}
                 </Button>
               </motion.div>
             </motion.div>
           </div>
+        </div>
+      </motion.section>
+    </div>
+  );
+};
+
+// This is the parent component.
+const NoticePage: React.FC<ContactPageProps> = ({ onPageChange }) => {
+  const { t } = useTranslation();
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [filteredNews, setFilteredNews] = useState<NewsItem[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedArticle, setSelectedArticle] = useState<NewsItem | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadNews = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('/data/news.json');
+        if (response.ok) {
+          const data = await response.json();
+          setNews(data);
+          setFilteredNews(data);
+        } else {
+          throw new Error('Failed to fetch news');
+        }
+      } catch (error) {
+        console.error('Error loading news:', error);
+        const fallbackData = getFallbackNewsData();
+        setNews(fallbackData);
+        setFilteredNews(fallbackData);
+      }
+      setIsLoading(false);
+    };
+
+    loadNews();
+  }, []);
+
+  useEffect(() => {
+    let filtered = news;
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(item =>
+        item.category?.toLowerCase() === selectedCategory.toLowerCase() ||
+        item.tag?.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+    if (searchTerm) {
+      filtered = filtered.filter(item =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.tag.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    setFilteredNews(filtered);
+    setCurrentPage(1);
+  }, [news, selectedCategory, searchTerm]);
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleReadMore = (article: NewsItem) => {
+    setSelectedArticle(article);
+  };
+
+  const handleBackToList = () => {
+    setSelectedArticle(null);
+  };
+
+  const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
+  const paginatedNews = filteredNews.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  if (selectedArticle) {
+    return (
+      <ArticleView
+        article={selectedArticle}
+        onBack={handleBackToList}
+        onPageChange={onPageChange}
+      />
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <motion.section
+        className="bg-gradient-to-r from-[#E8F5EF] via-white to-[#EAF2FB] py-20"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <motion.h1
+              className="text-4xl lg:text-5xl font-bold text-[#0B0D0E] mb-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              {t('noticePage.header.title')}
+            </motion.h1>
+            <motion.p
+              className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              {t('noticePage.header.subtitle')}
+            </motion.p>
+
+            {/* Search Bar */}
+            <motion.div
+              className="max-w-md mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  type="text"
+                  placeholder={t('noticePage.search.placeholder')}
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className="pl-10 bg-white border-gray-200 focus:border-[#1F7A53] focus:ring-[#1F7A53]/20"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Category Tabs and Filters */}
+      <motion.section
+        className="py-8 bg-white border-b"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div variants={itemVariants}>
+            <CategoryTabs
+              selectedCategory={selectedCategory}
+              onCategoryChange={handleCategoryChange}
+            />
+          </motion.div>
+
+          {/* Results Summary */}
+          <motion.div
+            className="flex flex-wrap items-center justify-between mt-6 gap-4"
+            variants={itemVariants}
+          >
+            <div className="flex items-center space-x-4 text-sm text-gray-600">
+              <div className="flex items-center space-x-1">
+                <Filter className="w-4 h-4" />
+                <span>
+                  {t('noticePage.summary.resultsCount', {
+                    count: filteredNews.length
+                  })}
+                </span>
+              </div>
+              {searchTerm && (
+                <Badge variant="outline" className="border-[#1F7A53] text-[#1F7A53]">
+                  {t('noticePage.summary.searchTerm', { term: searchTerm })}
+                </Badge>
+              )}
+              {selectedCategory !== 'all' && (
+                <Badge variant="outline" className="border-[#1E5FA8] text-[#1E5FA8]">
+                  {t('noticePage.summary.categoryTerm', { category: selectedCategory })}
+                </Badge>
+              )}
+            </div>
+
+            {(searchTerm || selectedCategory !== 'all') && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedCategory('all');
+                }}
+                className="text-gray-500 hover:text-[#1F7A53]"
+              >
+                {t('noticePage.summary.clearFilters')}
+              </Button>
+            )}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* News Grid */}
+      <motion.section
+        className="py-12"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {isLoading ? (
+            <motion.div
+              className="text-center py-12"
+              variants={itemVariants}
+            >
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1F7A53] mx-auto mb-4"></div>
+              <p className="text-gray-500">{t('noticePage.states.loading')}</p>
+            </motion.div>
+          ) : filteredNews.length === 0 ? (
+            <motion.div
+              className="text-center py-12"
+              variants={itemVariants}
+            >
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="w-8 h-8 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('noticePage.states.noNoticesTitle')}</h3>
+              <p className="text-gray-500 mb-4">
+                {t('noticePage.states.noNoticesText')}
+              </p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedCategory('all');
+                }}
+                className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white"
+              >
+                {t('noticePage.states.viewAllNotices')}
+              </Button>
+            </motion.div>
+          ) : (
+            <>
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+                variants={containerVariants}
+              >
+                {paginatedNews.map((item, index) => (
+                  <motion.div
+                    key={`${item.slug}-${currentPage}`}
+                    variants={cardVariants}
+                    whileHover={{
+                      y: -5,
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    <NewsCard
+                      article={item}
+                      onReadMore={handleReadMore}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {totalPages > 1 && (
+                <motion.div variants={itemVariants}>
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                  />
+                </motion.div>
+              )}
+            </>
+          )}
+        </div>
+      </motion.section>
+
+      {/* Statistics Section */}
+      <motion.section
+        className="py-16 bg-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12"
+            variants={itemVariants}
+          >
+            <h2 className="text-3xl font-bold text-[#0B0D0E] mb-4">
+              {t('noticePage.stats.title')}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t('noticePage.stats.subtitle')}
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                icon: Calendar,
+                title: t('noticePage.updateMethods.monthlyTitle'),
+                description: t('noticePage.updateMethods.monthlyDesc'),
+                count: t('noticePage.updateMethods.monthlyCount')
+              },
+              {
+                icon: Tag,
+                title: t('noticePage.eventMethods.eventTitle'),
+                description: t('noticePage.eventMethods.eventDesc'),
+                count: t('noticePage.eventMethods.eventCount')
+              },
+              {
+                icon: Clock,
+                title: t('noticePage.urgentMethods.urgentTitle'),
+                description: t('noticePage.urgentMethods.urgentDesc'),
+                count: t('noticePage.urgentMethods.urgentCount')
+              }
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  variants={cardVariants}
+                  whileHover={{
+                    scale: 1.02,
+                    y: -5,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <div className="bg-gradient-to-tr from-white to-[#E8F5EF] p-8 rounded-2xl shadow-card text-center hover:shadow-xl transition-all duration-500">
+                    <motion.div
+                      className="w-16 h-16 bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8] rounded-full flex items-center justify-center mx-auto mb-6"
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <IconComponent className="w-8 h-8 text-white" />
+                    </motion.div>
+                    <h3 className="text-xl font-semibold text-[#0B0D0E] mb-3">{item.title}</h3>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <Badge
+                      variant="outline"
+                      className="border-[#1F7A53] text-[#1F7A53] bg-white/50"
+                    >
+                      {item.count}
+                    </Badge>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* CTA Section */}
+      <motion.section
+        className="py-16 bg-gradient-to-r from-[#1F7A53] to-[#1E5FA8] text-white"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h2
+            className="text-3xl lg:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {t('noticePage.cta.title')}
+          </motion.h2>
+          <motion.p
+            className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {t('noticePage.cta.description')}
+          </motion.p>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-[#1F7A53] hover:bg-white/90"
+                onClick={() => onPageChange('contact')}
+              >
+                {t('noticePage.cta.contactOffice')}
+              </Button>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-[#1F7A53]"
+                onClick={() => onPageChange('about')}
+              >
+                {t('noticePage.cta.learnMore')}
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.section>
+    </div>
+  );
+};
+
+
+// This is the parent component.
+const NoticePageContainer: React.FC<ContactPageProps> = ({ onPageChange }) => {
+  const { t } = useTranslation();
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [filteredNews, setFilteredNews] = useState<NewsItem[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedArticle, setSelectedArticle] = useState<NewsItem | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadNews = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('/data/news.json');
+        if (response.ok) {
+          const data = await response.json();
+          setNews(data);
+          setFilteredNews(data);
+        } else {
+          throw new Error('Failed to fetch news');
+        }
+      } catch (error) {
+        console.error('Error loading news:', error);
+        const fallbackData = getFallbackNewsData();
+        setNews(fallbackData);
+        setFilteredNews(fallbackData);
+      }
+      setIsLoading(false);
+    };
+
+    loadNews();
+  }, []);
+
+  useEffect(() => {
+    let filtered = news;
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(item =>
+        item.category?.toLowerCase() === selectedCategory.toLowerCase() ||
+        item.tag?.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+    if (searchTerm) {
+      filtered = filtered.filter(item =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.tag.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    setFilteredNews(filtered);
+    setCurrentPage(1);
+  }, [news, selectedCategory, searchTerm]);
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleReadMore = (article: NewsItem) => {
+    setSelectedArticle(article);
+  };
+
+  const handleBackToList = () => {
+    setSelectedArticle(null);
+  };
+
+  const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
+  const paginatedNews = filteredNews.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  if (selectedArticle) {
+    return (
+      <ArticleView
+        article={selectedArticle}
+        onBack={handleBackToList}
+        onPageChange={onPageChange}
+      />
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <motion.section
+        className="bg-gradient-to-r from-[#E8F5EF] via-white to-[#EAF2FB] py-20"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <motion.h1
+              className="text-4xl lg:text-5xl font-bold text-[#0B0D0E] mb-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              {t('noticePage.header.title')}
+            </motion.h1>
+            <motion.p
+              className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              {t('noticePage.header.subtitle')}
+            </motion.p>
+
+            {/* Search Bar */}
+            <motion.div
+              className="max-w-md mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  type="text"
+                  placeholder={t('noticePage.search.placeholder')}
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className="pl-10 bg-white border-gray-200 focus:border-[#1F7A53] focus:ring-[#1F7A53]/20"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Category Tabs and Filters */}
+      <motion.section
+        className="py-8 bg-white border-b"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div variants={itemVariants}>
+            <CategoryTabs
+              selectedCategory={selectedCategory}
+              onCategoryChange={handleCategoryChange}
+            />
+          </motion.div>
+
+          {/* Results Summary */}
+          <motion.div
+            className="flex flex-wrap items-center justify-between mt-6 gap-4"
+            variants={itemVariants}
+          >
+            <div className="flex items-center space-x-4 text-sm text-gray-600">
+              <div className="flex items-center space-x-1">
+                <Filter className="w-4 h-4" />
+                <span>
+                  {t('noticePage.summary.resultsCount', {
+                    count: filteredNews.length
+                  })}
+                </span>
+              </div>
+              {searchTerm && (
+                <Badge variant="outline" className="border-[#1F7A53] text-[#1F7A53]">
+                  {t('noticePage.summary.searchTerm', { term: searchTerm })}
+                </Badge>
+              )}
+              {selectedCategory !== 'all' && (
+                <Badge variant="outline" className="border-[#1E5FA8] text-[#1E5FA8]">
+                  {t('noticePage.summary.categoryTerm', { category: selectedCategory })}
+                </Badge>
+              )}
+            </div>
+
+            {(searchTerm || selectedCategory !== 'all') && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedCategory('all');
+                }}
+                className="text-gray-500 hover:text-[#1F7A53]"
+              >
+                {t('noticePage.summary.clearFilters')}
+              </Button>
+            )}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* News Grid */}
+      <motion.section
+        className="py-12"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {isLoading ? (
+            <motion.div
+              className="text-center py-12"
+              variants={itemVariants}
+            >
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1F7A53] mx-auto mb-4"></div>
+              <p className="text-gray-500">{t('noticePage.states.loading')}</p>
+            </motion.div>
+          ) : filteredNews.length === 0 ? (
+            <motion.div
+              className="text-center py-12"
+              variants={itemVariants}
+            >
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="w-8 h-8 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('noticePage.states.noNoticesTitle')}</h3>
+              <p className="text-gray-500 mb-4">
+                {t('noticePage.states.noNoticesText')}
+              </p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedCategory('all');
+                }}
+                className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white"
+              >
+                {t('noticePage.states.viewAllNotices')}
+              </Button>
+            </motion.div>
+          ) : (
+            <>
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+                variants={containerVariants}
+              >
+                {paginatedNews.map((item, index) => (
+                  <motion.div
+                    key={`${item.slug}-${currentPage}`}
+                    variants={cardVariants}
+                    whileHover={{
+                      y: -5,
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    <NewsCard
+                      article={item}
+                      onReadMore={handleReadMore}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {totalPages > 1 && (
+                <motion.div variants={itemVariants}>
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                  />
+                </motion.div>
+              )}
+            </>
+          )}
+        </div>
+      </motion.section>
+
+      {/* Statistics Section */}
+      <motion.section
+        className="py-16 bg-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12"
+            variants={itemVariants}
+          >
+            <h2 className="text-3xl font-bold text-[#0B0D0E] mb-4">
+              {t('noticePage.stats.title')}
+            </h2>
+            <p className="text-xl text-gray-600">
+              {t('noticePage.stats.subtitle')}
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                icon: Calendar,
+                title: t('noticePage.updateMethods.monthlyTitle'),
+                description: t('noticePage.updateMethods.monthlyDesc'),
+                count: t('noticePage.updateMethods.monthlyCount')
+              },
+              {
+                icon: Tag,
+                title: t('noticePage.eventMethods.eventTitle'),
+                description: t('noticePage.eventMethods.eventDesc'),
+                count: t('noticePage.eventMethods.eventCount')
+              },
+              {
+                icon: Clock,
+                title: t('noticePage.urgentMethods.urgentTitle'),
+                description: t('noticePage.urgentMethods.urgentDesc'),
+                count: t('noticePage.urgentMethods.urgentCount')
+              }
+            ].map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  variants={cardVariants}
+                  whileHover={{
+                    scale: 1.02,
+                    y: -5,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <div className="bg-gradient-to-tr from-white to-[#E8F5EF] p-8 rounded-2xl shadow-card text-center hover:shadow-xl transition-all duration-500">
+                    <motion.div
+                      className="w-16 h-16 bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8] rounded-full flex items-center justify-center mx-auto mb-6"
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <IconComponent className="w-8 h-8 text-white" />
+                    </motion.div>
+                    <h3 className="text-xl font-semibold text-[#0B0D0E] mb-3">{item.title}</h3>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <Badge
+                      variant="outline"
+                      className="border-[#1F7A53] text-[#1F7A53] bg-white/50"
+                    >
+                      {item.count}
+                    </Badge>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* CTA Section */}
+      <motion.section
+        className="py-16 bg-gradient-to-r from-[#1F7A53] to-[#1E5FA8] text-white"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h2
+            className="text-3xl lg:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {t('noticePage.cta.title')}
+          </motion.h2>
+          <motion.p
+            className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {t('noticePage.cta.description')}
+          </motion.p>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-[#1F7A53] hover:bg-white/90"
+                onClick={() => onPageChange('contact')}
+              >
+                {t('noticePage.cta.contactOffice')}
+              </Button>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-[#1F7A53]"
+                onClick={() => onPageChange('about')}
+              >
+                {t('noticePage.cta.learnMore')}
+              </Button>
+            </motion.div>
+          </motion.div>
         </div>
       </motion.section>
     </div>

@@ -13,6 +13,7 @@ import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 import { Input } from '../ui/input';
+import { useTranslation } from 'react-i18next';
 
 interface NoticePageProps {
   onPageChange: (page: string) => void;
@@ -20,13 +21,7 @@ interface NoticePageProps {
 
 interface NewsItem {
   slug: string;
-  title: string;
   date: string;
-  tag: string;
-  excerpt: string;
-  content?: string;
-  author?: string;
-  category?: string;
 }
 
 // Constants
@@ -70,99 +65,36 @@ const cardVariants = {
 
 // Fallback data function
 const getFallbackNewsData = (): NewsItem[] => [
-//  {
-    // slug: "admissions-open-2025",
-    // title: "Admissions Open for Academic Year 2025",
-    // date: "2025-01-15",
-    // tag: "Announcement",
-    // excerpt: "Applications are now open for the new academic year. Early bird discounts available until March 31st.",
-    // content: "We are pleased to announce that admissions for the Academic Year 2025 are now open. This year, we are offering expanded programs and new scholarship opportunities for deserving students. The application process has been streamlined to make it easier for prospective students and their families.",
-    // author: "Admin Office",
-    // category: "admissions"
-  //},
   {
     slug: "shasmahi-ke-imtihaan-2025",
-    title: "Shasmahi ke imtihaan",
-    date: "2025-08-25",
-    tag: "Event",
-    excerpt: "Final Exam will start from 31st August and end on 8th September. And the madrasa will reopen from 23rd September.",
-    content: "Will be Updated Soon",
-    author: "Academic Affairs",
-    category: "events"
-  },
-  // {
-  //   slug: "merit-scholarship-2025",
-  //   title: "Merit-Based Scholarship Program Launched",
-  //   date: "2025-02-20",
-  //   tag: "Announcement",
-  //   excerpt: "New scholarship opportunities for outstanding students across all programs.",
-  //   content: "We are excited to announce our new Merit-Based Scholarship Program, designed to support exceptional students in their educational journey. The program covers partial to full tuition fees based on academic performance and need assessment.",
-  //   author: "Financial Aid Office",
-  //   category: "scholarships"
-  // },
-  // {
-  //   slug: "digital-library-expansion",
-  //   title: "Digital Library Collection Expanded",
-  //   date: "2025-01-30",
-  //   tag: "Notice",
-  //   excerpt: "Our digital collection now includes over 5,000 Islamic manuscripts, books, and multimedia resources.",
-  //   content: "The library is proud to announce a significant expansion of our digital collection. Students and faculty now have access to an extensive range of Islamic texts, historical manuscripts, and modern research materials.",
-  //   author: "Library Services",
-  //   category: "academics"
-  // },
-  // {
-  //   slug: "graduation-ceremony-2024",
-  //   title: "Annual Graduation Ceremony 2024",
-  //   date: "2024-12-15",
-  //   tag: "Event",
-  //   excerpt: "Celebrating the achievements of our graduating class with distinguished guests and scholars.",
-  //   content: "Our annual graduation ceremony was a remarkable celebration of academic achievement and spiritual growth. We honored our graduates who have completed their studies in various Islamic disciplines.",
-  //   author: "Event Committee",
-  //   category: "events"
-  // },
-  // {
-  //   slug: "community-outreach-program",
-  //   title: "Community Outreach Initiative Launched",
-  //   date: "2024-11-20",
-  //   tag: "Notice",
-  //   excerpt: "Students and faculty engaging with local communities through educational and service initiatives.",
-  //   content: "Our new Community Outreach Program aims to strengthen ties with the local community through educational workshops, charity drives, and volunteer services.",
-  //   author: "Community Relations",
-  //   category: "community"
-  // },
-  // {
-  //   slug: "faculty-training-workshop",
-  //   title: "Faculty Development Workshop Series",
-  //   date: "2024-10-25",
-  //   tag: "Notice",
-  //   excerpt: "Professional development opportunities for faculty members to enhance teaching methodologies.",
-  //   content: "A comprehensive workshop series designed to enhance teaching skills and incorporate modern pedagogical approaches while maintaining traditional Islamic educational values.",
-  //   author: "Human Resources",
-  //   category: "faculty"
-  // },
-  // {
-  //   slug: "technology-upgrade-2024",
-  //   title: "Campus Technology Infrastructure Upgraded",
-  //   date: "2024-09-18",
-  //   tag: "Notice",
-  //   excerpt: "New high-speed internet, modern classrooms, and enhanced digital learning platforms.",
-  //   content: "Our commitment to modern education includes significant technology upgrades across the campus, providing students and faculty with better digital tools for learning and research.",
-  //   author: "IT Department",
-  //   category: "infrastructure"
-  // }
+    date: "2025-08-25"
+  }
 ];
+
+// Helper function to determine badge styling based on translated tag
+const getBadgeClass = (tag: string, t: (key: string) => string) => {
+  switch (tag) {
+    case t('noticePage.filters.announcement'):
+      return 'border-[#1F7A53] text-[#1F7A53]';
+    case t('noticePage.filters.event'):
+      return 'border-[#1E5FA8] text-[#1E5FA8]';
+    default:
+      return 'border-gray-400 text-gray-600';
+  }
+};
 
 // Category Tabs Component
 const CategoryTabs: React.FC<{
   selectedCategory: string;
   onCategoryChange: (category: string) => void;
 }> = ({ selectedCategory, onCategoryChange }) => {
+  const { t } = useTranslation();
   const categories = [
-    { key: 'all', label: 'All Notice' },
-    { key: 'announcement', label: 'Announcements' },
-    { key: 'event', label: 'Events' },
-    { key: 'notice', label: 'General Notice' },
-    { key: 'academics', label: 'Academic' }
+    { key: 'all', label: t('noticePage.filters.all') },
+    { key: 'announcement', label: t('noticePage.filters.announcement') },
+    { key: 'event', label: t('noticePage.filters.event') },
+    { key: 'general', label: t('noticePage.filters.general') },
+    { key: 'academics', label: t('noticePage.filters.academics') }
   ];
 
   return (
@@ -191,40 +123,36 @@ const NewsCard: React.FC<{
   article: NewsItem;
   onReadMore: (article: NewsItem) => void;
 }> = ({ article, onReadMore }) => {
+  const { t } = useTranslation();
+  const articleKey = `noticePage.articles.${article.slug}`;
   return (
     <Card className="group h-full hover:shadow-xl transition-all duration-500 border-0 shadow-card hover:bg-gradient-to-tr from-[#E8F5EF] to-[#EAF2FB] cursor-pointer">
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-4">
-          <Badge 
-            variant="outline" 
-            className={`${
-              article.tag === 'Announcement' 
-                ? 'border-[#1F7A53] text-[#1F7A53]'
-                : article.tag === 'Event'
-                ? 'border-[#1E5FA8] text-[#1E5FA8]'
-                : 'border-gray-400 text-gray-600'
-            } group-hover:scale-105 transition-transform duration-300`}
+          <Badge
+            variant="outline"
+            className={`${getBadgeClass(t(`${articleKey}.tag`), t)} group-hover:scale-105 transition-transform duration-300`}
           >
-            {article.tag}
+            {t(`${articleKey}.tag`)}
           </Badge>
           <div className="flex items-center text-gray-500 text-sm">
             <Calendar className="w-4 h-4 mr-1" />
-            {new Date(article.date).toLocaleDateString('en-US', { 
-              month: 'short', 
-              day: 'numeric' 
+            {new Date(article.date).toLocaleDateString(t('locale'), {
+              month: 'short',
+              day: 'numeric'
             })}
           </div>
         </div>
         <h3 className="text-xl font-semibold mb-3 group-hover:text-[#1F7A53] transition-colors duration-300">
-          {article.title}
+          {t(`${articleKey}.title`)}
         </h3>
-        <p className="text-gray-600 mb-4 line-clamp-3">{article.excerpt}</p>
-        <Button 
-          variant="ghost" 
+        <p className="text-gray-600 mb-4 line-clamp-3">{t(`${articleKey}.excerpt`)}</p>
+        <Button
+          variant="ghost"
           className="p-0 h-auto text-[#1F7A53] hover:text-[#1F7A53]/80 group-hover:translate-x-2 transition-all duration-300"
           onClick={() => onReadMore(article)}
         >
-          Read More <ArrowRight className="w-4 h-4 ml-1" />
+          {t('noticePage.card.readMore')} <ArrowRight className="w-4 h-4 ml-1" />
         </Button>
       </CardContent>
     </Card>
@@ -237,6 +165,7 @@ const Pagination: React.FC<{
   totalPages: number;
   onPageChange: (page: number) => void;
 }> = ({ currentPage, totalPages, onPageChange }) => {
+  const { t } = useTranslation();
   const getVisiblePages = () => {
     const delta = 2;
     const range = [];
@@ -272,9 +201,9 @@ const Pagination: React.FC<{
         disabled={currentPage === 1}
         className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white disabled:opacity-50"
       >
-        Previous
+        {t('noticePage.pagination.previous')}
       </Button>
-      
+
       {getVisiblePages().map((page, index) => (
         <Button
           key={index}
@@ -293,7 +222,7 @@ const Pagination: React.FC<{
           {page}
         </Button>
       ))}
-      
+
       <Button
         variant="outline"
         size="sm"
@@ -301,7 +230,7 @@ const Pagination: React.FC<{
         disabled={currentPage === totalPages}
         className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white disabled:opacity-50"
       >
-        Next
+        {t('noticePage.pagination.next')}
       </Button>
     </div>
   );
@@ -313,9 +242,11 @@ const ArticleView: React.FC<{
   onBack: () => void;
   onPageChange: (page: string) => void;
 }> = ({ article, onBack, onPageChange }) => {
+  const { t } = useTranslation();
+  const articleKey = `noticePage.articles.${article.slug}`;
   return (
     <div className="min-h-screen bg-gray-50">
-      <motion.section 
+      <motion.section
         className="bg-gradient-to-r from-[#E8F5EF] via-white to-[#EAF2FB] py-16"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -331,51 +262,45 @@ const ArticleView: React.FC<{
             whileHover={{ x: -5 }}
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to Notice
+            {t('noticePage.article.back')}
           </motion.button>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <div className="flex items-center space-x-4 mb-4">
-              <Badge 
-                variant="outline" 
-                className={
-                  article.tag === 'Announcement' 
-                    ? 'border-[#1F7A53] text-[#1F7A53]'
-                    : article.tag === 'Event'
-                    ? 'border-[#1E5FA8] text-[#1E5FA8]'
-                    : 'border-gray-400 text-gray-600'
-                }
+              <Badge
+                variant="outline"
+                className={getBadgeClass(t(`${articleKey}.tag`), t)}
               >
-                {article.tag}
+                {t(`${articleKey}.tag`)}
               </Badge>
               <div className="flex items-center text-gray-500">
                 <Calendar className="w-4 h-4 mr-2" />
-                {new Date(article.date).toLocaleDateString('en-US', { 
+                {new Date(article.date).toLocaleDateString(t('locale'), {
                   year: 'numeric',
-                  month: 'long', 
-                  day: 'numeric' 
+                  month: 'long',
+                  day: 'numeric'
                 })}
               </div>
             </div>
-            
+
             <h1 className="text-4xl lg:text-5xl font-bold text-[#0B0D0E] mb-4">
-              {article.title}
+              {t(`${articleKey}.title`)}
             </h1>
-            
-            {article.author && (
+
+            {t(`${articleKey}.author`) && (
               <p className="text-gray-600 mb-8">
-                By {article.author}
+                {t('noticePage.article.byAuthor', { author: t(`${articleKey}.author`) })}
               </p>
             )}
           </motion.div>
         </div>
       </motion.section>
 
-      <motion.section 
+      <motion.section
         className="py-12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -385,33 +310,33 @@ const ArticleView: React.FC<{
           <div className="bg-white rounded-2xl shadow-card p-8">
             <div className="prose prose-lg max-w-none">
               <p className="text-xl text-gray-700 leading-relaxed">
-                {article.content || article.excerpt}
+                {t(`${articleKey}.content`) || t(`${articleKey}.excerpt`)}
               </p>
             </div>
-            
+
             <div className="mt-8 pt-8 border-t">
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Button 
+                  <Button
                     onClick={() => onPageChange('contact')}
                     className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white"
                   >
-                    Contact for More Info
+                    {t('noticePage.article.contactInfo')}
                   </Button>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Button 
+                  <Button
                     variant="outline"
                     onClick={onBack}
                     className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white"
                   >
-                    Back to Notice
+                    {t('noticePage.article.back')}
                   </Button>
                 </motion.div>
               </div>
@@ -424,6 +349,7 @@ const ArticleView: React.FC<{
 };
 
 const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
+  const { t, i18n } = useTranslation();
   const [news, setNews] = useState<NewsItem[]>([]);
   const [filteredNews, setFilteredNews] = useState<NewsItem[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -432,6 +358,16 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
   const [selectedArticle, setSelectedArticle] = useState<NewsItem | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Map filter labels to their keys for reverse lookup in filtering
+  const filterKeyMap = {
+    [t('noticePage.filters.all')]: 'all',
+    [t('noticePage.filters.announcement')]: 'announcement',
+    [t('noticePage.filters.event')]: 'event',
+    [t('noticePage.filters.general')]: 'general',
+    [t('noticePage.filters.academics')]: 'academics'
+  };
+
+  // Load news data and handle fallback
   useEffect(() => {
     const loadNews = async () => {
       setIsLoading(true);
@@ -456,29 +392,35 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
     loadNews();
   }, []);
 
+  // Filter and paginate news whenever dependencies change
   useEffect(() => {
     let filtered = news;
-
-    // Filter by category
     if (selectedCategory !== 'all') {
-      filtered = filtered.filter(item => 
-        item.category?.toLowerCase() === selectedCategory.toLowerCase() ||
-        item.tag?.toLowerCase() === selectedCategory.toLowerCase()
-      );
+      filtered = filtered.filter(item => {
+        const articleKey = `noticePage.articles.${item.slug}`;
+        const category = t(`${articleKey}.category`);
+        const tag = t(`${articleKey}.tag`);
+        const categoryKey = filterKeyMap[category] || category.toLowerCase();
+        const tagKey = filterKeyMap[tag] || tag.toLowerCase();
+        return (
+          categoryKey === selectedCategory.toLowerCase() ||
+          tagKey === selectedCategory.toLowerCase()
+        );
+      });
     }
-
-    // Filter by search term
     if (searchTerm) {
-      filtered = filtered.filter(item =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.tag.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      filtered = filtered.filter(item => {
+        const articleKey = `noticePage.articles.${item.slug}`;
+        return (
+          t(`${articleKey}.title`).toLowerCase().includes(searchTerm.toLowerCase()) ||
+          t(`${articleKey}.excerpt`).toLowerCase().includes(searchTerm.toLowerCase()) ||
+          t(`${articleKey}.tag`).toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      });
     }
-
     setFilteredNews(filtered);
     setCurrentPage(1);
-  }, [news, selectedCategory, searchTerm]);
+  }, [news, selectedCategory, searchTerm, t, i18n.language]);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
@@ -515,7 +457,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <motion.section 
+      <motion.section
         className="bg-gradient-to-r from-[#E8F5EF] via-white to-[#EAF2FB] py-20"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -523,25 +465,25 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <motion.h1 
+            <motion.h1
               className="text-4xl lg:text-5xl font-bold text-[#0B0D0E] mb-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
-              Notice & Announcements
+              {t('noticePage.header.title')}
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Stay informed with the latest updates, announcements, and news from our madrasa community
+              {t('noticePage.header.subtitle')}
             </motion.p>
 
             {/* Search Bar */}
-            <motion.div 
+            <motion.div
               className="max-w-md mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -551,7 +493,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
                   type="text"
-                  placeholder="Search notices..."
+                  placeholder={t('noticePage.search.placeholder')}
                   value={searchTerm}
                   onChange={handleSearchChange}
                   className="pl-10 bg-white border-gray-200 focus:border-[#1F7A53] focus:ring-[#1F7A53]/20"
@@ -563,7 +505,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
       </motion.section>
 
       {/* Category Tabs and Filters */}
-      <motion.section 
+      <motion.section
         className="py-8 bg-white border-b"
         initial="hidden"
         animate="visible"
@@ -578,23 +520,27 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
           </motion.div>
 
           {/* Results Summary */}
-          <motion.div 
+          <motion.div
             className="flex flex-wrap items-center justify-between mt-6 gap-4"
             variants={itemVariants}
           >
             <div className="flex items-center space-x-4 text-sm text-gray-600">
               <div className="flex items-center space-x-1">
                 <Filter className="w-4 h-4" />
-                <span>Showing {filteredNews.length} results</span>
+                <span>
+                  {t('noticePage.summary.resultsCount', {
+                    count: filteredNews.length
+                  })}
+                </span>
               </div>
               {searchTerm && (
                 <Badge variant="outline" className="border-[#1F7A53] text-[#1F7A53]">
-                  Search: "{searchTerm}"
+                  {t('noticePage.summary.searchTerm', { term: searchTerm })}
                 </Badge>
               )}
               {selectedCategory !== 'all' && (
                 <Badge variant="outline" className="border-[#1E5FA8] text-[#1E5FA8]">
-                  Category: {selectedCategory}
+                  {t('noticePage.summary.categoryTerm', { category: t(`noticePage.filters.${selectedCategory}`) })}
                 </Badge>
               )}
             </div>
@@ -609,7 +555,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
                 }}
                 className="text-gray-500 hover:text-[#1F7A53]"
               >
-                Clear Filters
+                {t('noticePage.summary.clearFilters')}
               </Button>
             )}
           </motion.div>
@@ -617,7 +563,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
       </motion.section>
 
       {/* News Grid */}
-      <motion.section 
+      <motion.section
         className="py-12"
         initial="hidden"
         animate="visible"
@@ -625,24 +571,24 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {isLoading ? (
-            <motion.div 
+            <motion.div
               className="text-center py-12"
               variants={itemVariants}
             >
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1F7A53] mx-auto mb-4"></div>
-              <p className="text-gray-500">Loading notices...</p>
+              <p className="text-gray-500">{t('noticePage.states.loading')}</p>
             </motion.div>
           ) : filteredNews.length === 0 ? (
-            <motion.div 
+            <motion.div
               className="text-center py-12"
               variants={itemVariants}
             >
               <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Search className="w-8 h-8 text-gray-400" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No notices found</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('noticePage.states.noNoticesTitle')}</h3>
               <p className="text-gray-500 mb-4">
-                Try adjusting your search terms or category filters
+                {t('noticePage.states.noNoticesText')}
               </p>
               <Button
                 variant="outline"
@@ -652,12 +598,12 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
                 }}
                 className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white"
               >
-                View All Notices
+                {t('noticePage.states.viewAllNotices')}
               </Button>
             </motion.div>
           ) : (
             <>
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
                 variants={containerVariants}
               >
@@ -665,7 +611,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
                   <motion.div
                     key={`${item.slug}-${currentPage}`}
                     variants={cardVariants}
-                    whileHover={{ 
+                    whileHover={{
                       y: -5,
                       transition: { duration: 0.3 }
                     }}
@@ -693,7 +639,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
       </motion.section>
 
       {/* Statistics Section */}
-      <motion.section 
+      <motion.section
         className="py-16 bg-white"
         initial="hidden"
         whileInView="visible"
@@ -701,19 +647,19 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
         variants={containerVariants}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             variants={itemVariants}
           >
             <h2 className="text-3xl font-bold text-[#0B0D0E] mb-4">
-              Stay Connected
+              {t('noticePage.stats.title')}
             </h2>
             <p className="text-xl text-gray-600">
-              Multiple ways to receive updates and announcements
+              {t('noticePage.stats.subtitle')}
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
             variants={containerVariants}
             initial="hidden"
@@ -723,21 +669,21 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
             {[
               {
                 icon: Calendar,
-                title: "Monthly Updates",
-                description: "Comprehensive monthly reports covering all academic and administrative activities.",
-                count: "12+ per year"
+                title: t('noticePage.updateMethods.monthlyTitle'),
+                description: t('noticePage.updateMethods.monthlyDesc'),
+                count: t('noticePage.updateMethods.monthlyCount')
               },
               {
                 icon: Tag,
-                title: "Event Announcements",
-                description: "Timely notifications about upcoming events, ceremonies, and special programs.",
-                count: "50+ events"
+                title: t('noticePage.eventMethods.eventTitle'),
+                description: t('noticePage.eventMethods.eventDesc'),
+                count: t('noticePage.eventMethods.eventCount')
               },
               {
                 icon: Clock,
-                title: "Urgent Notices",
-                description: "Important updates regarding schedule changes, closures, and emergency information.",
-                count: "Real-time"
+                title: t('noticePage.urgentMethods.urgentTitle'),
+                description: t('noticePage.urgentMethods.urgentDesc'),
+                count: t('noticePage.urgentMethods.urgentCount')
               }
             ].map((item, index) => {
               const IconComponent = item.icon;
@@ -745,14 +691,14 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
                 <motion.div
                   key={index}
                   variants={cardVariants}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.02,
                     y: -5,
                     transition: { duration: 0.3 }
                   }}
                 >
                   <div className="bg-gradient-to-tr from-white to-[#E8F5EF] p-8 rounded-2xl shadow-card text-center hover:shadow-xl transition-all duration-500">
-                    <motion.div 
+                    <motion.div
                       className="w-16 h-16 bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8] rounded-full flex items-center justify-center mx-auto mb-6"
                       whileHover={{ scale: 1.1, rotate: 10 }}
                       transition={{ duration: 0.3 }}
@@ -761,8 +707,8 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
                     </motion.div>
                     <h3 className="text-xl font-semibold text-[#0B0D0E] mb-3">{item.title}</h3>
                     <p className="text-gray-600 mb-4">{item.description}</p>
-                    <Badge 
-                      variant="outline" 
+                    <Badge
+                      variant="outline"
                       className="border-[#1F7A53] text-[#1F7A53] bg-white/50"
                     >
                       {item.count}
@@ -776,7 +722,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
       </motion.section>
 
       {/* CTA Section */}
-      <motion.section 
+      <motion.section
         className="py-16 bg-gradient-to-r from-[#1F7A53] to-[#1E5FA8] text-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -784,26 +730,25 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
         transition={{ duration: 0.8 }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h2 
+          <motion.h2
             className="text-3xl lg:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Never Miss an Update
+            {t('noticePage.cta.title')}
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Subscribe to our notifications or visit our office for the latest information 
-            about admissions, events, and important announcements.
+            {t('noticePage.cta.description')}
           </motion.p>
-          <motion.div 
+          <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -814,26 +759,26 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button 
+              <Button
                 size="lg"
                 variant="secondary"
                 className="bg-white text-[#1F7A53] hover:bg-white/90"
                 onClick={() => onPageChange('contact')}
               >
-                Contact Office
+                {t('noticePage.cta.contactOffice')}
               </Button>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button 
+              <Button
                 size="lg"
                 variant="outline"
-                className="border-blue  bg-white text-[#1F7A53]"
+                className="border-white text-white hover:bg-white hover:text-[#1F7A53]"
                 onClick={() => onPageChange('about')}
               >
-                Learn More
+                {t('noticePage.cta.learnMore')}
               </Button>
             </motion.div>
           </motion.div>

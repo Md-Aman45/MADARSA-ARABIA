@@ -11,6 +11,7 @@ import {
   Pause
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
@@ -131,6 +132,7 @@ const AnimatedCounter: React.FC<{ value: number; duration?: number }> = ({ value
 };
 
 const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
+  const { t } = useTranslation();
   const [stats, setStats] = useState<Stat[]>([]);
   const [departments, setDepartments] = useState<Department[]>([]);
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -219,82 +221,82 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
   const madrasaPhotos = [
      {
       url: "/assets/h1.png",
-      title: "Main Academic Building",
-      description: "Our state-of-the-art academic facilities"
+      title: t("home.madrasaPhotos.mainAcademicBuildingTitle"),
+      description: t("home.madrasaPhotos.mainAcademicBuildingDescription")
     },
      {
       url: "/assets/group.png",
-      title: "Student Library",
-      description: "Comprehensive collection of Islamic literature"
+      title: t("home.madrasaPhotos.studentLibraryTitle"),
+      description: t("home.madrasaPhotos.studentLibraryDescription")
     },
     {
       url: "/assets/h2.png",
-      title: "Student Library",
-      description: "Comprehensive collection of Islamic literature"
+      title: t("home.madrasaPhotos.studentLibraryTitle"),
+      description: t("home.madrasaPhotos.studentLibraryDescription")
     },
      {
       url: "/assets/m3.png",
-      title: "Student Library",
-      description: "Comprehensive collection of Islamic literature"
+      title: t("home.madrasaPhotos.studentLibraryTitle"),
+      description: t("home.madrasaPhotos.studentLibraryDescription")
     },
     {
       url: "/assets/h1.png",
-      title: "Main Academic Building",
-      description: "Our state-of-the-art academic facilities"
+      title: t("home.madrasaPhotos.mainAcademicBuildingTitle"),
+      description: t("home.madrasaPhotos.mainAcademicBuildingDescription")
     }, {
       url: "/assets/m2.png",
-      title: "Student Library",
-      description: "Comprehensive collection of Islamic literature"
+      title: t("home.madrasaPhotos.studentLibraryTitle"),
+      description: t("home.madrasaPhotos.studentLibraryDescription")
     },
     {
       url: "/assets/h4.png",
-      title: "Student Library",
-      description: "Comprehensive collection of Islamic literature"
+      title: t("home.madrasaPhotos.studentLibraryTitle"),
+      description: t("home.madrasaPhotos.studentLibraryDescription")
       },
-    //  {
+    //  { // This item was commented out in the original content, keeping it commented.
     //   url: "/assets/m4.png",
     //   title: "Student Library",
     //   description: "Comprehensive collection of Islamic literature"
     // },
-    
+
     {
       url: "/assets/h5.png",
-      title: "Prayer Hall & Mosque",
-      description: "Beautiful mosque for daily prayers and gatherings"
+      title: t("home.madrasaPhotos.prayerHallMosqueTitle"),
+      description: t("home.madrasaPhotos.prayerHallMosqueDescription")
     },
-    // {
+    // { // This item was commented out in the original content, keeping it commented.
     //   url: "/assets/m1.png",
     //   title: "Student Library",
     //   description: "Comprehensive collection of Islamic literature"
     // },
     {
       url: "/assets/h6.png",
-      title: "Student Dormitories",
-      description: "Comfortable accommodation for students"
+      title: t("home.madrasaPhotos.studentDormsTitle"),
+      description: t("home.madrasaPhotos.studentDormsDescription")
     },
     {
       url: "/assets/h7.png",
-      title: "Campus Courtyard",
-      description: "Peaceful environment for reflection and study"
+      title: t("home.madrasaPhotos.campusCourtyardTitle"),
+      description: t("home.madrasaPhotos.campusCourtyardDescription")
     },
     {
       url: "/assets/h8.png",
-      title: "Classroom Facilities",
-      description: "Modern learning environments with traditional values"
+      title: t("home.madrasaPhotos.classroomFacilitiesTitle"),
+      description: t("home.madrasaPhotos.classroomFacilitiesDescription")
     },
     {
       url: "/assets/h2.png",
-      title: "Classroom Facilities",
-      description: "Modern learning environments with traditional values"
+      title: t("home.madrasaPhotos.classroomFacilitiesTitle"),
+      description: t("home.madrasaPhotos.classroomFacilitiesDescription")
     },{
       url: "/assets/h10.png",
-      title: "Classroom Facilities",
-      description: "Modern learning environments with traditional values"
+      title: t("home.madrasaPhotos.classroomFacilitiesTitle"),
+      description: t("home.madrasaPhotos.classroomFacilitiesDescription")
     },
     {
       url: "/assets/h11.png",
-      title: "Classroom Facilities",
-      description: "Modern learning environments with traditional values"
+      title: t("home.madrasaPhotos.classroomFacilitiesTitle"),
+      description: t("home.madrasaPhotos.classroomFacilitiesDescription")
     }
   ];
 
@@ -312,10 +314,10 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       } catch (error) {
         // Fallback data
         setStats([
-          { label: "Years of Service", value: 41 },
-          { label: "Students", value: 550 },
-          { label: "Branches", value: 13 },
-          { label: "Faculty", value: 26 }
+          { label: t('home.students'), value: 515 },
+          { label: t('home.teachers'), value: 26 },
+          { label: t('home.graduates'), value: 800 },
+          { label: t('home.branches'), value: 13 }
         ]);
       }
     };
@@ -483,7 +485,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                 variants={itemVariants}
               >
                 <Badge variant="outline" className="bg-white/30 text-white border-white/40 hover:bg-white/40 transition-colors duration-300 text-base md:text-lg py-2 px-4">
-                  Excellence in Islamic Education
+                  {t('home.excellenceInIslamicEducation')}
                 </Badge>
               </motion.div>
               
@@ -505,7 +507,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                     fontSize: 'clamp(2.5rem, 5vw, 4.5rem)'
                   }}
                 >
-                  MADARSA ARABIA
+                  {t('heroSection.mainHeadline')}
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
@@ -518,7 +520,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                     fontWeight: 900
                   }}
                 >
-                  TAJVEEDUL QURAN
+                  {t('heroSection.subHeadline')}
                 </motion.span>
                 
                
@@ -532,8 +534,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                   fontFamily: 'Arial, sans-serif'
                 }}
               >
-                Join our distinguished institution dedicated to preserving and teaching
-                the sacred knowledge of Islam through traditional and modern methodologies.
+                {t('heroSection.description')}
               </motion.p>
               
               <motion.div
@@ -550,7 +551,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                     onClick={() => onPageChange('programs')}
                   >
                     <BookOpen className="w-6 h-6 mr-2" />
-                    Explore Programs
+                    {t('heroSection.explorePrograms')}
                   </Button>
                 </motion.div>
                 <motion.div
@@ -564,7 +565,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                     onClick={handleDonateClick}
                   >
                     <Heart className="w-6 h-6 mr-2" />
-                    Donate
+                    {t('heroSection.donate')}
                   </Button>
                 </motion.div>
               </motion.div>
@@ -629,11 +630,10 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
             variants={itemVariants}
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-              Our Programs & Courses
+              {t('programsSection.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive Islamic education across various disciplines, 
-              taught by qualified scholars and experienced educators.
+              {t('programsSection.subtitle')}
             </p>
           </motion.div>
           
@@ -673,7 +673,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                       className="p-0 h-auto text-[#1F7A53] hover:text-[#1F7A53]/80 group-hover:translate-x-2 transition-all duration-300"
                       onClick={() => onPageChange('programs')}
                     >
-                      Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                      {t('programsSection.learnMore')} <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
                   </CardContent>
                 </Card>
@@ -695,7 +695,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                 className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white transition-all duration-300"
                 onClick={() => onPageChange('programs')}
               >
-                View All Programs
+                {t('programsSection.viewAllPrograms')}
               </Button>
             </motion.div>
           </motion.div>
@@ -720,10 +720,10 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
           >
             <div>
               <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-                Latest Notice & Announcements
+                {t('noticeSection.title')}
               </h2>
               <p className="text-xl text-gray-600">
-                Stay updated with our latest announcements and events
+                {t('noticeSection.subtitle')}
               </p>
             </div>
             <Button
@@ -731,7 +731,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
               onClick={() => onPageChange('notice')}
               className="hidden sm:flex border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white transition-all duration-300"
             >
-              View All Notice
+              {t('noticeSection.viewAllNotice')}
             </Button>
           </motion.div>
 
@@ -807,7 +807,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                           className="p-0 h-auto text-[#1F7A53] hover:text-[#1F7A53]/80 group-hover:translate-x-2 transition-all duration-300"
                           onClick={() => onPageChange('notice')}
                         >
-                          Read More <ArrowRight className="w-4 h-4 ml-1" />
+                          {t('noticeSection.readMore')} <ArrowRight className="w-4 h-4 ml-1" />
                         </Button>
                       </CardContent>
                     </Card>
@@ -833,7 +833,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
               onClick={() => onPageChange('notice')}
               className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white transition-all duration-300"
             >
-              View All Notice
+              {t('noticeSection.viewAllNotice')}
             </Button>
           </div>
         </div>
@@ -856,10 +856,10 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-              What Our Students Say
+              {t('testimonialsSection.title')}
             </h2>
             <p className="text-xl text-gray-600">
-              Hear from our graduates and current students about their experience
+              {t('testimonialsSection.subtitle')}
             </p>
           </motion.div>
 
@@ -938,14 +938,16 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 flex items-center justify-center">
-            <h2 className="text-3xl font-bold text-[#0B0D0E] mb-4 mr-4">Campus Life</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
+              {t('campusLifeSection.title')}
+            </h2>
             <Button
               onClick={() => setIsPlaying(!isPlaying)}
               size="sm"
               variant="outline"
               className="mb-4"
             >
-              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              {isPlaying ? <Pause className="h-12 w-12 text-white" aria-label={t('campusLifeSection.pause')} /> : <Play className="h-12 w-12 text-white" aria-label={t('campusLifeSection.play')} />}
             </Button>
           </div>
 
@@ -961,7 +963,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
               >
                 <ImageWithFallback
                   src={image}
-                  alt={`Campus life ${index + 1}`}
+                alt={t('campusLifeSection.altText')}
                   className="w-full h-full object-cover"
                 />
               </motion.div>
@@ -1020,25 +1022,24 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
             <Heart className="w-16 h-16 mx-auto mb-6 text-white/80" />
           </motion.div>
           
-          <motion.h2 
+          <motion.h2
             className="text-3xl lg:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Support Islamic Education
+            {t('donationCta.title')}
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Your contribution helps us provide quality Islamic education, 
-            maintain our facilities, and support deserving students through scholarships.
+            {t('donationCta.description')}
           </motion.p>
           
           <motion.div 
@@ -1058,7 +1059,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                 className="bg-white text-[#1F7A53] hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={handleDonateClick}
               >
-                Donate Now
+                {t('donationCta.donateNow')}
               </Button>
             </motion.div>
             <motion.div
@@ -1071,7 +1072,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                 className="border-blue text-white  text-[#1F7A53] transition-all duration-300"
                 onClick={() => onPageChange('about')}
               >
-                Learn More
+                {t('donationCta.learnMore')}
               </Button>
             </motion.div>
           </motion.div>

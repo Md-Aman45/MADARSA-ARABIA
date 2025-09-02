@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import {
     Award,
@@ -8,9 +9,9 @@ import {
     Phone,
     Users
 } from 'lucide-react';
-import React from 'react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface FooterProps {
     onPageChange: (page: string) => void;
@@ -24,22 +25,23 @@ const handleDonateClick = () => {
 };
 
 const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
+  const { t } = useLanguage();
     const quickLinks = [
-        { name: 'Home', key: 'home' },
-        { name: 'About Us', key: 'about' },
-        { name: 'Programs', key: 'programs' },
-        { name: 'Resources', key: 'resources' },
-        { name: 'Notice', key: 'notice' },
-        { name: 'Contact', key: 'contact' },
+        { name: t('nav.home'), key: 'home' },
+        { name: t('nav.about'), key: 'about' },
+        { name: t('nav.programs'), key: 'programs' },
+        { name: t('nav.resources'), key: 'resources' },
+        { name: t('nav.notice'), key: 'notice' },
+        { name: t('nav.contact'), key: 'contact' },
     ];
 
     const programs = [
-        'QURAN TAJWEED',
-        'PRIMARY EDUCATION (NAAJRAH)',
-        'FIVE YEAR ARABIC COURSE (AALIMIYAT)',
-        'DEPARTMENT OF COMPUTER SCIENCE ',
-        'DEPARTMENT OF ENGLISH',
-        'ARABIC LITERATURE'
+        t('footer.programs.tajweed') || 'QURAN TAJWEED',
+        t('footer.programs.primary') || 'PRIMARY EDUCATION (NAAJRAH)',
+        t('footer.programs.arabic') || 'FIVE YEAR ARABIC COURSE (AALIMIYAT)',
+        t('footer.programs.computer') || 'DEPARTMENT OF COMPUTER SCIENCE',
+        t('footer.programs.english') || 'DEPARTMENT OF ENGLISH',
+        t('footer.programs.literature') || 'ARABIC LITERATURE'
     ];
 
     const containerVariants = {
@@ -95,13 +97,12 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                                 />
                             </motion.div>
                             <div>
-                                <h3 className="text-xl font-bold">MADARSA ARABIA</h3>
-                                <p className="text-[#1F7A53] text-sm">TAJVEEDUL QURAN</p>
+                                <h3 className="text-xl font-bold">{t('hero.title') || "MADARSA ARABIA"}</h3>
+                                <p className="text-[#1F7A53] text-sm">{t('hero.tagline') || "TAJVEEDUL QURAN"}</p>
                             </div>
                         </div>
                         <p className="text-gray-300 mb-6 leading-relaxed">
-                            Dedicated to preserving and teaching the sacred knowledge of Islam
-                            through traditional and modern methodologies since 1404 Hijri./ 1984 Yr.
+                            {t('footer.aboutText') || "Dedicated to preserving and teaching the sacred knowledge of Islam through traditional and modern methodologies since 1404 Hijri./ 1984 Yr."}
                         </p>
                         <div className="flex space-x-4">
                             {[
@@ -131,7 +132,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
 
                     {/* Quick Links */}
                     <motion.div variants={itemVariants}>
-                        <h3 className="text-xl font-semibold mb-6 text-white">Quick Links</h3>
+                        <h3 className="text-xl font-semibold mb-6 text-white">{t('footer.quickLinks') || "Quick Links"}</h3>
                         <ul className="space-y-3">
                             {quickLinks.map((link) => (
                                 <li key={link.key}>
@@ -150,7 +151,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
 
                     {/* Programs */}
                     <motion.div variants={itemVariants}>
-                        <h3 className="text-xl font-semibold mb-6 text-white">Our Programs</h3>
+                        <h3 className="text-xl font-semibold mb-6 text-white">{t('footer.ourPrograms') || "Our Programs"}</h3>
                         <ul className="space-y-3">
                             {programs.slice(0, 6).map((program, index) => (
                                 <li key={index}>
@@ -169,7 +170,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
 
                     {/* Contact Info */}
                     <motion.div variants={itemVariants}>
-                        <h3 className="text-xl font-semibold mb-6 text-white">Contact Info</h3>
+                        <h3 className="text-xl font-semibold mb-6 text-white">{t('footer.contactInfo') || "Contact Info"}</h3>
                         <ul className="space-y-4">
                             <li className="flex items-start space-x-3">
                                 <MapPin className="w-5 h-5 text-[#1F7A53] mt-1 flex-shrink-0" />
@@ -207,10 +208,10 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                     <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                         <div className="text-center md:text-left">
                             <p className="text-gray-300 text-sm">
-                                © {new Date().getFullYear()} Madarsa Arabia Tajveedul Quran. All rights reserved.
+                                © {new Date().getFullYear()} {t('footer.rightsReserved') || "Madarsa Arabia Tajveedul Quran. All rights reserved."}
                             </p>
                             <p className="text-gray-400 text-xs mt-1">
-                                Preserving Islamic knowledge through traditional and modern education.
+                                {t('footer.aboutText')?.split('.')[0] || "Preserving Islamic knowledge through traditional and modern education."}.
                             </p>
                         </div>
 
@@ -226,7 +227,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                                     className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white"
                                 >
                                     <Heart className="w-4 h-4 mr-2" />
-                                    Donate
+                                    {t('common.donateNow') || "Donate"}
                                 </Button>
                             </motion.div>
                             <motion.div
@@ -240,7 +241,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                                     className="border-[#1E5FA8] text-[#1E5FA8] hover:bg-[#1E5FA8] hover:text-white"
                                 >
                                     <BookOpen className="w-4 h-4 mr-2" />
-                                    Apply Now
+                                    {t('footer.applyNow') || "Apply Now"}
                                 </Button>
                             </motion.div>
                         </div>

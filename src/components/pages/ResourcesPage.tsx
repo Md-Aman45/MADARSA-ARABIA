@@ -14,6 +14,7 @@ import React, { useCallback, useMemo, useState, useEffect, useRef } from 'react'
 import { Button } from '../ui/button';
 import { Card, CardContent, CardTitle } from '../ui/card';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { useTranslation } from 'react-i18next';
 
 // Define the component's props interface.
 interface MissionVisionPageProps {
@@ -21,136 +22,132 @@ interface MissionVisionPageProps {
   onPageChange?: (page: string) => void;
 }
 
-// WhatsApp Donation Handler
-const handleDonateClick = () => {
-  const phoneNumber = '918423370548';
-  const message = encodeURIComponent("Assalamu Alaikum! I want to donate to your madrasa. Please provide me with the details where I can donate and earn good deeds.");
-  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-};
+const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
+  const { t } = useTranslation();
 
-// WhatsApp Donation for Construction Project
-const handleDonateProject = () => {
-  const phoneNumber = '9155649575';
-  const message = encodeURIComponent("Assalamu Alaikum! I am interested in donating to the ongoing construction project. Please provide me with the details.");
-  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-};
+  // WhatsApp Donation Handler
+  const handleDonateClick = useCallback(() => {
+    const phoneNumber = '918423370548';
+    const message = encodeURIComponent(t('resources.whatsappDonationMessage'));
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  }, [t]);
 
-// Optimized animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
+  // WhatsApp Donation for Construction Project
+  const handleDonateProject = useCallback(() => {
+    const phoneNumber = '9155649575';
+    const message = encodeURIComponent(t('resources.whatsappProjectDonationMessage'));
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  }, [t]);
+
+  // Optimized animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
     }
-  }
-};
+  };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut"
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
     }
-  }
-};
+  };
 
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
     }
-  }
-};
+  };
 
-const pulseVariants = {
-  initial: { scale: 1 },
-  animate: {
-    scale: [1, 1.05, 1],
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-      ease: "easeInOut"
+  const pulseVariants = {
+    initial: { scale: 1 },
+    animate: {
+      scale: [1, 1.05, 1],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
     }
-  }
-};
+  };
 
-const rotateVariants = {
-  initial: { rotate: 0 },
-  animate: {
-    rotate: 360,
-    transition: {
-      duration: 20,
-      repeat: Infinity,
-      ease: "linear"
+  const rotateVariants = {
+    initial: { rotate: 0 },
+    animate: {
+      rotate: 360,
+      transition: {
+        duration: 20,
+        repeat: Infinity,
+        ease: "linear"
+      }
     }
-  }
-};
+  };
 
-// Animated Counter Component
-const AnimatedCounter: React.FC<{ value: number; duration?: number }> = ({ value, duration = 2 }) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true });
+  // Animated Counter Component
+  const AnimatedCounter: React.FC<{ value: number; duration?: number }> = ({ value, duration = 2 }) => {
+    const [count, setCount] = useState(0);
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, { once: true });
 
-  useEffect(() => {
-    if (isInView) {
-      let startTime: number;
-      const animate = (currentTime: number) => {
-        if (!startTime) startTime = currentTime;
-        const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
-        
-        setCount(Math.floor(progress * value));
-        
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          setCount(value);
+    useEffect(() => {
+      if (isInView) {
+        let startTime: number;
+        const animate = (currentTime: number) => {
+          if (!startTime) startTime = currentTime;
+          const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+          setCount(Math.floor(progress * value));
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            setCount(value);
+          }
+        };
+        requestAnimationFrame(animate);
+      }
+    }, [isInView, value, duration]);
+
+    return (
+      <div ref={ref} className="text-4xl lg:text-5xl font-bold text-white mb-2">
+        {count}+
+      </div>
+    );
+  };
+
+  // Hook to check if element is in viewport
+  const useInView = (ref: React.RefObject<HTMLElement>, options?: IntersectionObserverInit) => {
+    const [isInView, setIsInView] = useState(false);
+    useEffect(() => {
+      const observer = new IntersectionObserver(([entry]) => {
+        setIsInView(entry.isIntersecting);
+      }, options);
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+      return () => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
         }
       };
-      requestAnimationFrame(animate);
-    }
-  }, [isInView, value, duration]);
+    }, [ref, options]);
+    return isInView;
+  };
 
-  return (
-    <div ref={ref} className="text-4xl lg:text-5xl font-bold text-white mb-2">
-      {count}+
-    </div>
-  );
-};
-
-// Hook to check if element is in viewport
-const useInView = (ref: React.RefObject<HTMLElement>, options?: IntersectionObserverInit) => {
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsInView(entry.isIntersecting);
-    }, options);
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [ref, options]);
-
-  return isInView;
-};
-
-const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
   // Handles the click event for the "Join Us" button.
   const handleJoinUs = useCallback(() => {
     if (onPageChange) {
@@ -161,73 +158,68 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
   // Data for the core goals section.
   const coreGoals = useMemo(() => [
     {
-      title: "Producing Huffaz of the Qur'an",
-      description: "Preparing over 500 future Huffaz, preserving and living the sacred words of Allah.",
+      title: t("resources.producingHuffaz"),
+      description: t("resources.producingHuffazDescription"),
       icon: BookOpen
     },
     {
-      title: "Making Qur'an Simple & Accessible",
-      description: "Making the Qur'an easy to understand for all ages through structured learning.",
+      title: t("resources.makingQuranSimple"),
+      description: t("resources.makingQuranSimpleDescription"),
       icon: BookOpen
     },
     {
-      title: "Promoting the Arabic Language",
-      description: "Strengthening Arabic literacy to understand Qur'an and Hadith directly.",
+      title: t("resources.promotingArabicLanguage"),
+      description: t("resources.promotingArabicLanguageDescription"),
       icon: Globe
     },
     {
-      title: "Strengthening Urdu & Mother Tongue",
-      description: "Preserving cultural and linguistic identity alongside religious values.",
+      title: t("resources.strengtheningUrduMotherTongue"),
+      description: t("resources.strengtheningUrduMotherTongueDescription"),
       icon: Users
     },
     {
-      title: "Building a Trustworthy Institution",
-      description: "Becoming a center of authentic Islamic education known for professionalism and sincerity.",
+      title: t("resources.buildingTrustworthyInstitution"),
+      description: t("resources.buildingTrustworthyInstitutionDescription"),
       icon: Building
     }
-  ], []);
+  ], [t]);
 
   // Data for the quick stats section.
   const stats = useMemo(() => [
-    { label: "Huffaz Under Training", value: 200 },
-    { label: "Qualified Teachers", value: 30 },
-    { label: "Students Benefited", value: 1000 },
-    { label: "Programs", value: 10 }
-  ], []);
+    { label: t("resources.stats.huffazTraining"), value: 200 },
+    { label: t("resources.stats.qualifiedTeachers"), value: 30 },
+    { label: t("resources.stats.studentsBenefited"), value: 1000 },
+    { label: t("resources.stats.programs"), value: 10 }
+  ], [t]);
 
   // Data for the ongoing construction section
   const constructionImages = useMemo(() => [
     {
       src: "/assets/c2.jpg",
-      subheading: "Phase 1",
-      details: "Undergoing construction of main gate and Hazrat Abu bakr Siddiq (R.A) hostel"
+      subheading: t("resources.construction.phase1.subheading"),
+      details: t("resources.construction.phase1.details")
     },
     {
       src: "/assets/c1.jpg",
-      subheading: "Phase 2",
-      details: "Undergoing construction of main gate and Hazrat Abu bakr Siddiq (R.A) hostel."
+      subheading: t("resources.construction.phase2.subheading"),
+      details: t("resources.construction.phase2.details")
     },
     {
       src: "/assets/c3.jpg",
-      subheading: "Phase 3",
-      details: "The Guest house and Nursing home is to be built here at the back of Madarsa. it's also in stay for very long time"
+      subheading: t("resources.construction.phase3.subheading"),
+      details: t("resources.construction.phase3.details")
     },
-    // {
-    //   src: "/assets/c4.jpg",
-    //   subheading: "Phase 4: Library & Hall",
-    //   details: "The framework for our new library and assembly hall is in progress."
-    // },
     {
       src: "/assets/c5.jpg",
-      subheading: "Phase 4",
-      details: "Work has begun on the new student accommodation facilities."
+      subheading: t("resources.construction.phase4.subheading"),
+      details: t("resources.construction.phase4.details")
     },
     {
       src: "/assets/c7.jpg",
-      subheading: "Phase 5",
-      details: "It is the land where Madarsa is going to built their very important project For their students so they also get more good facilities "
+      subheading: t("resources.construction.phase5.subheading"),
+      details: t("resources.construction.phase5.details")
     }
-  ], []);
+  ], [t]);
 
   return (
     <LazyMotion features={domAnimation}>
@@ -275,7 +267,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Our Mission & Vision
+              {t('resources.ourMissionVision')}
             </motion.h1>
             <motion.p
               className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed"
@@ -283,7 +275,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              Nurturing Faith, Knowledge, and Service Through the Qur'an and Sunnah
+              {t('resources.nurturingFaithKnowledgeService')}
             </motion.p>
           </div>
         </motion.section>
@@ -309,11 +301,11 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     <Target className="w-6 h-6 text-white" />
                   </motion.div>
                   <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E]">
-                    Our Mission
+                    {t('resources.ourMission')}
                   </h2>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                  Maulana Siddiq Ahmad Sahab’s vision for developing this madrasa was to make Islamic education simple and accessible, instill confidence in children, and nurture them with Quranic knowledge, Islamic values, and moral strength so they could live as proud, disciplined, and faithful Muslims while contributing positively to society.
+                  {t('resources.missionDescription')}
                 </p>
 
                 {/* Three-column grid for key mission values. */}
@@ -326,7 +318,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     >
                       <BookOpen className="w-8 h-8 text-[#1F7A53]" />
                     </motion.div>
-                    <p className="text-sm font-medium text-gray-700">Qur'an Based</p>
+                    <p className="text-sm font-medium text-gray-700">{t('resources.quranBased')}</p>
                   </motion.div>
                   <motion.div className="text-center" whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
                     <motion.div
@@ -336,7 +328,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     >
                       <Heart className="w-8 h-8 text-[#1F7A53]" />
                     </motion.div>
-                    <p className="text-sm font-medium text-gray-700">Character Building</p>
+                    <p className="text-sm font-medium text-gray-700">{t('resources.characterBuilding')}</p>
                   </motion.div>
                   <motion.div className="text-center" whileHover={{ y: -5 }} transition={{ duration: 0.3 }}>
                     <motion.div
@@ -346,7 +338,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     >
                       <Building className="w-8 h-8 text-[#1F7A53]" />
                     </motion.div>
-                    <p className="text-sm font-medium text-gray-700">Modern Excellence</p>
+                    <p className="text-sm font-medium text-gray-700">{t('resources.modernExcellence')}</p>
                   </motion.div>
                 </div>
               </motion.div>
@@ -363,10 +355,9 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                       <Star className="w-12 h-12 text-[#1F7A53]" />
                     </motion.div>
                     <blockquote className="text-xl font-semibold text-[#0B0D0E] mb-4 italic">
-                      "And We made from them leaders guiding by Our command when they were patient
-                      and were certain of Our signs."
+                      "{t('resources.quranQuote')}"
                     </blockquote>
-                    <cite className="text-[#1F7A53] font-medium">Quran 32:24</cite>
+                    <cite className="text-[#1F7A53] font-medium">{t('resources.quranReference')}</cite>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -388,10 +379,10 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
               variants={itemVariants}
             >
               <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-                Our Core Goals
+                {t('resources.ourCoreGoals')}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Five fundamental objectives that guide our educational mission and shape the future of Islamic learning
+                {t('resources.coreGoalsDescription')}
               </p>
             </motion.div>
 
@@ -447,13 +438,13 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                 </div>
               </motion.div>
               <motion.h2 variants={itemVariants} className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-                On-Going Construction
+                {t('resources.onGoingConstruction')}
               </motion.h2>
               <motion.p variants={itemVariants} className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Witness our vision taking shape. Your support is building the future of our institution.
+                {t('resources.onGoingConstructionDescription')}
               </motion.p>
             </div>
-            
+
             {/* Grid for construction images */}
             <motion.div
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -485,31 +476,31 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
             </motion.div>
 
             {/* Donate button */}
-<motion.div
-  className="text-center mt-12"
-  variants={itemVariants}
->
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    animate={{
-      scale: [1, 1.02, 1],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    }}
-  >
-    <Button
-      onClick={handleDonateProject}
-      className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white text-lg px-10 py-6 font-semibold rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#1F7A53]/50 transition-all duration-300"
-    >
-      <Heart className="w-5 h-5 mr-2" />
-      Donate for the Project
-    </Button>
-  </motion.div>
-</motion.div>
+            <motion.div
+              className="text-center mt-12"
+              variants={itemVariants}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  scale: [1, 1.02, 1],
+                  transition: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  },
+                }}
+              >
+                <Button
+                  onClick={handleDonateProject}
+                  className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white text-lg px-10 py-6 font-semibold rounded-full shadow-xl hover:shadow-2xl hover:shadow-[#1F7A53]/50 transition-all duration-300"
+                >
+                  <Heart className="w-5 h-5 mr-2" />
+                  {t('resources.donateForProject')}
+                </Button>
+              </motion.div>
+            </motion.div>
           </div>
         </motion.section>
 
@@ -527,10 +518,10 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
               variants={itemVariants}
             >
               <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                Quick Stats
+                {t('resources.quickStats')}
               </h2>
               <p className="text-xl text-white/90">
-                Measuring our progress in serving the community
+                {t('resources.statsDescription')}
               </p>
             </motion.div>
 
@@ -579,11 +570,10 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                 <Heart className="w-12 h-12 text-white" />
               </motion.div>
               <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-                Join Us
+                {t('resources.joinUs')}
               </h2>
               <p className="text-xl text-gray-600 mb-8">
-                Be part of our mission to nurture the next generation of knowledgeable,
-                righteous Muslims who will serve as beacons of light in their communities.
+                {t('resources.joinUsDescription')}
               </p>
             </motion.div>
 
@@ -599,16 +589,16 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     >
                       <Users className="w-full h-full" />
                     </motion.div>
-                    <h3 className="text-xl font-bold text-[#0B0D0E] mb-2">Students & Families</h3>
+                    <h3 className="text-xl font-bold text-[#0B0D0E] mb-2">{t('resources.studentsFamilies')}</h3>
                     <p className="text-gray-600 mb-4">
-                      Enroll in our programs and become part of a community dedicated to Islamic excellence.
+                      {t('resources.studentsFamiliesDescription')}
                     </p>
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button
                         onClick={handleJoinUs}
                         className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white w-full"
                       >
-                        Apply for Admission
+                        {t('resources.applyForAdmission')}
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </motion.div>
@@ -627,16 +617,16 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
                     >
                       <Building className="w-full h-full" />
                     </motion.div>
-                    <h3 className="text-xl font-bold text-[#0B0D0E] mb-2">Community Support</h3>
+                    <h3 className="text-xl font-bold text-[#0B0D0E] mb-2">{t('resources.communitySupport')}</h3>
                     <p className="text-gray-600 mb-4">
-                      Support our mission through donations, volunteering, or spreading awareness.
+                      {t('resources.communitySupportDescription')}
                     </p>
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button
                         onClick={handleDonateClick}
                         className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white w-full"
                       >
-                        Support Our Mission
+                        {t('resources.supportOurMission')}
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </motion.div>
@@ -652,7 +642,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              "And whoever saves a life, it is as if he has saved all of mankind" - Quran 5:32
+              "{t('resources.quranVerse')}" - {t('resources.quranVerseReference')}
             </motion.p>
           </div>
         </motion.section>

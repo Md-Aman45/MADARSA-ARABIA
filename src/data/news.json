@@ -1,82 +1,82 @@
-[
-  {
-    "slug": "admissions-open-2025",
-    "title": "Admissions Open for Academic Year 2025",
-    "date": "2025-01-15",
-    "tag": "Announcement",
-    "excerpt": "Applications are now open for the new academic year. Early bird discounts available until March 31st.",
-    "content": "We are pleased to announce that admissions for the Academic Year 2025 are now open. This year, we are offering expanded programs and new scholarship opportunities...",
-    "author": "Admin Office",
-    "category": "admissions"
-  },
-  {
-    "slug": "ramadan-schedule-2025",
-    "title": "Special Ramadan Schedule and Programs",
-    "date": "2025-03-10",
-    "tag": "Event",
-    "excerpt": "Special prayer times, iftar arrangements, and spiritual programs during the holy month of Ramadan.",
-    "content": "During the blessed month of Ramadan, our madrasa will implement a special schedule to accommodate students and faculty...",
-    "author": "Academic Affairs",
-    "category": "events"
-  },
-  {
-    "slug": "merit-scholarship-2025",
-    "title": "Merit-Based Scholarship Program Launched",
-    "date": "2025-02-20",
-    "tag": "Announcement",
-    "excerpt": "New scholarship opportunities for outstanding students across all departments and programs.",
-    "content": "We are excited to announce our new Merit-Based Scholarship Program, designed to support exceptional students...",
-    "author": "Financial Aid Office",
-    "category": "scholarships"
-  },
-  {
-    "slug": "digital-library-expansion",
-    "title": "Digital Library Collection Expanded",
-    "date": "2025-01-30",
-    "tag": "News",
-    "excerpt": "Our digital collection now includes over 5,000 Islamic manuscripts, books, and multimedia resources.",
-    "content": "The library is proud to announce a significant expansion of our digital collection...",
-    "author": "Library Services",
-    "category": "academics"
-  },
-  {
-    "slug": "graduation-ceremony-2024",
-    "title": "Annual Graduation Ceremony 2024",
-    "date": "2024-12-15",
-    "tag": "Event",
-    "excerpt": "Celebrating the achievements of our graduating class with distinguished guests and scholars.",
-    "content": "Our annual graduation ceremony was a remarkable celebration of academic achievement...",
-    "author": "Event Committee",
-    "category": "events"
-  },
-  {
-    "slug": "community-outreach-program",
-    "title": "Community Outreach Initiative Launched",
-    "date": "2024-11-20",
-    "tag": "News",
-    "excerpt": "Students and faculty engaging with local communities through educational and service initiatives.",
-    "content": "Our new Community Outreach Program aims to strengthen ties with the local community...",
-    "author": "Community Relations",
-    "category": "community"
-  },
-  {
-    "slug": "new-faculty-appointments",
-    "title": "Distinguished Scholars Join Faculty",
-    "date": "2024-10-25",
-    "tag": "Announcement",
-    "excerpt": "Welcoming renowned scholars to strengthen our academic programs and research capabilities.",
-    "content": "We are honored to welcome several distinguished scholars to our faculty...",
-    "author": "Human Resources",
-    "category": "faculty"
-  },
-  {
-    "slug": "technology-upgrade-2024",
-    "title": "Campus Technology Infrastructure Upgraded",
-    "date": "2024-09-18",
-    "tag": "News",
-    "excerpt": "New high-speed internet, modern classrooms, and enhanced digital learning platforms.",
-    "content": "Our commitment to modern education includes significant technology upgrades...",
-    "author": "IT Department",
-    "category": "infrastructure"
-  }
-]
+// [
+//   {
+//     "slug": "admissions-open-2025",
+//     "title": "Admissions Open for Academic Year 2025",
+//     "date": "2025-01-15",
+//     "tag": "Announcement",
+//     "excerpt": "Applications are now open for the new academic year. Early bird discounts available until March 31st.",
+//     "content": "We are pleased to announce that admissions for the Academic Year 2025 are now open. This year, we are offering expanded programs and new scholarship opportunities...",
+//     "author": "Admin Office",
+//     "category": "admissions"
+//   },
+//   {
+//     "slug": "ramadan-schedule-2025",
+//     "title": "Special Ramadan Schedule and Programs",
+//     "date": "2025-03-10",
+//     "tag": "Event",
+//     "excerpt": "Special prayer times, iftar arrangements, and spiritual programs during the holy month of Ramadan.",
+//     "content": "During the blessed month of Ramadan, our madrasa will implement a special schedule to accommodate students and faculty...",
+//     "author": "Academic Affairs",
+//     "category": "events"
+//   },
+//   {
+//     "slug": "merit-scholarship-2025",
+//     "title": "Merit-Based Scholarship Program Launched",
+//     "date": "2025-02-20",
+//     "tag": "Announcement",
+//     "excerpt": "New scholarship opportunities for outstanding students across all departments and programs.",
+//     "content": "We are excited to announce our new Merit-Based Scholarship Program, designed to support exceptional students...",
+//     "author": "Financial Aid Office",
+//     "category": "scholarships"
+//   },
+//   {
+//     "slug": "digital-library-expansion",
+//     "title": "Digital Library Collection Expanded",
+//     "date": "2025-01-30",
+//     "tag": "News",
+//     "excerpt": "Our digital collection now includes over 5,000 Islamic manuscripts, books, and multimedia resources.",
+//     "content": "The library is proud to announce a significant expansion of our digital collection...",
+//     "author": "Library Services",
+//     "category": "academics"
+//   },
+//   {
+//     "slug": "graduation-ceremony-2024",
+//     "title": "Annual Graduation Ceremony 2024",
+//     "date": "2024-12-15",
+//     "tag": "Event",
+//     "excerpt": "Celebrating the achievements of our graduating class with distinguished guests and scholars.",
+//     "content": "Our annual graduation ceremony was a remarkable celebration of academic achievement...",
+//     "author": "Event Committee",
+//     "category": "events"
+//   },
+//   {
+//     "slug": "community-outreach-program",
+//     "title": "Community Outreach Initiative Launched",
+//     "date": "2024-11-20",
+//     "tag": "News",
+//     "excerpt": "Students and faculty engaging with local communities through educational and service initiatives.",
+//     "content": "Our new Community Outreach Program aims to strengthen ties with the local community...",
+//     "author": "Community Relations",
+//     "category": "community"
+//   },
+//   {
+//     "slug": "new-faculty-appointments",
+//     "title": "Distinguished Scholars Join Faculty",
+//     "date": "2024-10-25",
+//     "tag": "Announcement",
+//     "excerpt": "Welcoming renowned scholars to strengthen our academic programs and research capabilities.",
+//     "content": "We are honored to welcome several distinguished scholars to our faculty...",
+//     "author": "Human Resources",
+//     "category": "faculty"
+//   },
+//   {
+//     "slug": "technology-upgrade-2024",
+//     "title": "Campus Technology Infrastructure Upgraded",
+//     "date": "2024-09-18",
+//     "tag": "News",
+//     "excerpt": "New high-speed internet, modern classrooms, and enhanced digital learning platforms.",
+//     "content": "Our commitment to modern education includes significant technology upgrades...",
+//     "author": "IT Department",
+//     "category": "infrastructure"
+//   }
+// ]

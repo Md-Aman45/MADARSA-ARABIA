@@ -8,30 +8,20 @@ import Pagination from './news/Pagination';
 import { ITEMS_PER_PAGE } from './news/constants';
 import { FALLBACK_NEWS_DATA } from './news/fallbackData';
 import { filterNews, paginateNews } from './news/utils';
+import { useTranslation } from 'react-i18next';
 
 interface NewsPageProps {
   onPageChange: (page: string) => void;
 }
 
 const NewsPage: React.FC<NewsPageProps> = ({ onPageChange }) => {
+  const { t } = useTranslation();
   const [news, setNews] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    const loadNews = async () => {
-      try {
-        const response = await fetch('/data/news.json');
-        const data = await response.json();
-        setNews(data);
-      } catch (error) {
-        setNews(FALLBACK_NEWS_DATA);
-      }
-    };
-
-    loadNews();
-  }, []);
+ 
 
   const filteredNews = filterNews(news, selectedCategory);
   const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
@@ -44,9 +34,9 @@ const NewsPage: React.FC<NewsPageProps> = ({ onPageChange }) => {
 
   if (selectedArticle) {
     return (
-      <ArticleView 
-        article={selectedArticle} 
-        onBack={() => setSelectedArticle(null)} 
+      <ArticleView
+        article={selectedArticle}
+        onBack={() => setSelectedArticle(null)}
       />
     );
   }
@@ -57,10 +47,10 @@ const NewsPage: React.FC<NewsPageProps> = ({ onPageChange }) => {
       <section className="bg-gradient-to-br from-[#E8F5EF] via-white to-[#EAF2FB] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold text-[#0B0D0E] mb-4">
-            News & Notices
+            {t('newsPage.header.title')}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Stay updated with the latest announcements, events, and news from our institution
+            {t('newsPage.header.subtitle')}
           </p>
         </div>
       </section>
@@ -68,7 +58,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ onPageChange }) => {
       {/* Filter Tabs */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <CategoryTabs 
+          <CategoryTabs
             selectedCategory={selectedCategory}
             onCategoryChange={setSelectedCategory}
           />
@@ -97,29 +87,28 @@ const NewsPage: React.FC<NewsPageProps> = ({ onPageChange }) => {
       <section className="py-16 bg-gradient-to-r from-[#1F7A53] to-[#1E5FA8] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Stay Connected
+            {t('newsPage.cta.title')}
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Don't miss important updates about admissions, events, and programs. 
-            Join our community and be part of our educational journey.
+            {t('newsPage.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
+            <Button
               size="lg"
               variant="secondary"
               className="bg-white text-[#1F7A53] hover:bg-white/90"
               onClick={() => onPageChange('contact')}
             >
               <GraduationCap className="w-5 h-5 mr-2" />
-              Apply Now
+              {t('newsPage.cta.applyNow')}
             </Button>
-            <Button 
+            <Button
               size="lg"
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-[#1F7A53]"
               onClick={() => onPageChange('about')}
             >
-              Learn More About Us
+              {t('newsPage.cta.learnMore')}
             </Button>
           </div>
         </div>

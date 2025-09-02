@@ -1,295 +1,692 @@
 {
-  "header": {
+  "locale": "en-US",
+  "nav": {
     "home": "Home",
     "about": "About Us",
     "programs": "Programs",
-    "ourMission": "Our Mission",
+    "resources": "Our Mission",
     "notice": "Notice",
-    "contact": "Contact",
-    "logoTitle": "Madrasa Al-Noor",
-    "logoSubtitle": "Islamic Education and Guidance",
-    "logoAriaLabel": "Madrasa Al-Noor Home",
-    "languageSwitcherAriaLabel": "Language Switcher",
-    "mainNavigation": "Main Navigation",
-    "mobileNavigation": "Mobile Navigation",
-    "openMenu": "Open Menu",
-    "closeMenu": "Close Menu",
-    "languages": {
-      "en": "English",
-      "hi": "Hindi",
-      "ur": "Urdu",
-      "enAriaLabel": "Switch to English",
-      "hiAriaLabel": "Switch to Hindi",
-      "urAriaLabel": "Switch to Urdu"
-    }
+    "contact": "Contact Us"
+  },
+  "heroSection": {
+    "mainHeadline": "Madrasa Arabia",
+    "subHeadline": "Tajweedul Quran",
+    "description": "Madrasa Arabia is a beacon of Islamic education, dedicated to nurturing students with profound knowledge of the Quran, Sunnah, and Islamic sciences. We aim to develop individuals who possess piety, wisdom, and a deep understanding of their faith, contributing positively to society.",
+    "explorePrograms": "Explore Programs",
+    "donate": "Donate"
+  },
+  "hero": {
+    "title": "Madrasa Arabia",
+    "tagline": "Tajweedul Quran"
+  },
+  "cta": {
+    "donateNowMessage": "I want to donate to your madrasa, please tell me where I can donate and earn blessings."
+  },
+  "common": {
+    "donateNow": "Donate Now"
   },
   "home": {
-    "hero": {
-      "badge": "Excellence in Islamic Education",
-      "title1": "Precision in Recitation.",
-      "title2": "Depth in Knowledge.",
-      "title3": "Service to Community.",
-      "description": "Join our esteemed institution dedicated to preserving and teaching the sacred knowledge of Islam through traditional and modern methodologies.",
-      "explorePrograms": "Explore Programs",
-      "donate": "Donate",
-      "photos": {
-        "academicBuilding": {
-          "title": "Main Academic Building",
-          "description": "Our state-of-the-art academic facilities"
+    "students": "Students",
+    "teachers": "Teachers",
+    "graduates": "Graduates",
+    "branches": "Branches",
+    "excellenceInIslamicEducation": "Excellence in Islamic Education"
+  },
+  "madrasaPhotos": {
+    "mainAcademicBuildingTitle": "Main Academic Building",
+    "mainAcademicBuildingDescription": "Our state-of-the-art academic facilities",
+    "studentLibraryTitle": "Student Library",
+    "studentLibraryDescription": "Extensive collection of Islamic literature",
+    "prayerHallMosqueTitle": "Prayer Hall and Mosque",
+    "prayerHallMosqueDescription": "Beautiful mosque for daily prayers and gatherings",
+    "studentDormsTitle": "Student Dormitories",
+    "studentDormsDescription": "Comfortable accommodation for students",
+    "campusCourtyardTitle": "Campus Courtyard",
+    "campusCourtyardDescription": "Peaceful environment for reflection and study",
+    "classroomFacilitiesTitle": "Classroom Facilities",
+    "classroomFacilitiesDescription": "Modern learning environment with traditional values"
+  },
+  "programsSection": {
+    "title": "Our Programs and Courses",
+    "subtitle": "Comprehensive Islamic education in various disciplines, taught by qualified scholars and experienced teachers.",
+    "learnMore": "Learn More",
+    "viewAllPrograms": "View All Programs"
+  },
+  "noticeSection": {
+    "title": "Latest Notices and Announcements",
+    "subtitle": "Stay updated with our latest announcements and events.",
+    "viewAllNotice": "View All Notices",
+    "readMore": "Read More"
+  },
+  "testimonialsSection": {
+    "title": "What Our Students Say",
+    "subtitle": "Hear from our graduates and current students about their experiences."
+  },
+  "campusLifeSection": {
+    "title": "Campus Life",
+    "altText": "Campus Life",
+    "play": "Play",
+    "pause": "Pause"
+  },
+  "donationCta": {
+    "title": "Support Islamic Education",
+    "description": "Your contribution helps us provide quality Islamic education, maintain our facilities, and support deserving students through scholarships.",
+    "donateNow": "Donate Now",
+    "learnMore": "Learn More"
+  },
+  "programsPage": {
+    "coursesHeader": "Our Courses",
+    "coursesSubtitle": "Explore a diverse range of Islamic and modern education courses.",
+    "tabs": {
+      "allCourses": "All Courses",
+      "academicCourses": "Academic Courses",
+      "servicesFacilities": "Services and Facilities"
+    },
+    "about": {
+      "pageTitle": "About Our Institution",
+      "pageSubtitle": "Committed to excellence in Islamic education, spiritual growth, and community service for over 40 years.",
+      "journeyTitle": "Our Journey and Legacy",
+      "journeySubtitle": "A rich history of spreading knowledge, rooted in the dedication of our founders.",
+      "madrasaTitle": "Madrasa Arabia Tajweedul Quran",
+      "establishment": "Establishment",
+      "establishmentYear": "1404 Hijri / 1984 CE",
+      "patrons": "Patrons",
+      "patronsNames": "Hazrat Maulana Qari Syed Siddiq Ahmad Sahab Bandwi (Rahmatullah Alaih) and Hazrat Maulana Mufti Mahmoodul Hasan Sahab Deobandi (Rahmatullah Alaih).",
+      "founder": "Founder",
+      "founderName": "Hazrat Maulana Syed Siddiqui Ahmad Sahab.",
+      "madrasaHistory": "Madrasa Arabia Tajweedul Quran is located in Masauni, Post Office Kalinjar, Tehsil Naraini, District Banda (UP). Surrounded by hills and a renowned heritage site (Kalinjar Fort), this area of Masauni was considered backward in terms of religion, education, and morality. The great Islamic scholar, Hazrat Allama, Faqih-e-Millat, Hazrat Maulana Syed Qari Siddiq Ahmad Sahab Bandwi (Rahmatullah Alaih), along with Mufti Mahmoodul Hasan Sahab Deobandi (Rahmatullah Alaih), and their disciple and the founder of this madrasa, Hazrat Maulana Syed Siddiq Ahmad Masauni (Rahmatullah Alaih), laid the foundation of this madrasa in 1984 (1404 Hijri).",
+      "founderDedication": "Hazrat Maulana Syed Siddiq Ahmad Masauni (Rahmatullah Alaih) had a deep devotion to Islam and a fervent desire to revive the Sunnah. He started this madrasa in the courtyard of his own home to provide a sacred space where Muslim children could learn to recite the Holy Quran with proper **Tajweed** (pronunciation rules). With the support of local people and the generosity of sincere Muslims, this holy institution came into existence. After him, the responsibility of running the madrasa was entrusted to the current principal, **Hazrat Maulana Syed Abdul Tawwab Sahab**. Since then, under the supervision of virtuous and sincere individuals, the madrasa has been continuously progressing. By the grace of Allah, it is a remarkable example of religious and educational progress for the region and surrounding areas.",
+      "currentStatus": "The madrasa is engaged in its noble mission with sincerity and determination. Currently, it has **26 teachers** and approximately **515 students**, along with **13 branches** in the surrounding areas, whose expenses are also managed by the madrasa. In addition to religious education, provisions are made for modern and academic studies. The madrasa's expenses are entirely dependent on the generosity of Muslims, as it has no permanent source of income.",
+      "educationDetails": "Currently, around 515 students are studying here. Every year, approximately 80-100 students complete Nazra Quran (recitation with Tajweed). Additionally, the madrasa offers **Hifz** and **Aalimiyat** departments. All these courses are maintained through the curriculum of **Darul Uloom Nadwa, Lucknow**. The madrasa also has several departments and courses that help students shine like diamonds in the future. These children then become a source of joy for their parents and a means of continuous reward for the madrasa's founders.",
+      "girlsSectionTitle": "Jamia Fatima Zahra Lilbanat (Girls' Section)",
+      "girlsSectionText": "Madrasa Arabia Tajweedul Quran also runs an Islamic institution for girls, currently operating in a small house with a total of 90 female students, all from the local area. People from surrounding areas and various cities wish to send their daughters to this institution for girls, but due to the lack of residential and hostel facilities, we are unable to cover their expenses or provide them with proper comfort. However, the educational facilities are excellent and as good or better than those provided for boys. By the grace of Allah and through your prayers, land for the madrasa has already been acquired. Now, only the construction of the building and other necessary tasks remain, for which we need your good wishes and participation in this project.",
+      "founderSectionTitle": "Our Esteemed Founder",
+      "founderWordsTitle": "Words from Our Founder",
+      "founderMessage": "Dear Muslim Brothers,",
+      "founderMessageText1": "I feel proud and honored to introduce the services of Madrasa Arabia Tajweedul Quran, located in Village Masauni, Post Office Kalinjar, Tehsil Naraini, District Banda (UP) 210129, India.",
+      "founderMessageText2": "In 1984, I was deeply saddened to see the trend of Muslims in my village and surrounding areas converting to other religions, with some already having left Islam. I realized this was due to the absence of a madrasa providing Islamic education.",
+      "founderMessageText3": "For me, education was never limited to mere literacy; it was a means of character building, nurturing the soul, and preparing future generations to walk the path shown by Allah ﷻ and His beloved Prophet Muhammad ﷺ. Inspired by the Prophet’s saying, 'Seeking knowledge is obligatory upon every Muslim (male and female),' I established this institution where children learn Islamic values such as honesty, compassion, humility, and respect.",
+      "founderMessageText4": "Initially, I dedicated my spare time to teaching students. By the grace of Allah, generous individuals donated land, and construction began. We started with a few rooms with mud walls and tiled roofs, and students from outside started residing there. Over time, with the help of students, construction continued despite significant challenges.",
+      "founderMessageText5": "The dedication of our teaching staff, who persevered despite limited resources, is commendable. May Allah grant them immense blessings (Ameen). May Allah make this effort successful and alleviate their difficulties (Ameen).",
+      "founderSignature": "- Hazrat Maulana Syed Siddiq Ahmad Masauni (R.A), Founder",
+      "nazimSectionTitle": "Nazim’s Message",
+      "nazimMessageTitle": "Message from Maulana Abdul Tawwab Sahab",
+      "nazimMessageText1": "We respectfully inform all friends and concerned individuals that the esteemed founder of Madrasa Arabia Tajweedul Quran Masauni, Hazrat Maulana Syed Siddiq Ahmad Masauni (Rahmatullah Alaih), passed away on 6 June 2013 (1418 Hijri).",
+      "nazimMessageText2": "Despite my hesitation and Maulana’s reservations, I was entrusted with the responsibility of carrying forward his legacy. Alhamdulillah, over the past twelve years, with the blessings of the founder, the guidance of our respected elders, and the support of well-wishers, I have continued this work, which has brought me a sense of fulfillment.",
+      "nazimMessageText3": "Apart from the madrasa, we continuously strive to meet the religious and cultural needs of our community.",
+      "nazimMessageText4": "Introduction to Madrasa Arabia Tajweedul Quran Masauni: We have created an introductory website with essential information, images, and my father’s appeal from 1984. We hope this will prove valuable for all well-wishers.",
+      "nazimMessageText5": "I sincerely invite everyone to personally visit our institution. Your presence will be a source of inspiration. May Allah bless us all.",
+      "nazimSignature": "- Maulana Abdul Tawwab Sahab, Nazim",
+      "libraryName": "Library",
+      "libraryDescription": "A comprehensive collection of Islamic and modern texts.",
+      "hostelName": "Hostel",
+      "hostelDescription": "Comfortable and secure accommodation for students.",
+      "mosqueName": "Mosque",
+      "mosqueDescription": "A serene place for prayers and spiritual gatherings.",
+      "computerLabName": "Computer Lab",
+      "computerLabDescription": "Equipped with modern computers and internet access.",
+      "medicalFacilityName": "Medical Facility",
+      "medicalFacilityDescription": "On-campus medical assistance for students and staff.",
+      "timeline": {
+        "foundation": {
+          "title": "Foundation",
+          "description": "Established with the vision of providing authentic Islamic education"
         },
-        "studentLibrary": {
-          "title": "Student Library",
-          "description": "Extensive collection of Islamic literature"
+        "libraryExpansion": {
+          "title": "Library Expansion",
+          "description": "Added a comprehensive library with over 5,000 books and manuscripts"
         },
-        "prayerHall": {
-          "title": "Prayer Hall and Mosque",
-          "description": "Beautiful mosque for daily prayers and gatherings"
+        "hostelFacility": {
+          "title": "Hostel Facility",
+          "description": "Opened a student hostel to accommodate outstation students"
         },
-        "dormitories": {
-          "title": "Dormitories",
-          "description": "Comfortable accommodation for students"
+        "darulIfta": {
+          "title": "Launch of Darul Ifta",
+          "description": "Started fatwa services to serve the wider Muslim community"
         },
-        "courtyard": {
-          "title": "Campus Courtyard",
-          "description": "Peaceful environment for reflection and study"
+        "digitalInitiative": {
+          "title": "Digital Initiative",
+          "description": "Launched an online learning platform and digital resources"
         },
-        "classrooms": {
-          "title": "Classroom Facilities",
-          "description": "Modern learning environment with traditional values"
+        "anniversary": {
+          "title": "25 Years of Service",
+          "description": "Celebrated a quarter-century of educational excellence"
+        }
+      },
+      "principalName": "Maulana Abdul Tawwab Sahab",
+      "principalPosition": "Principal",
+      "vicePrincipalName": "Mufti Mohammad Imran Sahab",
+      "vicePrincipalPosition": "Vice Principal",
+      "missionTitle": "Our Mission",
+      "missionText": "To provide authentic Islamic education rooted in the Quran and Sunnah, fostering scholarly excellence, spiritual growth, and moral character. We aim to prepare knowledgeable and righteous individuals who can serve their communities with wisdom and dedication.",
+      "visionTitle": "Our Vision",
+      "visionText": "To become a leading center of Islamic education that blends traditional scholarship with contemporary understanding, producing graduates proficient in Islamic sciences and capable of addressing modern challenges while upholding authentic Islamic values.",
+      "leadershipTitle": "Leadership & Administration",
+      "leadershipSubtitle": "Experienced scholars and educators leading our institution",
+      "campusTitle": "Campus & Facilities",
+      "campusSubtitle": "Our modern campus provides an ideal environment for learning, worship, and community life, equipped with state-of-the-art facilities.",
+      "affiliatedTitle": "Affiliation",
+      "affiliatedText": "Darul Uloom Nadwatul Ulama, Lucknow (UP), India",
+      "campusLifeTitle": "Campus Life",
+      "brochureTitle": "Download Our Brochure",
+      "brochureDescription": "Get detailed information about our programs, facilities, admission procedures, and everything you need to know about joining our institution.",
+      "downloadPDF": "Download PDF",
+      "contactAdmissions": "Contact Admissions"
+    },
+    "academic": {
+      "tajweed": {
+        "name": "Quran Tajweed",
+        "summary": "An in-depth program to master the recitation and rules of Tajweed.",
+        "description": "This program focuses on the accurate pronunciation of Arabic letters, understanding the rules of Tajweed, and reciting the Holy Quran beautifully. Students will learn both the theoretical and practical aspects of Tajweed to recite the Quran as it was revealed.",
+        "prerequisites": "Basic ability to read Arabic script."
+      },
+      "naajrah": {
+        "name": "Primary Education (Nazra)",
+        "summary": "Foundational education for Quran recitation and basic Islamic knowledge.",
+        "description": "The Nazra program is designed for beginners, focusing on the foundations of Quran recitation with basic Tajweed rules.",
+        "prerequisites": "No prior knowledge required."
+      },
+      "hifz": {
+        "name": "Hifz (Quran Memorization)",
+        "summary": "Dedicated program to memorize the entire Holy Quran.",
+        "description": "The Hifz program is for students who wish to memorize the entire Quran. Under the guidance of experienced Huffaz, students will memorize the Quran systematically, focusing on accuracy, retention, and proper recitation.",
+        "prerequisites": "Proficiency in reading the Quran with Tajweed."
+      },
+      "aalimiyat": {
+        "name": "Five-Year Arabic Course (Aalimiyat)",
+        "summary": "Comprehensive study of Islamic sciences leading to scholarly expertise.",
+        "description": "The Aalimiyat program is a rigorous five-year course covering various Islamic sciences—Arabic language and grammar, Tafsir (Quranic exegesis), Hadith, Fiqh (Islamic jurisprudence), Usul al-Fiqh, and Islamic history.",
+        "prerequisites": "Completion of primary Islamic education or equivalent."
+      },
+      "computerScience": {
+        "name": "Computer Science Department",
+        "summary": "Modern education in computer science alongside Islamic studies.",
+        "description": "This department offers a unique blend of traditional Islamic studies with modern computer science education. Students will learn programming, software development, and other IT skills.",
+        "prerequisites": "Basic computer literacy."
+      },
+      "ncertCourses": {
+        "name": "NCERT Courses",
+        "summary": "Integration of national curriculum with Islamic education.",
+        "description": "We offer NCERT-based courses to ensure our students receive a balanced education aligned with national educational standards.",
+        "prerequisites": "Admission based on academic assessment."
+      },
+      "bazmSiddiq": {
+        "name": "Bazm-e-Siddiq (Student Association)",
+        "summary": "Student association promoting leadership, public speaking, and extracurricular activities.",
+        "description": "Bazm-e-Siddiq is a student association that organizes various extracurricular activities, including debates, speeches, literary events, and community service projects.",
+        "prerequisites": ""
+      },
+      "arabicLiterature": {
+        "name": "Arabic Literature",
+        "summary": "In-depth study of classical and modern Arabic literature.",
+        "description": "This program provides an in-depth study of the rich history of Arabic literature—classical texts, poetry, and modern literary works.",
+        "prerequisites": "Proficiency in Arabic language."
+      },
+      "majlisTalaba": {
+        "name": "Majlis-e-Talaba (Student Council)",
+        "summary": "Student council managing student welfare and campus events.",
+        "description": "Majlis-e-Talaba is the student council responsible for representing student interests and fostering a positive educational environment."
+      },
+      "girlsEducation": {
+        "name": "Girls' Education",
+        "summary": "Dedicated Islamic and academic programs for girls.",
+        "description": "We offer specialized programs for girls, providing comprehensive Islamic education and academic subjects in a safe and supportive environment."
+      }
+    },
+    "service": {
+      "diningHall": {
+        "name": "Dining Hall",
+        "summary": "Nutritious and hygienic meals provided in a spacious dining facility.",
+        "description": "Our dining hall provides nutritious and hygienic meals for all students and staff.",
+        "facilities": {
+          "hygienicKitchen": "Hygienic Kitchen",
+          "spaciousSeating": "Spacious Seating Area",
+          "regularMealService": "Regular Meal Service (Breakfast, Lunch, Dinner)",
+          "specialDietaryAccommodations": "Special Dietary Accommodations"
+        }
+      },
+      "playground": {
+        "name": "Playground",
+        "summary": "Extensive outdoor area for sports and recreation.",
+        "description": "Our campus includes a large playground equipped for various sports.",
+        "facilities": {
+          "cricketPitch": "Cricket Pitch",
+          "footballField": "Football Field",
+          "runningTrack": "Running Track",
+          "sportsEquipment": "Sports Equipment Available"
+        }
+      },
+      "medicalRoom": {
+        "name": "Medical Room",
+        "summary": "On-campus medical facility with qualified staff for student healthcare.",
+        "description": "A dedicated medical room on campus provides first aid and basic healthcare services by qualified medical staff.",
+        "facilities": {
+          "firstAid": "First Aid and Basic Treatment",
+          "emergencyCare": "Emergency Care and Referral",
+          "regularCheckups": "Regular Health Checkups",
+          "medicationDispensation": "Medication Dispensation (Per Prescription)"
+        }
+      },
+      "lectureHall": {
+        "name": "Lecture Hall",
+        "summary": "Modern lecture halls equipped with audio-visual aids.",
+        "description": "Our lecture halls are designed with modern audio-visual equipment, comfortable seating, and a conducive environment for presentations.",
+        "facilities": {
+          "audioVisualSystems": "Advanced Audio-Visual Systems",
+          "climateControl": "Climate Control",
+          "comfortableSeating": "Comfortable Seating",
+          "presentationEquipment": "Presentation Equipment (Projector, Whiteboard)"
+        }
+      },
+      "bigMessKitchen": {
+        "name": "Large Kitchen",
+        "summary": "Kitchen for large-scale meal preparation for the community.",
+        "description": "Our state-of-the-art kitchen is capable of preparing meals for a large number of students and staff.",
+        "facilities": {
+          "industrialEquipment": "Industrial Cooking Equipment",
+          "hygienicPreparation": "Hygienic Food Preparation",
+          "storageFacilities": "Ample Storage Facilities",
+          "professionalStaff": "Experienced Culinary Staff"
         }
       }
     },
+    "categories": {
+      "allCourses": "All Courses",
+      "academicCourses": "Academic Courses",
+      "servicesFacilities": "Services and Facilities"
+    },
+    "card": {
+      "service": "Service",
+      "academic": "Academic",
+      "moreInfo": "More Information"
+    },
+    "programDetail": {
+      "whatsappMessage": "I am interested in the {programName} program. Please provide me with more details.",
+      "supportingJourneyTitle": "Supporting Your Educational Journey",
+      "beyondAcademics": "Beyond Academics: Holistic Development"
+    },
+    "programOverview": "Program Overview",
+    "facilitiesAvailable": "Available Facilities",
+    "studentsCount": "Students",
+    "loadingPrograms": "Loading Programs...",
+    "contactNow": "Contact Now",
+    "inquireWhatsappMessage": "I would like to inquire about Madrasa Arabia’s programs. Please provide more details.",
+    "backToPrograms": "← Back to Programs",
+    "digitalResourcesTitle": "Digital Resources and E-Learning",
+    "digitalResourcesDescription": "Access to a wide range of digital Islamic texts, online courses, and e-learning platforms to complement traditional classroom education.",
+    "diningServicesTitle": "Nutritious Dining Services",
+    "diningServicesDescription": "Nutritious and hygienic meals provided in a spacious dining hall, ensuring students have the energy needed for learning.",
+    "studentWelfareTitle": "Comprehensive Student Welfare",
+    "studentWelfareDescription": "Dedicated support services, including counseling, medical assistance, and recreational activities, to ensure every student’s well-being and holistic development.",
+    "readyToBeginJourney": "Ready to Begin Your Journey?",
+    "joinCommunity": "Join Our Community of Learners",
+    "applyNow": "Apply Now",
+    "donate": "Donate"
+  },
+  "departmentsPage": {
+    "pageTitle": "Our Departments and Facilities",
+    "pageSubtitle": "Explore all our academic and service programs.",
+    "backToDepartments": "← Back to Departments",
+    "programDetails": "Program Details",
+    "duration": "Duration",
+    "prerequisites": "Prerequisites",
+    "classSize": "Class Size",
+    "classSizeValue": "Personalized Guidance",
+    "readyToApplyTitle": "Ready to Apply?",
+    "readyToApplyDescription": "Learn about our admission process and begin your educational journey.",
+    "applyNow": "Apply Now",
+    "categories": {
+      "allPrograms": "All Programs",
+      "academicPrograms": "Academic Programs",
+      "servicesFacilities": "Services and Facilities"
+    },
+    "card": {
+      "service": "Service",
+      "academic": "Academic",
+      "learnMore": "Learn More"
+    },
+    "programOverview": "Program Overview",
+    "facilitiesAvailable": "Available Facilities",
+    "digitalResourcesTitle": "Digital Resources and E-Learning",
+    "digitalResourcesDescription": "Access to digital Islamic texts, online courses, and e-learning platforms to complement traditional classroom education.",
+    "diningServicesTitle": "Nutritious Dining Services",
+    "diningServicesDescription": "Nutritious and hygienic meals provided in a spacious dining hall, ensuring students receive the nourishment needed for effective learning.",
+    "studentWelfareTitle": "Comprehensive Student Welfare",
+    "studentWelfareDescription": "Dedicated services including counseling, medical assistance, and recreational activities to ensure every student’s well-being and holistic development.",
+    "readyToBeginJourney": "Ready to Begin Your Journey?",
+    "joinCommunity": "Join Our Community",
+    "learnMoreAboutUs": "Learn More About Us",
+    "tajweed": {
+      "slug": "tajweed",
+      "name": "Quran Tajweed",
+      "summary": "In-depth program to master the rules and pronunciation of Quranic recitation.",
+      "description": "This program focuses on the correct articulation of Arabic letters, understanding Tajweed rules, and reciting the Holy Quran beautifully.",
+      "duration": "2 Years",
+      "prerequisites": "Basic ability to read Arabic script."
+    },
+    "hifz": {
+      "slug": "hifz",
+      "name": "Hifz (Quran Memorization)",
+      "summary": "Dedicated program to memorize the entire Holy Quran.",
+      "description": "The Hifz program is for students who wish to memorize the entire Quran. Under the guidance of experienced Huffaz, students will memorize systematically.",
+      "duration": "3-5 Years",
+      "prerequisites": "Proficiency in reading the Quran with Tajweed."
+    },
+    "hadith": {
+      "slug": "hadith",
+      "name": "Hadith Studies",
+      "summary": "Study of the Prophet’s ﷺ traditions, their texts, methodology, and interpretation.",
+      "description": "In-depth study of authentic Hadith collections, including Sahih Bukhari, Sahih Muslim, and other classical works. Students gain proficiency in Hadith sciences and their practical application.",
+      "duration": "4 Years",
+      "prerequisites": "Intermediate Arabic proficiency."
+    },
+    "fiqh": {
+      "slug": "fiqh",
+      "name": "Fiqh and Usul",
+      "summary": "Principles of Islamic jurisprudence and their practical application in daily life.",
+      "description": "This course covers worship, transactions, family matters, and contemporary issues. Students gain proficiency in legal reasoning and fatwa methodology.",
+      "duration": "5 Years",
+      "prerequisites": "Advanced Arabic and basic Islamic studies."
+    },
+    "arabic": {
+      "slug": "arabic",
+      "name": "Arabic Language",
+      "summary": "Development of classical Arabic grammar, morphology, and comprehension skills.",
+      "description": "This program covers Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature—foundational for all Islamic studies.",
+      "duration": "3 Years",
+      "prerequisites": "Basic literacy."
+    },
+    "library": {
+      "slug": "library",
+      "name": "Library Services",
+      "summary": "Comprehensive catalog, reading rooms, and digital resources for research and study.",
+      "description": "Modern library with over 15,000 books, manuscripts, and digital resources. Quiet study spaces and research support are available for students and faculty.",
+      "facilities": [
+        "Reading Halls",
+        "Digital Archives",
+        "Reference Section",
+        "Manuscript Collection"
+      ]
+    },
+    "hostel": {
+      "slug": "hostel",
+      "name": "Student Hostel",
+      "summary": "On-campus accommodation with comprehensive student welfare facilities.",
+      "description": "Safe and comfortable accommodation for outstation students, including meals, study rooms, recreational facilities, and 24/7 supervision.",
+      "facilities": [
+        "Residential Rooms",
+        "Dining Hall",
+        "Study Rooms",
+        "Recreational Area",
+        "Medical Care"
+      ]
+    },
+    "mosque": {
+      "slug": "mosque",
+      "name": "Campus Mosque",
+      "summary": "Central place of worship for daily prayers and community programs.",
+      "description": "Our beautiful campus mosque serves as the spiritual center. Regular congregational prayers, Friday sermons, and special programs are held throughout the year.",
+      "facilities": [
+        "Prayer Halls",
+        "Wudu (Ablution) Areas",
+        "Community Hall",
+        "Audio System"
+      ]
+    }
+  },
+  "resources": {
+    "ourMissionVision": "Our Mission and Vision",
+    "nurturingFaithKnowledgeService": "Nurturing faith, knowledge, and service through authentic Islamic education.",
+    "ourMission": "Our Mission",
+    "missionDescription": "To provide a holistic and authentic Islamic education rooted in the Quran and Sunnah. We aim to nurture individuals who are not only proficient in religious sciences but also possess strong moral character, intellectual curiosity, and a commitment to serving humanity.",
+    "quranBased": "Quran-Based",
+    "characterBuilding": "Character Building",
+    "modernExcellence": "Modern Excellence",
+    "quranQuote": "The best of you is the one who learns the Quran and teaches it.",
+    "quranReference": "Sahih Al-Bukhari",
+    "ourCoreGoals": "Our Core Goals",
+    "coreGoalsDescription": "Our mission is focused on achieving several key objectives to empower our students and strengthen the community.",
+    "producingHuffaz": "Producing Huffaz",
+    "producingHuffazDescription": "Training students to memorize the entire Quran with correct Tajweed and a deep understanding of its meanings.",
+    "makingQuranSimple": "Making the Quran Simple",
+    "makingQuranSimpleDescription": "Simplifying the teachings of the Quran for the new generation to make them accessible and relevant to their lives.",
+    "promotingArabicLanguage": "Promoting the Arabic Language",
+    "promotingArabicLanguageDescription": "Encouraging proficiency in the Arabic language, the key to unlocking the treasures of Islamic knowledge.",
+    "strengtheningUrduMotherTongue": "Strengthening Urdu as a Mother Tongue",
+    "strengtheningUrduMotherTongueDescription": "Promoting love and proficiency in the Urdu language, essential for accessing classical and contemporary Islamic literature.",
+    "buildingTrustworthyInstitution": "Building a Trustworthy Institution",
+    "buildingTrustworthyInstitutionDescription": "Creating a trusted and reputable center of Islamic education that serves the community with integrity and transparency.",
+    "onGoingConstruction": "Ongoing Construction",
+    "onGoingConstructionDescription": "Join us in building the foundation for a new future. Your support helps us expand our facilities for the next generation.",
+    "donateForProject": "Donate for the Project",
+    "whatsappDonationMessage": "I want to support your mission through donation. Please share details on WhatsApp.",
+    "whatsappProjectDonationMessage": "I want to donate to your ongoing construction project. Please provide details.",
+    "quickStats": "Quick Stats",
+    "statsDescription": "A snapshot of our progress in serving the community",
     "stats": {
-      "yearsOfService": "Years of Service",
-      "students": "Students",
-      "programs": "Programs",
-      "faculty": "Faculty"
+      "huffazTraining": "Huffaz in Training",
+      "qualifiedTeachers": "Qualified Teachers",
+      "studentsBenefited": "Students Benefited",
+      "programs": "Programs"
     },
+    "construction": {
+      "phase1": {
+        "subheading": "Phase 1",
+        "details": "Construction of the main gate and Hazrat Abu Bakr Siddiq (R.A) Hostel is underway."
+      },
+      "phase2": {
+        "subheading": "Phase 2",
+        "details": "Construction of the main gate and Hazrat Abu Bakr Siddiq (R.A) Hostel is underway."
+      },
+      "phase3": {
+        "subheading": "Phase 3",
+        "details": "Construction of a guest house and nursing home at the back of the campus is proposed. This work is still pending."
+      },
+      "phase4": {
+        "subheading": "Phase 4",
+        "details": "Work on new student accommodation facilities has begun."
+      },
+      "phase5": {
+        "subheading": "Phase 5",
+        "details": "This is the land where the madrasa is set to build an important project for its students to provide them with better facilities."
+      }
+    },
+    "joinUs": "Join Us",
+    "joinUsDescription": "Be part of our mission to prepare the next generation of knowledgeable and virtuous Muslims who will shine as beacons in their communities.",
+    "studentsFamilies": "Students and Families",
+    "studentsFamiliesDescription": "Enroll in our programs and become part of a community dedicated to Islamic excellence.",
+    "applyForAdmission": "Apply for Admission",
+    "communitySupport": "Community Support",
+    "communitySupportDescription": "Support our mission through donations, volunteering, or spreading awareness.",
+    "supportOurMission": "Support Our Mission",
+    "quranVerse": "And whoever saves one life, it is as if he has saved the whole of humanity.",
+    "quranVerseReference": "Quran 5:32"
+  },
+  "footer": {
+    "aboutText": "Madrasa Arabia Tajweedul Quran is dedicated to providing authentic Islamic education. Our aim is to develop students who combine knowledge with virtuous character.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Information",
+    "address": "Madrasa Arabia Tajweedul Quran, Near Delhi, India",
+    "rightsReserved": "Madrasa Arabia. All Rights Reserved.",
     "programs": {
-      "title": "Our Programs and Courses",
-      "description": "Comprehensive Islamic education across various disciplines taught by qualified scholars and experienced teachers.",
-      "learnMore": "Learn More",
-      "viewAll": "View All Programs",
-      "departments": {
-        "tajweed": {
-          "name": "Qur'anic Recitation (Tajweed)",
-          "summary": "Mastery of recitation rules and articulation with proper pronunciation and melody."
-        },
-        "hifz": {
-          "name": "Hifz Program",
-          "summary": "Memorization and revision methodology with dedicated mentoring and support."
-        },
-        "hadith": {
-          "name": "Hadith Studies",
-          "summary": "Foundational texts, methodology, and commentary of Prophetic traditions."
-        },
-        "fiqh": {
-          "name": "Fiqh & Usul",
-          "summary": "Islamic jurisprudence principles and their practical application in daily life."
-        },
-        "arabic": {
-          "name": "Arabic Language",
-          "summary": "Classical Arabic grammar, morphology, and comprehension skills development."
-        },
-        "library": {
-          "name": "Library Services",
-          "summary": "Comprehensive catalog, reading rooms, and research access for scholarly pursuits."
-        }
+      "tajweed": "Quran Tajweed",
+      "primary": "Primary Education (Nazra)",
+      "arabic": "Five-Year Arabic Course (Aalimiyat)",
+      "computer": "Computer Science Department",
+      "english": "English Department",
+      "literature": "Arabic Literature"
+    },
+    "ourPrograms": "Our Programs",
+    "applyNow": "Apply Now"
+  },
+  "newsPage": {
+    "header": {
+      "title": "News and Announcements",
+      "subtitle": "Stay updated with the latest news, events, and announcements from our institution."
+    },
+    "cta": {
+      "title": "Stay Connected",
+      "description": "Don’t miss out on important updates about admissions, events, and programs. Join our community and be part of our educational journey.",
+      "applyNow": "Apply Now",
+      "learnMore": "Learn More About Us"
+    }
+  },
+  "contactPage": {
+    "header": {
+      "title": "Contact Us",
+      "subtitle": "Reach out to us for admissions, inquiries, or to learn more about our programs."
+    },
+    "info": {
+      "title": "Get in Touch",
+      "address": {
+        "title": "Address",
+        "line1": "Masauni, Post Office Kalinjar,",
+        "line2": "Tehsil Naraini, District Banda (UP)",
+        "line3": "Pincode-210129"
+      },
+      "phone": {
+        "title": "Phone",
+        "number1": "+91 9452463669",
+        "number2": "+91 7880927738"
+      },
+      "email": {
+        "title": "Email",
+        "address1": "info@madarsa-arabia.edu",
+        "address2": "admissions@madarsa-arabia.edu"
       }
     },
-    "darUlIfta": {
-      "title": "Dar-ul-Ifta Services",
-      "description": "Get authentic Islamic guidance on contemporary issues from our qualified scholars. Submit your questions and receive scholarly answers based on the Quran and Sunnah.",
-      "badges": {
-        "family": "Family Matters",
-        "business": "Business and Finance",
-        "worship": "Worship and Rituals"
-      },
-      "submitQuestion": "Submit Question",
-      "imageAlt": "Islamic Books and Manuscripts"
+    "map": {
+      "openText": "Open in Google Maps"
     },
-    "news": {
-      "title": "Latest Notices and Announcements",
-      "description": "Stay updated with our latest announcements and events",
-      "viewAll": "View All Notices",
-      "readMore": "Read More",
-      "admissions-open": {
-        "title": "Admissions 2025 Open",
-        "tag": "Announcement",
-        "excerpt": "Applications are now open for the new academic year. Early bird discounts available."
+    "form": {
+      "title": "Send Us a Message",
+      "subtitle": "Fill out the form below, and we will reach out to you via WhatsApp.",
+      "nameLabel": "Full Name *",
+      "emailLabel": "Email Address *",
+      "phoneLabel": "Phone Number",
+      "subjectLabel": "Subject *",
+      "selectSubject": "Select Subject",
+      "subjects": {
+        "admissions": "Admission Inquiry",
+        "programs": "Program Information",
+        "facilities": "Facilities and Services",
+        "donation": "Donation and Support",
+        "general": "General Inquiry"
       },
-      "ramadan-schedule": {
-        "title": "Ramadan Schedule Update",
-        "tag": "Event",
-        "excerpt": "Special prayer times and iftar arrangements for the holy month of Ramadan."
-      },
-      "scholarship-program": {
-        "title": "Merit Scholarship Program",
-        "tag": "Announcement",
-        "excerpt": "New scholarship opportunities for outstanding students across all programs."
-      },
-      "digital-library": {
-        "title": "Digital Library Expansion",
-        "tag": "Notice",
-        "excerpt": "Our digital collection now includes over 5,000 Islamic manuscripts and texts."
-      },
-      "graduation-ceremony": {
-        "title": "Annual Graduation Ceremony",
-        "tag": "Event",
-        "excerpt": "Celebrating the achievements of the 2024 graduating class."
-      },
-      "community-outreach": {
-        "title": "Community Outreach Program",
-        "tag": "Notice",
-        "excerpt": "Students and faculty engaging with local communities through various initiatives."
-      }
-    },
-    "testimonials": {
-      "title": "What Our Students Say",
-      "description": "Hear from our graduates and current students about their experiences",
-      "ahmad": {
-        "name": "Ahmad Hasan",
-        "program": "Hifz Graduate 2023",
-        "content": "The structured approach and caring teachers helped me successfully complete my Hifz journey. The environment here nurtures spiritual and academic growth."
-      },
-      "fatima": {
-        "name": "Fatima Al-Zahra",
-        "program": "Arabic Language Student",
-        "content": "Excellent faculty and comprehensive curriculum. The Arabic program provided me with a strong foundation to understand classical Islamic texts."
-      },
-      "mohammad": {
-        "name": "Mohammad Ali",
-        "program": "Tajweed Graduate 2024",
-        "content": "The Tajweed program completely transformed my recitation. The personal attention and practice sessions were exceptional."
-      },
-      "aisha": {
-        "name": "Aisha Rahman",
-        "program": "Fiqh Studies 2024",
-        "content": "The comprehensive approach to Islamic jurisprudence and practical application have been invaluable to my understanding."
-      },
-      "omar": {
-        "name": "Omar Abdullah",
-        "program": "Hadith Studies 2023",
-        "content": "Learning under renowned scholars has been a privilege. The depth of knowledge and methodology taught here is unmatched."
-      },
-      "maryam": {
-        "name": "Maryam Yusuf",
-        "program": "Quranic Studies 2024",
-        "content": "The holistic approach to Quranic studies, including recitation, memorization, and understanding, has greatly enriched my faith."
-      }
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Please provide details about your inquiry...",
+      "submitButton": "Send via WhatsApp",
+      "successTitle": "Redirecting to WhatsApp!",
+      "successText": "Thank you for contacting us. You will be redirected to WhatsApp to continue the conversation."
     },
     "donation": {
-      "title": "Support Islamic Education",
-      "description": "Your contribution helps us provide quality Islamic education, maintain our facilities, and support deserving students through scholarships.",
-      "donateNow": "Donate Now",
+      "title": "Support Our Mission",
+      "subtitle": "Your donations help us provide quality Islamic education to our students.",
+      "zakatCard": {
+        "title": "Zakat for Donation",
+        "description": "Visit our campus to contribute",
+        "detail1": "100% of your zakat goes directly to eligible students",
+        "detail2": "Distributed in accordance with Islamic guidelines",
+        "detail3": "Supports food, education, and essential needs",
+        "detail4": "Instant receipt provided upon donation",
+        "detail5": "Supports both short-term needs and long-term education"
+      },
+      "ctaText": "For more information about donations or to discuss specific projects you’d like to support, please contact our donations department directly via WhatsApp.",
+      "whatsappMessage": "I would like to get more information about donating.",
+      "whatsappButton": "Contact for Donation"
+    },
+    "quickActions": {
+      "title": "Ready to Join Us?",
+      "subtitle": "Take the first step towards quality Islamic education. Our admissions team is here to guide you through the process.",
+      "viewPrograms": "View Programs",
       "learnMore": "Learn More"
     }
   },
-  "programs": {
-    "title": "Programs & Courses",
-    "description": "Comprehensive Islamic education across various disciplines, designed to nurture knowledge, character, and spiritual growth.",
-    "backToPrograms": "Back to Programs",
-    "learnMore": "Learn More",
-    "loading": "Loading programs...",
-    "categories": {
-      "all": "All Programs",
-      "academic": "Academic Programs",
-      "services": "Services & Facilities"
+ "noticePage": {
+  "header": {
+    "title": "Notices and Announcements",
+    "subtitle": "Stay informed with the latest updates, announcements, and news from our madrasa community"
+  },
+  "search": {
+    "placeholder": "Search Notices..."
+  },
+  "filters": {
+    "all": "All Notices",
+    "announcement": "Announcements",
+    "event": "Events",
+    "general": "General Notices",
+    "academics": "Academic"
+  },
+  "summary": {
+    "resultsCount": "Showing {{count}} results",
+    "searchTerm": "Search: \"{{term}}\"",
+    "categoryTerm": "Category: {{category}}",
+    "clearFilters": "Clear Filters"
+  },
+  "states": {
+    "loading": "Loading Notices...",
+    "noNoticesTitle": "No Notices Found",
+    "noNoticesText": "Please try adjusting your search terms or category filters",
+    "viewAllNotices": "View All Notices"
+  },
+  "card": {
+    "readMore": "Read More"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "article": {
+    "back": "Back to Notices",
+    "byAuthor": "By {{author}}",
+    "contactInfo": "Contact for More Information"
+  },
+  "stats": {
+    "title": "Stay Connected",
+    "subtitle": "Multiple ways to receive updates and announcements"
+  },
+  "updateMethods": {
+    "monthlyTitle": "Monthly Updates",
+    "monthlyDesc": "Comprehensive monthly reports covering all academic and administrative activities.",
+    "monthlyCount": "12+ per year"
+  },
+  "eventMethods": {
+    "eventTitle": "Event Announcements",
+    "eventDesc": "Timely notifications about upcoming events, ceremonies, and special programs.",
+    "eventCount": "50+ events"
+  },
+  "urgentMethods": {
+    "urgentTitle": "Urgent Notices",
+    "urgentDesc": "Important updates about schedule changes, holidays, or emergency information.",
+    "urgentCount": "Real-time"
+  },
+  "cta": {
+    "title": "Never Miss an Update",
+    "description": "Subscribe to our notifications or contact our office for the latest information on admissions, events, and important announcements.",
+    "contactOffice": "Contact Office",
+    "learnMore": "Learn More"
+  },
+  "articles": {
+    "admissions-open-2025": {
+      "slug": "admissions-open-2025",
+      "title": "Admissions Open for Academic Year 2025",
+      "date": "2025-01-15",
+      "tag": "Announcement",
+      "excerpt": "Applications for the new academic year are now open. Early bird discounts available until March 31.",
+      "content": "We are pleased to announce that admissions for the academic year 2025 are now open. This year, we are offering expanded programs and new scholarship opportunities for eligible students. The application process has been streamlined for prospective students and their families.",
+      "author": "Administrative Office",
+      "category": "admissions"
     },
-    "supportingJourney": {
-      "title": "Supporting Your Educational Journey",
-      "description": "Beyond academics, we provide comprehensive support services"
-    },
-    "services": {
-      "digital": {
-        "title": "Digital Resources",
-        "description": "Access to online library, digital manuscripts, and e-learning platforms for enhanced learning experience."
-      },
-      "dining": {
-        "title": "Dining Services",
-        "description": "Nutritious halal meals served in our dining hall, with special arrangements for dietary requirements."
-      },
-      "welfare": {
-        "title": "Student Welfare",
-        "description": "Comprehensive student support including counseling, medical care, and guidance for development."
-      }
-    },
-    "cta": {
-      "title": "Ready to Begin Your Journey?",
-      "description": "Join our community of scholars and embark on a transformative educational experience rooted in Islamic tradition and contemporary understanding.",
-      "applyNow": "Apply Now",
-      "learnMore": "Learn More About Us"
-    },
-    "detail": {
-      "overview": "Program Overview",
-      "facilities": "Facilities Available",
-      "details": "Program Details",
-      "duration": "Duration",
-      "prerequisites": "Prerequisites",
-      "classSize": "Class Size",
-      "students": "students",
-      "readyToApply": "Ready to Apply?",
-      "applyDescription": "Contact our admissions office for more information about this program."
-    },
-    "departments": {
-      "tajweed": {
-        "name": "Qur'anic Recitation (Tajweed)",
-        "summary": "Mastery of recitation rules and articulation with proper pronunciation and melody.",
-        "description": "Our comprehensive Tajweed program focuses on the precise articulation of Qur'anic verses according to classical rules. Students learn proper pronunciation, rhythm, and melody under expert guidance.",
-        "duration": "2 years",
-        "prerequisites": "Basic Arabic reading ability",
-        "facilities": ["Reading halls", "Practice rooms", "Audio resources"]
-      },
-      "hifz": {
-        "name": "Hifz Program",
-        "summary": "Memorization and revision methodology with dedicated mentoring and support.",
-        "description": "Complete memorization of the Holy Quran with systematic revision techniques. Our experienced teachers provide personalized guidance for each student's memorization journey.",
-        "duration": "3-5 years",
-        "prerequisites": "Age 8-16 preferred",
-        "facilities": ["Memorization rooms", "Revision halls", "Counseling support"]
-      },
-      "hadith": {
-        "name": "Hadith Studies",
-        "summary": "Foundational texts, methodology, and commentary of Prophetic traditions.",
-        "description": "In-depth study of authentic Hadith collections including Sahih Bukhari, Sahih Muslim, and other classical works. Students learn the science of Hadith and its practical application.",
-        "duration": "4 years",
-        "prerequisites": "Intermediate Arabic proficiency",
-        "facilities": ["Study rooms", "Manuscript access", "Research support"]
-      },
-      "fiqh": {
-        "name": "Fiqh & Usul",
-        "summary": "Islamic jurisprudence principles and their practical application in daily life.",
-        "description": "Comprehensive study of Islamic law covering worship, transactions, family matters, and contemporary issues. Students develop skills in legal reasoning and fatwa methodology.",
-        "duration": "5 years",
-        "prerequisites": "Advanced Arabic and basic Islamic studies",
-        "facilities": ["Lecture halls", "Case study rooms", "Legal library"]
-      },
-      "arabic": {
-        "name": "Arabic Language",
-        "summary": "Classical Arabic grammar, morphology, and comprehension skills development.",
-        "description": "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
-        "duration": "3 years",
-        "prerequisites": "Basic literacy",
-        "facilities": ["Language labs", "Grammar resources", "Literature collection"]
-      },
-      "library": {
-        "name": "Library Services",
-        "summary": "Comprehensive catalog, reading rooms, and research access for scholarly pursuits.",
-        "description": "State-of-the-art library with over 15,000 books, manuscripts, and digital resources. Quiet study spaces and research assistance available for students and faculty.",
-        "facilities": ["Reading halls", "Digital archives", "Reference section", "Manuscript collection"]
-      },
-      "hostel": {
-        "name": "Student Hostel",
-        "summary": "On-campus accommodation with comprehensive student welfare services.",
-        "description": "Safe and comfortable accommodation for out-of-town students. Includes meals, study halls, recreational facilities, and 24/7 supervision.",
-        "facilities": ["Dormitory rooms", "Dining hall", "Study rooms", "Recreation area", "Medical care"]
-      },
-      "mosque": {
-        "name": "Campus Mosque",
-        "summary": "Central place of worship hosting congregational prayers and community programs.",
-        "description": "Beautiful mosque serving as the spiritual center of our campus. Regular congregational prayers, Friday sermons, and special programs throughout the year.",
-        "facilities": ["Prayer halls", "Ablution areas", "Community hall", "Audio system"]
-      }
+    "shasmahi-ke-imtihaan-2025": {
+      "slug": "shasmahi-ke-imtihaan-2025",
+      "title": "Semiannual Examinations",
+      "date": "2025-08-25",
+      "tag": "Event",
+      "excerpt": "Final exams will commence on August 31 and conclude on September 8. The madrasa will reopen on September 23.",
+      "content": "To be updated soon",
+      "author": "Academic Affairs",
+      "category": "events"
     }
   }
+}
 }

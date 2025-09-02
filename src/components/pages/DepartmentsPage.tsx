@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { 
-  BookOpen, 
-  Clock, 
-  Users, 
+import {
+  BookOpen,
+  Clock,
+  Users,
   GraduationCap,
   Building,
   Heart,
@@ -33,95 +35,16 @@ interface Department {
 }
 
 const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
-  const [departments, setDepartments] = useState<Department[]>([]);
+  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null);
 
-  useEffect(() => {
-    const loadDepartments = async () => {
-      try {
-        const response = await fetch('/data/departments.json');
-        if (response.ok) {
-          const data = await response.json();
-          setDepartments(data);
-        } else {
-          throw new Error('Failed to fetch departments');
-        }
-      } catch (error) {
-        // Fallback data
-        setDepartments([
-          {
-            slug: "tajweed",
-            name: "QURAN TAJWEED",
-            summary: "Mastery of recitation rules and articulation with proper pronunciation and melody.",
-            description: "Our comprehensive Tajweed program focuses on the precise articulation of Qur'anic verses according to classical rules. Students learn proper pronunciation, rhythm, and melody under expert guidance.",
-            duration: "2 years",
-            prerequisites: "Basic Arabic reading ability"
-          },
-          {
-            slug: "hifz",
-            name: "Hifz Program", 
-            summary: "Memorization and revision methodology with dedicated mentoring and support.",
-            description: "Complete memorization of the Holy Quran with systematic revision techniques. Our experienced teachers provide personalized guidance for each student's memorization journey.",
-            duration: "3-5 years",
-            prerequisites: "Age 8-16 preferred"
-          },
-          {
-            slug: "hadith",
-            name: "Hadith Studies",
-            summary: "Foundational texts, methodology, and commentary of Prophetic traditions.",
-            description: "In-depth study of authentic Hadith collections including Sahih Bukhari, Sahih Muslim, and other classical works. Students learn the science of Hadith and its practical application.",
-            duration: "4 years",
-            prerequisites: "Intermediate Arabic proficiency"
-          },
-          {
-            slug: "fiqh",
-            name: "Fiqh & Usul",
-            summary: "Islamic jurisprudence principles and their practical application in daily life.",
-            description: "Comprehensive study of Islamic law covering worship, transactions, family matters, and contemporary issues. Students develop skills in legal reasoning and fatwa methodology.",
-            duration: "5 years", 
-            prerequisites: "Advanced Arabic and basic Islamic studies"
-          },
-          {
-            slug: "arabic",
-            name: "Arabic Language",
-            summary: "Classical Arabic grammar, morphology, and comprehension skills development.",
-            description: "Structured program covering Arabic grammar (Nahw), morphology (Sarf), rhetoric (Balagha), and literature. Essential foundation for all Islamic studies.",
-            duration: "3 years",
-            prerequisites: "Basic literacy"
-          },
-          {
-            slug: "library",
-            name: "Library Services",
-            summary: "Comprehensive catalog, reading rooms, and research access for scholarly pursuits.",
-            description: "State-of-the-art library with over 15,000 books, manuscripts, and digital resources. Quiet study spaces and research assistance available for students and faculty.",
-            facilities: ["Reading halls", "Digital archives", "Reference section", "Manuscript collection"]
-          },
-          {
-            slug: "hostel",
-            name: "Student Hostel",
-            summary: "On-campus accommodation with comprehensive student welfare services.",
-            description: "Safe and comfortable accommodation for out-of-town students. Includes meals, study halls, recreational facilities, and 24/7 supervision.",
-            facilities: ["Dormitory rooms", "Dining hall", "Study rooms", "Recreation area", "Medical care"]
-          },
-          {
-            slug: "mosque",
-            name: "Campus Mosque",
-            summary: "Central place of worship hosting congregational prayers and community programs.",
-            description: "Beautiful mosque serving as the spiritual center of our campus. Regular congregational prayers, Friday sermons, and special programs throughout the year.",
-            facilities: ["Prayer halls", "Ablution areas", "Community hall", "Audio system"]
-          }
-        ]);
-      }
-    };
-
-    loadDepartments();
-  }, []);
+  const departments: Department[] = Object.values(t('departmentsPage', { returnObjects: true }));
 
   const categories = {
-    all: 'All Programs',
-    academic: 'Academic Programs',
-    services: 'Services & Facilities'
+    all: t('departmentsPage.categories.allPrograms'),
+    academic: t('departmentsPage.categories.academicPrograms'),
+    services: t('departmentsPage.categories.servicesFacilities')
   };
 
   const getCategory = (dept: Department): string => {
@@ -163,7 +86,7 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
                 onClick={() => setSelectedDepartment(null)}
                 className="text-[#1F7A53] hover:text-[#1F7A53]/80"
               >
-                ← Back to Departments
+                {t('departmentsPage.backToDepartments')}
               </Button>
             </div>
             <div className="flex items-center space-x-4 mb-6">
@@ -189,14 +112,14 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
               <div className="lg:col-span-2">
                 <Card className="border-0 shadow-card mb-8">
                   <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-[#0B0D0E] mb-4">Program Overview</h2>
+                    <h2 className="text-2xl font-bold text-[#0B0D0E] mb-4">{t('departmentsPage.programOverview')}</h2>
                     <p className="text-gray-700 leading-relaxed mb-6">
                       {selectedDepartment.description}
                     </p>
 
                     {selectedDepartment.facilities && (
                       <div>
-                        <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">Facilities Available</h3>
+                        <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">{t('departmentsPage.facilitiesAvailable')}</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {selectedDepartment.facilities.map((facility, index) => (
                             <div key={index} className="flex items-center space-x-3">
@@ -214,14 +137,14 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
               <div className="lg:col-span-1">
                 <Card className="border-0 shadow-card mb-6">
                   <CardHeader>
-                    <CardTitle className="text-[#1F7A53]">Program Details</CardTitle>
+                    <CardTitle className="text-[#1F7A53]">{t('departmentsPage.programDetails')}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {selectedDepartment.duration && (
                       <div className="flex items-center space-x-3">
                         <Clock className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="font-medium">Duration</p>
+                          <p className="font-medium">{t('departmentsPage.duration')}</p>
                           <p className="text-gray-600">{selectedDepartment.duration}</p>
                         </div>
                       </div>
@@ -231,7 +154,7 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
                       <div className="flex items-center space-x-3">
                         <GraduationCap className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="font-medium">Prerequisites</p>
+                          <p className="font-medium">{t('departmentsPage.prerequisites')}</p>
                           <p className="text-gray-600">{selectedDepartment.prerequisites}</p>
                         </div>
                       </div>
@@ -240,8 +163,8 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
                     <div className="flex items-center space-x-3">
                       <Users className="w-5 h-5 text-gray-500" />
                       <div>
-                        <p className="font-medium">Class Size</p>
-                        <p className="text-gray-600">15-20 students</p>
+                        <p className="font-medium">{t('departmentsPage.classSize')}</p>
+                        <p className="text-gray-600">{t('departmentsPage.classSizeValue')}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -249,15 +172,15 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
 
                 <Card className="border-0 shadow-card">
                   <CardContent className="p-6">
-                    <h3 className="font-semibold text-[#0B0D0E] mb-4">Ready to Apply?</h3>
+                    <h3 className="font-semibold text-[#0B0D0E] mb-4">{t('departmentsPage.readyToApplyTitle')}</h3>
                     <p className="text-gray-600 mb-4">
-                      Contact our admissions office for more information about this program.
+                      {t('departmentsPage.readyToApplyDescription')}
                     </p>
                     <Button 
                       className="w-full bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white"
                       onClick={() => onPageChange('contact')}
                     >
-                      Apply Now
+                      {t('departmentsPage.applyNow')}
                     </Button>
                   </CardContent>
                 </Card>
@@ -275,11 +198,10 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
       <section className="bg-gradient-to-br from-[#E8F5EF] via-white to-[#EAF2FB] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold text-[#0B0D0E] mb-4">
-            Departments & Programs
+            {t('departmentsPage.pageTitle')}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive Islamic education across various disciplines, 
-            designed to nurture knowledge, character, and spiritual growth.
+            {t('departmentsPage.pageSubtitle')}
           </p>
         </div>
       </section>
@@ -323,7 +245,7 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
                           variant="outline" 
                           className={isService ? 'text-[#1E5FA8] border-[#1E5FA8]' : 'text-[#1F7A53] border-[#1F7A53]'}
                         >
-                          {isService ? 'Service' : 'Academic'}
+                          {isService ? t('departmentsPage.card.service') : t('departmentsPage.card.academic')}
                         </Badge>
                       </div>
                     </CardHeader>
@@ -341,7 +263,7 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
                         variant="ghost" 
                         className="p-0 h-auto text-[#1F7A53] hover:text-[#1F7A53]/80 group-hover:translate-x-1 transition-transform"
                       >
-                        Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                        {t('departmentsPage.card.learnMore')} <ArrowRight className="w-4 h-4 ml-1" />
                       </Button>
                     </CardContent>
                   </Card>
@@ -357,10 +279,10 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-              Supporting Your Educational Journey
+              {t('departmentsPage.supportingJourneyTitle')}
             </h2>
             <p className="text-xl text-gray-600">
-              Beyond academics, we provide comprehensive support services
+              {t('departmentsPage.beyondAcademics')}
             </p>
           </div>
 
@@ -370,10 +292,9 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
                 <div className="w-16 h-16 bg-[#1F7A53] rounded-full flex items-center justify-center mx-auto mb-6">
                   <Wifi className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">Digital Resources</h3>
+                <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">{t('departmentsPage.digitalResourcesTitle')}</h3>
                 <p className="text-gray-600">
-                  Access to online library, digital manuscripts, and e-learning platforms 
-                  for enhanced learning experience.
+                  {t('departmentsPage.digitalResourcesDescription')}
                 </p>
               </CardContent>
             </Card>
@@ -383,10 +304,9 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
                 <div className="w-16 h-16 bg-[#1E5FA8] rounded-full flex items-center justify-center mx-auto mb-6">
                   <Utensils className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">Dining Services</h3>
+                <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">{t('departmentsPage.diningServicesTitle')}</h3>
                 <p className="text-gray-600">
-                  Nutritious halal meals served in our dining hall, with special 
-                  arrangements for dietary requirements and religious occasions.
+                  {t('departmentsPage.diningServicesDescription')}
                 </p>
               </CardContent>
             </Card>
@@ -396,10 +316,9 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
                 <div className="w-16 h-16 bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8] rounded-full flex items-center justify-center mx-auto mb-6">
                   <Heart className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">Student Welfare</h3>
+                <h3 className="text-xl font-semibold text-[#0B0D0E] mb-4">{t('departmentsPage.studentWelfareTitle')}</h3>
                 <p className="text-gray-600">
-                  Comprehensive student support including counseling, medical care, 
-                  and guidance for personal and spiritual development.
+                  {t('departmentsPage.studentWelfareDescription')}
                 </p>
               </CardContent>
             </Card>
@@ -411,11 +330,10 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
       <section className="py-16 bg-gradient-to-r from-[#1F7A53] to-[#1E5FA8] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Ready to Begin Your Journey?
+            {t('departmentsPage.readyToBeginJourney')}
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join our community of scholars and embark on a transformative educational experience 
-            rooted in Islamic tradition and contemporary understanding.
+            {t('departmentsPage.joinCommunity')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -425,7 +343,7 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
               onClick={() => onPageChange('contact')}
             >
               <GraduationCap className="w-5 h-5 mr-2" />
-              Apply Now
+              {t('departmentsPage.applyNow')}
             </Button>
             <Button 
               size="lg"
@@ -433,7 +351,7 @@ const DepartmentsPage: React.FC<DepartmentsPageProps> = ({ onPageChange }) => {
               className="border-white text-white hover:bg-white hover:text-[#1F7A53]"
               onClick={() => onPageChange('about')}
             >
-              Learn More About Us
+              {t('departmentsPage.learnMoreAboutUs')}
             </Button>
           </div>
         </div>
