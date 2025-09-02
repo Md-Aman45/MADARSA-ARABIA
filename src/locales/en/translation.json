@@ -64,7 +64,7 @@
   },
   "campusLifeSection": {
     "title": "Campus Life",
-    "altText": "Campus Life",
+    "altText": "Campus Life Image {{index}}",
     "play": "Play",
     "pause": "Pause"
   },
@@ -73,6 +73,44 @@
     "description": "Your contribution helps us provide quality Islamic education, maintain our facilities, and support deserving students through scholarships.",
     "donateNow": "Donate Now",
     "learnMore": "Learn More"
+  },
+  "testimonials": {
+    "ahmad": {
+      "name": "Ahmad Khan",
+      "program": "Hifz (Quran Memorization)",
+      "content": "The Hifz program at Madrasa Arabia has been a transformative experience. The dedicated teachers and supportive environment helped me memorize the Quran with proper Tajweed.",
+      "rating": 5
+    },
+    "faisal": {
+      "name": "Faisal Rahman",
+      "program": "Aalimiyat",
+      "content": "The Aalimiyat course provided me with deep insights into Islamic sciences. The blend of traditional and modern teaching methods made learning both engaging and profound.",
+      "rating": 5
+    },
+    "mohammad": {
+      "name": "Mohammad Ali",
+      "program": "Quran Tajweed",
+      "content": "Learning Tajweed here was a blessing. The instructors are highly knowledgeable, and the focus on correct pronunciation has greatly improved my recitation.",
+      "rating": 5
+    },
+    "aman": {
+      "name": "Aman Siddiqui",
+      "program": "Arabic Literature",
+      "content": "The Arabic Literature program opened my eyes to the beauty of classical and modern texts. The supportive faculty made the learning process truly enriching.",
+      "rating": 5
+    },
+    "omar": {
+      "name": "Omar Farooq",
+      "program": "Computer Science Department",
+      "content": "Combining Islamic studies with modern computer science education was a unique opportunity. The facilities and guidance here are exceptional.",
+      "rating": 5
+    },
+    "yusuf": {
+      "name": "Yusuf Malik",
+      "program": "Girls' Education",
+      "content": "The girls' education program provided a safe and inspiring environment for my sister to excel in both Islamic and academic studies. Highly recommended!",
+      "rating": 5
+    }
   },
   "programsPage": {
     "coursesHeader": "Our Courses",
@@ -602,91 +640,101 @@
       "learnMore": "Learn More"
     }
   },
- "noticePage": {
-  "header": {
-    "title": "Notices and Announcements",
-    "subtitle": "Stay informed with the latest updates, announcements, and news from our madrasa community"
-  },
-  "search": {
-    "placeholder": "Search Notices..."
-  },
-  "filters": {
-    "all": "All Notices",
-    "announcement": "Announcements",
-    "event": "Events",
-    "general": "General Notices",
-    "academics": "Academic"
-  },
-  "summary": {
-    "resultsCount": "Showing {{count}} results",
-    "searchTerm": "Search: \"{{term}}\"",
-    "categoryTerm": "Category: {{category}}",
-    "clearFilters": "Clear Filters"
-  },
-  "states": {
-    "loading": "Loading Notices...",
-    "noNoticesTitle": "No Notices Found",
-    "noNoticesText": "Please try adjusting your search terms or category filters",
-    "viewAllNotices": "View All Notices"
-  },
-  "card": {
-    "readMore": "Read More"
-  },
-  "pagination": {
-    "previous": "Previous",
-    "next": "Next"
-  },
-  "article": {
-    "back": "Back to Notices",
-    "byAuthor": "By {{author}}",
-    "contactInfo": "Contact for More Information"
-  },
-  "stats": {
-    "title": "Stay Connected",
-    "subtitle": "Multiple ways to receive updates and announcements"
-  },
-  "updateMethods": {
-    "monthlyTitle": "Monthly Updates",
-    "monthlyDesc": "Comprehensive monthly reports covering all academic and administrative activities.",
-    "monthlyCount": "12+ per year"
-  },
-  "eventMethods": {
-    "eventTitle": "Event Announcements",
-    "eventDesc": "Timely notifications about upcoming events, ceremonies, and special programs.",
-    "eventCount": "50+ events"
-  },
-  "urgentMethods": {
-    "urgentTitle": "Urgent Notices",
-    "urgentDesc": "Important updates about schedule changes, holidays, or emergency information.",
-    "urgentCount": "Real-time"
-  },
-  "cta": {
-    "title": "Never Miss an Update",
-    "description": "Subscribe to our notifications or contact our office for the latest information on admissions, events, and important announcements.",
-    "contactOffice": "Contact Office",
-    "learnMore": "Learn More"
-  },
-  "articles": {
-    "admissions-open-2025": {
-      "slug": "admissions-open-2025",
-      "title": "Admissions Open for Academic Year 2025",
-      "date": "2025-01-15",
-      "tag": "Announcement",
-      "excerpt": "Applications for the new academic year are now open. Early bird discounts available until March 31.",
-      "content": "We are pleased to announce that admissions for the academic year 2025 are now open. This year, we are offering expanded programs and new scholarship opportunities for eligible students. The application process has been streamlined for prospective students and their families.",
-      "author": "Administrative Office",
-      "category": "admissions"
+  "noticePage": {
+    "header": {
+      "title": "Notices and Announcements",
+      "subtitle": "Stay informed with the latest updates, announcements, and news from our madrasa community"
     },
-    "shasmahi-ke-imtihaan-2025": {
-      "slug": "shasmahi-ke-imtihaan-2025",
-      "title": "Semiannual Examinations",
-      "date": "2025-08-25",
-      "tag": "Event",
-      "excerpt": "Final exams will commence on August 31 and conclude on September 8. The madrasa will reopen on September 23.",
-      "content": "To be updated soon",
-      "author": "Academic Affairs",
-      "category": "events"
+    "search": {
+      "placeholder": "Search Notices..."
+    },
+    "filters": {
+      "all": "All Notices",
+      "announcement": "Announcements",
+      "event": "Events",
+      "general": "General Notices",
+      "academics": "Academic"
+    },
+    "summary": {
+      "resultsCount": "Showing {{count}} results",
+      "searchTerm": "Search: \"{{term}}\"",
+      "categoryTerm": "Category: {{category}}",
+      "clearFilters": "Clear Filters"
+    },
+    "states": {
+      "loading": "Loading Notices...",
+      "noNoticesTitle": "No Notices Found",
+      "noNoticesText": "Please try adjusting your search terms or category filters",
+      "viewAllNotices": "View All Notices"
+    },
+    "card": {
+      "readMore": "Read More"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "article": {
+      "back": "Back to Notices",
+      "byAuthor": "By {{author}}",
+      "contactInfo": "Contact for More Information"
+    },
+    "stats": {
+      "title": "Stay Connected",
+      "subtitle": "Multiple ways to receive updates and announcements"
+    },
+    "updateMethods": {
+      "monthlyTitle": "Monthly Updates",
+      "monthlyDesc": "Comprehensive monthly reports covering all academic and administrative activities.",
+      "monthlyCount": "12+ per year"
+    },
+    "eventMethods": {
+      "eventTitle": "Event Announcements",
+      "eventDesc": "Timely notifications about upcoming events, ceremonies, and special programs.",
+      "eventCount": "50+ events"
+    },
+    "urgentMethods": {
+      "urgentTitle": "Urgent Notices",
+      "urgentDesc": "Important updates about schedule changes, holidays, or emergency information.",
+      "urgentCount": "Real-time"
+    },
+    "cta": {
+      "title": "Never Miss an Update",
+      "description": "Subscribe to our notifications or contact our office for the latest information on admissions, events, and important announcements.",
+      "contactOffice": "Contact Office",
+      "learnMore": "Learn More"
+    },
+    "articles": {
+      "admissions-open-2025": {
+        "slug": "admissions-open-2025",
+        "title": "Admissions Open for Academic Year 2025",
+        "date": "2025-01-15",
+        "tag": "Announcement",
+        "excerpt": "Applications for the new academic year are now open. Early bird discounts available until March 31.",
+        "content": "We are pleased to announce that admissions for the academic year 2025 are now open. This year, we are offering expanded programs and new scholarship opportunities for eligible students. The application process has been streamlined for prospective students and their families.",
+        "author": "Administrative Office",
+        "category": "admissions"
+      },
+      "shasmahi-ke-imtihaan-2025": {
+        "slug": "shasmahi-ke-imtihaan-2025",
+        "title": "Shasmahi-ke-Imtihaan2025",
+        "date": "2025-08-25",
+        "tag": "Event",
+        "excerpt": "Final exams will commence on August 31 and conclude on September 8. The madrasa will reopen on September 23.",
+        "content": "The semiannual examinations for the academic year 2025 are scheduled to take place from August 31 to September 8. During this period, all classes will be suspended to allow students to focus on their exams. The madrasa will remain closed until September 23, when regular classes will resume. Students are advised to prepare thoroughly and contact the Academic Affairs office for any additional information or support regarding the examination schedule.",
+        "author": "Academic Affairs",
+        "category": "events"
+      },
+      "community-outreach-2025": {
+        "slug": "community-outreach-2025",
+        "title": "Community Outreach Program 2025",
+        "date": "2025-06-10",
+        "tag": "Event",
+        "excerpt": "Join our annual community outreach program to support local communities and spread awareness about Islamic education.",
+        "content": "Madrasa Arabia Tajweedul Quran is excited to announce our Community Outreach Program for 2025, scheduled for June 15-20. This initiative aims to engage with local communities, provide educational resources, and promote Islamic values. Volunteers and participants are welcome to join us in this noble effort. Contact our office for more details on how to participate.",
+        "author": "Community Engagement Team",
+        "category": "events"
+      }
     }
   }
-}
 }

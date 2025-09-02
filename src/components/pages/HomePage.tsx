@@ -8,9 +8,11 @@ import {
   Heart,
   Star,
   Play,
-  Pause
+  Pause,
+  GraduationCap,
+  Users // Added the missing Users import
 } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -153,6 +155,27 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
   const statsInView = useInView(statsRef, { once: true, margin: "-100px" });
   const departmentsInView = useInView(departmentsRef, { once: true, margin: "-100px" });
 
+  const getIcon = (slug: string) => {
+    const icons: { [key: string]: React.ComponentType<any> } = {
+      tajweed: BookOpen,
+      naajrah: GraduationCap,
+      hifz: Heart,
+      aalimiyat: BookOpen,
+      computerScience: GraduationCap,
+      ncertCourses: BookOpen,
+      bazmSiddiq: Users,
+      arabicLiterature: BookOpen,
+      majlisTalaba: Users,
+      girlsEducation: GraduationCap,
+      // Fallback slugs if needed
+      hadith: BookOpen,
+      fiqh: GraduationCap,
+      arabic: BookOpen,
+      library: BookOpen
+    };
+    return icons[slug] || BookOpen;
+  };
+
   // Campus Life gallery images
   const galleryImages = [
     '/assets/p00.png',
@@ -219,84 +242,73 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
 
   // Local madrasa photos for hero carousel
   const madrasaPhotos = [
-     {
+    {
       url: "/assets/h1.png",
-      title: t("home.madrasaPhotos.mainAcademicBuildingTitle"),
-      description: t("home.madrasaPhotos.mainAcademicBuildingDescription")
+      title: t("madrasaPhotos.mainAcademicBuildingTitle"),
+      description: t("madrasaPhotos.mainAcademicBuildingDescription")
     },
-     {
+    {
       url: "/assets/group.png",
-      title: t("home.madrasaPhotos.studentLibraryTitle"),
-      description: t("home.madrasaPhotos.studentLibraryDescription")
+      title: t("madrasaPhotos.studentLibraryTitle"),
+      description: t("madrasaPhotos.studentLibraryDescription")
     },
     {
       url: "/assets/h2.png",
-      title: t("home.madrasaPhotos.studentLibraryTitle"),
-      description: t("home.madrasaPhotos.studentLibraryDescription")
+      title: t("madrasaPhotos.studentLibraryTitle"),
+      description: t("madrasaPhotos.studentLibraryDescription")
     },
-     {
+    {
       url: "/assets/m3.png",
-      title: t("home.madrasaPhotos.studentLibraryTitle"),
-      description: t("home.madrasaPhotos.studentLibraryDescription")
+      title: t("madrasaPhotos.studentLibraryTitle"),
+      description: t("madrasaPhotos.studentLibraryDescription")
     },
     {
       url: "/assets/h1.png",
-      title: t("home.madrasaPhotos.mainAcademicBuildingTitle"),
-      description: t("home.madrasaPhotos.mainAcademicBuildingDescription")
+      title: t("madrasaPhotos.mainAcademicBuildingTitle"),
+      description: t("madrasaPhotos.mainAcademicBuildingDescription")
     }, {
       url: "/assets/m2.png",
-      title: t("home.madrasaPhotos.studentLibraryTitle"),
-      description: t("home.madrasaPhotos.studentLibraryDescription")
+      title: t("madrasaPhotos.studentLibraryTitle"),
+      description: t("madrasaPhotos.studentLibraryDescription")
     },
     {
       url: "/assets/h4.png",
-      title: t("home.madrasaPhotos.studentLibraryTitle"),
-      description: t("home.madrasaPhotos.studentLibraryDescription")
-      },
-    //  { // This item was commented out in the original content, keeping it commented.
-    //   url: "/assets/m4.png",
-    //   title: "Student Library",
-    //   description: "Comprehensive collection of Islamic literature"
-    // },
-
+      title: t("madrasaPhotos.studentLibraryTitle"),
+      description: t("madrasaPhotos.studentLibraryDescription")
+    },
     {
       url: "/assets/h5.png",
-      title: t("home.madrasaPhotos.prayerHallMosqueTitle"),
-      description: t("home.madrasaPhotos.prayerHallMosqueDescription")
+      title: t("madrasaPhotos.prayerHallMosqueTitle"),
+      description: t("madrasaPhotos.prayerHallMosqueDescription")
     },
-    // { // This item was commented out in the original content, keeping it commented.
-    //   url: "/assets/m1.png",
-    //   title: "Student Library",
-    //   description: "Comprehensive collection of Islamic literature"
-    // },
     {
       url: "/assets/h6.png",
-      title: t("home.madrasaPhotos.studentDormsTitle"),
-      description: t("home.madrasaPhotos.studentDormsDescription")
+      title: t("madrasaPhotos.studentDormsTitle"),
+      description: t("madrasaPhotos.studentDormsDescription")
     },
     {
       url: "/assets/h7.png",
-      title: t("home.madrasaPhotos.campusCourtyardTitle"),
-      description: t("home.madrasaPhotos.campusCourtyardDescription")
+      title: t("madrasaPhotos.campusCourtyardTitle"),
+      description: t("madrasaPhotos.campusCourtyardDescription")
     },
     {
       url: "/assets/h8.png",
-      title: t("home.madrasaPhotos.classroomFacilitiesTitle"),
-      description: t("home.madrasaPhotos.classroomFacilitiesDescription")
+      title: t("madrasaPhotos.classroomFacilitiesTitle"),
+      description: t("madrasaPhotos.classroomFacilitiesDescription")
     },
     {
       url: "/assets/h2.png",
-      title: t("home.madrasaPhotos.classroomFacilitiesTitle"),
-      description: t("home.madrasaPhotos.classroomFacilitiesDescription")
-    },{
+      title: t("madrasaPhotos.classroomFacilitiesTitle"),
+      description: t("madrasaPhotos.classroomFacilitiesDescription")
+    }, {
       url: "/assets/h10.png",
-      title: t("home.madrasaPhotos.classroomFacilitiesTitle"),
-      description: t("home.madrasaPhotos.classroomFacilitiesDescription")
+      title: t("madrasaPhotos.classroomFacilitiesTitle"),
+      description: t("madrasaPhotos.classroomFacilitiesDescription")
     },
     {
       url: "/assets/h11.png",
-      title: t("home.madrasaPhotos.classroomFacilitiesTitle"),
-      description: t("home.madrasaPhotos.classroomFacilitiesDescription")
+      title: t("madrasaPhotos.classroomFacilitiesTitle"),
+      description: t("madrasaPhotos.classroomFacilitiesDescription")
     }
   ];
 
@@ -321,101 +333,87 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         ]);
       }
     };
+    
+    // Use a consistent list of slugs from your i18n JSON
+    const programSlugsForHome = ["tajweed", "naajrah", "hifz", "aalimiyat", "computerScience", "girlsEducation"];
+    
+    // Use t() function to get translated names and summaries
+    const loadedDepartments = programSlugsForHome.map(slug => ({
+      slug,
+      name: t(`programsPage.academic.${slug}.name`),
+      summary: t(`programsPage.academic.${slug}.summary`)
+    }));
+    setDepartments(loadedDepartments);
 
-    // Load departments data
-    const loadDepartments = async () => {
-      try {
-        const response = await fetch('/data/departments.json');
-        if (response.ok) {
-          const data = await response.json();
-          setDepartments(data.slice(0, 6));
-        } else {
-          throw new Error('Failed to fetch departments');
-        }
-      } catch (error) {
-        // Fallback data
-        setDepartments([
-          { slug: "tajweed", name: "QURAN TAJWEED", summary: "Mastery of recitation rules and articulation." },
-          { slug: "hifz", name: "GIRLS EDUCATION ", summary: "Memorization and revision methodology with mentoring." },
-          { slug: "hadith", name: "ARABIC LITERATURE", summary: "Foundational texts, methodology, commentary." },
-          { slug: "fiqh", name: "DAUR-E-HADITH", summary: "Jurisprudence principles and application." },
-          { slug: "arabic", name: "Arabic Language", summary: "Classical Arabic grammar and literature." },
-          { slug: "library", name: "COMPUTER SCIENCE & LABS", summary: "Comprehensive resources and study facilities." }
-        ]);
-      }
-    };
-
-    // Load news data - Extended with more items
+    // Load news data - Corrected to load all news items and use i18n for fallback
     const loadNews = async () => {
       try {
         const response = await fetch('/data/news.json');
         if (response.ok) {
           const data = await response.json();
-          setNews(data.slice(0, 6)); // Get more news items
+          setNews(data); // Removed .slice(0, 6)
         } else {
           throw new Error('Failed to fetch news');
         }
       } catch (error) {
-        // Extended fallback data with more items
+        // Fallback data using i18n keys
         setNews([
-          { 
-            slug: "community-outreach", 
-            title: "Shasmahi ke imtihaan", 
-            date: "2024-08-25", 
-            tag: "Notice", 
-            excerpt: "Final Exam will start from 31st August and end on 8th September. And the madrasa will reopen from 23rd September." 
+          {
+            slug: "shasmahi-ke-imtihaan-2025",
+            title: t('noticePage.articles.shasmahi-ke-imtihaan-2025.title'),
+            date: "2025-08-25",
+            tag: t('noticePage.articles.shasmahi-ke-imtihaan-2025.tag'),
+            excerpt: t('noticePage.articles.shasmahi-ke-imtihaan-2025.excerpt')
           }
         ]);
       }
     };
 
     loadStats();
-    loadDepartments();
     loadNews();
-  }, []);
+  }, [t]); // Add 't' as a dependency to ensure translation updates trigger a reload
 
-  // Extended testimonials with more content
   const testimonials: Testimonial[] = [
     {
-      name: "Ahmad Hassan",
-      program: "Hifz Graduate 2023",
-      content: "The structured approach and caring teachers helped me complete my Hifz journey successfully. The environment here nurtures both spiritual and academic growth.",
+      name: t('testimonials.ahmad.name'),
+      program: t('testimonials.ahmad.program'),
+      content: t('testimonials.ahmad.content'),
       rating: 5
     },
     {
-      name: "Faisal Khan",
-      program: "Arabic Language Student",
-      content: "Excellent faculty and comprehensive curriculum. The Arabic program gave me a strong foundation for understanding classical Islamic texts.",
+      name: t('testimonials.faisal.name'),
+      program: t('testimonials.faisal.program'),
+      content: t('testimonials.faisal.content'),
       rating: 5
     },
     {
-      name: "Mohammad Ali",
-      program: "Tajweed Graduate 2024",
-      content: "The Tajweed program transformed my recitation completely. The personal attention from teachers and practice sessions were exceptional.",
+      name: t('testimonials.mohammad.name'),
+      program: t('testimonials.mohammad.program'),
+      content: t('testimonials.mohammad.content'),
       rating: 5
     },
     {
-      name: "Aman Kalim",
-      program: "Fiqh Studies 2024",
-      content: "The comprehensive approach to Islamic jurisprudence and the practical applications have been invaluable for my understanding.",
+      name: t('testimonials.aman.name'),
+      program: t('testimonials.aman.program'),
+      content: t('testimonials.aman.content'),
       rating: 5
     },
     {
-      name: "Omar Abdullah",
-      program: "Hadith Studies 2023",
-      content: "Learning under renowned scholars has been a privilege. The depth of knowledge and methodology taught here is unmatched.",
+      name: t('testimonials.omar.name'),
+      program: t('testimonials.omar.program'),
+      content: t('testimonials.omar.content'),
       rating: 5
     },
     {
-      name: "Yusuf Rahman",
-      program: "Quranic Studies 2024",
-      content: "The holistic approach to Quranic studies, combining recitation, memorization, and understanding, has enriched my faith immensely.",
+      name: t('testimonials.yusuf.name'),
+      program: t('testimonials.yusuf.program'),
+      content: t('testimonials.yusuf.content'),
       rating: 5
     }
   ];
 
   const handleDonateClick = () => {
-    const message = encodeURIComponent("I want to donate for your madarsa please provide me the details where I can donate and earn good deeds");
+    const message = encodeURIComponent(t('cta.donateNowMessage'));
     window.open(`https://wa.me/918423370548?text=${message}`, '_blank');
   };
 
@@ -456,7 +454,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                   />
                   {/* Enhanced Overlay for better text readability */}
                   <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-                  
+
                   {/* Photo Info - Improved positioning */}
                   <motion.div
                     className="absolute bottom-16 left-8 text-white z-20"
@@ -488,19 +486,18 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                   {t('home.excellenceInIslamicEducation')}
                 </Badge>
               </motion.div>
-              
+
               {/* UPDATED HEADLINE FOR BETTER VISIBILITY */}
               <motion.h1
                 className="font-extrabold mb-6 leading-tight"
                 variants={itemVariants}
-
               >
-                 <motion.span
+                <motion.span
                   className="block text-[#FFD700]"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
-                  style={{ 
+                  style={{
                     textShadow: '2px 2px 8px rgba(0,0,0,0.7)',
                     fontFamily: 'Arial, sans-serif',
                     fontWeight: 800,
@@ -514,7 +511,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
                   className="block text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4"
-                  style={{ 
+                  style={{
                     textShadow: '3px 3px 12px rgba(0,0,0,0.7), 1px 1px 4px rgba(0,0,0,0.5)',
                     fontFamily: 'Arial, sans-serif',
                     fontWeight: 900
@@ -522,21 +519,19 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                 >
                   {t('heroSection.subHeadline')}
                 </motion.span>
-                
-               
               </motion.h1>
-              
+
               <motion.p
                 className="text-xl md:text-2xl text-white/95 mb-10 leading-relaxed max-w-3xl mx-auto font-medium"
                 variants={itemVariants}
-                style={{ 
+                style={{
                   textShadow: '2px 2px 6px rgba(0,0,0,0.7)',
                   fontFamily: 'Arial, sans-serif'
                 }}
               >
                 {t('heroSection.description')}
               </motion.p>
-              
+
               <motion.div
                 className="flex flex-col sm:flex-row gap-6 justify-center"
                 variants={itemVariants}
@@ -586,7 +581,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       </motion.section>
 
       {/* Stats Counter Section */}
-      <motion.section 
+      <motion.section
         ref={statsRef}
         className="py-16 bg-white"
         initial="hidden"
@@ -594,16 +589,16 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         variants={containerVariants}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="grid grid-cols-2 lg:grid-cols-4 gap-8"
             variants={containerVariants}
           >
             {stats.map((stat, index) => (
-              <motion.div 
-                key={index} 
+              <motion.div
+                key={index}
                 className="text-center"
                 variants={cardVariants}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   transition: { duration: 0.2 }
                 }}
@@ -617,7 +612,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       </motion.section>
 
       {/* Programs Preview */}
-      <motion.section 
+      <motion.section
         ref={departmentsRef}
         className="py-20 bg-gray-50"
         initial="hidden"
@@ -625,63 +620,66 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         variants={containerVariants}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             variants={itemVariants}
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
-              {t('programsSection.title')}
+              {t('programsPage.coursesHeader')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('programsSection.subtitle')}
+              {t('programsPage.coursesSubtitle')}
             </p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
             variants={containerVariants}
           >
-            {departments.map((dept, index) => (
-              <motion.div
-                key={dept.slug}
-                variants={cardVariants}
-                whileHover={{ 
-                  y: -8,
-                  transition: { duration: 0.3, ease: "easeOut" }
-                }}
-              >
-                <Card className="group h-full border-0 shadow-card hover:shadow-xl transition-all duration-500 hover:bg-gradient-to-tr from-[#EAF2FB] to-[#E8F5EF] cursor-pointer">
-                  <CardHeader className="pb-4">
-                    <motion.div 
-                      className="w-12 h-12 bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8] rounded-xl flex items-center justify-center mb-4"
-                      whileHover={{ 
-                        rotate: 5,
-                        scale: 1.1
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <BookOpen className="w-6 h-6 text-white" />
-                    </motion.div>
-                    <CardTitle className="text-xl group-hover:text-[#1F7A53] transition-colors duration-300">
-                      {dept.name}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 mb-4">{dept.summary}</p>
-                    <Button 
-                      variant="ghost" 
-                      className="p-0 h-auto text-[#1F7A53] hover:text-[#1F7A53]/80 group-hover:translate-x-2 transition-all duration-300"
-                      onClick={() => onPageChange('programs')}
-                    >
-                      {t('programsSection.learnMore')} <ArrowRight className="w-4 h-4 ml-1" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {departments.map((dept, index) => {
+              const IconComponent = getIcon(dept.slug);
+              return (
+                <motion.div
+                  key={dept.slug}
+                  variants={cardVariants}
+                  whileHover={{
+                    y: -8,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                >
+                  <Card className="group h-full border-0 shadow-card hover:shadow-xl transition-all duration-500 hover:bg-gradient-to-tr from-[#EAF2FB] to-[#E8F5EF] cursor-pointer">
+                    <CardHeader className="pb-4">
+                      <motion.div
+                        className="w-12 h-12 bg-gradient-to-br from-[#1F7A53] to-[#1E5FA8] rounded-xl flex items-center justify-center mb-4"
+                        whileHover={{
+                          rotate: 5,
+                          scale: 1.1
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <IconComponent className="w-6 h-6 text-white" />
+                      </motion.div>
+                      <CardTitle className="text-xl group-hover:text-[#1F7A53] transition-colors duration-300">
+                        {dept.name}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 mb-4">{dept.summary}</p>
+                      <Button
+                        variant="ghost"
+                        className="p-0 h-auto text-[#1F7A53] hover:text-[#1F7A53]/80 group-hover:translate-x-2 transition-all duration-300"
+                        onClick={() => onPageChange('programs')}
+                      >
+                        {t('programsSection.learnMore')} <ArrowRight className="w-4 h-4 ml-1" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="text-center"
             variants={itemVariants}
           >
@@ -689,21 +687,21 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button
+              {/* <Button
                 size="lg"
                 variant="outline"
                 className="border-[#1F7A53] text-[#1F7A53] hover:bg-[#1F7A53] hover:text-white transition-all duration-300"
                 onClick={() => onPageChange('programs')}
               >
-                {t('programsSection.viewAllPrograms')}
-              </Button>
+                {t('programsPage.viewAllPrograms')}
+              </Button> */}
             </motion.div>
           </motion.div>
         </div>
       </motion.section>
 
       {/* Latest Notice Carousel */}
-      <motion.section 
+      <motion.section
         className="py-20 bg-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -711,7 +709,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         transition={{ duration: 0.8 }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="flex justify-between items-end mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -778,32 +776,32 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                     <Card className="group h-full hover:shadow-xl transition-all duration-500 border-0 shadow-card hover:bg-gradient-to-tr from-[#E8F5EF] to-[#EAF2FB]">
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between mb-4">
-                          <Badge 
-                            variant="outline" 
+                          <Badge
+                            variant="outline"
                             className={`${
-                              item.tag === 'Announcement' 
+                              item.tag === 'Announcement'
                                 ? 'border-[#1F7A53] text-[#1F7A53]'
                                 : item.tag === 'Event'
                                 ? 'border-[#1E5FA8] text-[#1E5FA8]'
                                 : 'border-gray-400 text-gray-600'
                             } group-hover:scale-105 transition-transform duration-300`}
                           >
-                            {item.tag}
+                            {t(`noticePage.articles.${item.slug}.tag`)}
                           </Badge>
                           <div className="flex items-center text-gray-500 text-sm">
                             <Calendar className="w-4 h-4 mr-1" />
-                            {new Date(item.date).toLocaleDateString('en-US', { 
-                              month: 'short', 
-                              day: 'numeric' 
+                            {new Date(item.date).toLocaleDateString(t('locale'), {
+                              month: 'short',
+                              day: 'numeric'
                             })}
                           </div>
                         </div>
                         <h3 className="text-xl font-semibold mb-3 group-hover:text-[#1F7A53] transition-colors duration-300">
-                          {item.title}
+                          {t(`noticePage.articles.${item.slug}.title`)}
                         </h3>
-                        <p className="text-gray-600 mb-4">{item.excerpt}</p>
-                        <Button 
-                          variant="ghost" 
+                        <p className="text-gray-600 mb-4">{t(`noticePage.articles.${item.slug}.excerpt`)}</p>
+                        <Button
+                          variant="ghost"
                           className="p-0 h-auto text-[#1F7A53] hover:text-[#1F7A53]/80 group-hover:translate-x-2 transition-all duration-300"
                           onClick={() => onPageChange('notice')}
                         >
@@ -815,7 +813,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            
+
             {/* Custom navigation buttons */}
             <div className="flex justify-center gap-4 mt-6">
               <button className="news-prev w-10 h-10 rounded-full bg-[#1F7A53] text-white flex items-center justify-center hover:bg-[#1F7A53]/90 transition-colors duration-300">
@@ -840,7 +838,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
       </motion.section>
 
       {/* Testimonials Carousel */}
-      <motion.section 
+      <motion.section
         className="py-20 bg-gradient-to-r from-[#E8F5EF] via-gray-50 to-[#EAF2FB]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -848,7 +846,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         transition={{ duration: 0.8 }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -937,17 +935,21 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
         className="py-16 bg-gray-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 flex items-center justify-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4">
+          <div className="text-center mb-8 flex flex-col sm:flex-row items-center justify-center sm:justify-between">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#0B0D0E] mb-4 sm:mb-0">
               {t('campusLifeSection.title')}
             </h2>
             <Button
               onClick={() => setIsPlaying(!isPlaying)}
               size="sm"
               variant="outline"
-              className="mb-4"
+              className="mt-4 sm:mt-0"
             >
-              {isPlaying ? <Pause className="h-12 w-12 text-white" aria-label={t('campusLifeSection.pause')} /> : <Play className="h-12 w-12 text-white" aria-label={t('campusLifeSection.play')} />}
+              {isPlaying ? (
+                <Pause className="h-5 w-5 text-[#1F7A53]" aria-label={t('campusLifeSection.pause')} />
+              ) : (
+                <Play className="h-5 w-5 text-[#1F7A53]" aria-label={t('campusLifeSection.play')} />
+              )}
             </Button>
           </div>
 
@@ -963,7 +965,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
               >
                 <ImageWithFallback
                   src={image}
-                alt={t('campusLifeSection.altText')}
+                  alt={t('campusLifeSection.altText', { index: index + 1 })}
                   className="w-full h-full object-cover"
                 />
               </motion.div>
@@ -978,7 +980,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
               >
                 <ImageWithFallback
                   src={image}
-                  alt={`Campus life ${index + 1}`}
+                  alt={t('campusLifeSection.altText', { index: index + 1 })}
                   className="w-full h-full object-cover"
                 />
               </motion.div>
@@ -986,9 +988,9 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
           </div>
         </div>
       </motion.section>
-      
+
       {/* Donation CTA */}
-      <motion.section 
+      <motion.section
         className="py-16 bg-gradient-to-r from-[#1F7A53] to-[#1E5FA8] text-white relative overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -1010,8 +1012,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
             ease: "linear"
           }}
         />
-       
-        
+
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -1021,7 +1022,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
           >
             <Heart className="w-16 h-16 mx-auto mb-6 text-white/80" />
           </motion.div>
-          
+
           <motion.h2
             className="text-3xl lg:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 30 }}
@@ -1041,8 +1042,8 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
           >
             {t('donationCta.description')}
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1053,7 +1054,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button 
+              <Button
                 size="lg"
                 variant="secondary"
                 className="bg-white text-[#1F7A53] hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300"
@@ -1066,7 +1067,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button 
+              <Button
                 size="lg"
                 variant="outline"
                 className="border-blue text-white  text-[#1F7A53] transition-all duration-300"

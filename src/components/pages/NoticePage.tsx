@@ -775,7 +775,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ onPageChange }) => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-[#1F7A53]"
+                className="border-blue text-white bg-white text-[#1F7A53]"
                 onClick={() => onPageChange('about')}
               >
                 {t('noticePage.cta.learnMore')}
