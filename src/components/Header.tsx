@@ -21,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
     { name: t("nav.programs"), key: "programs" },
     { name: t("nav.resources"), key: "resources" },
     { name: t("nav.notice"), key: "notice" },
+    { name: t("nav.gallery"), key: "gallery" },
     { name: t("nav.contact"), key: "contact" },
   ];
 
@@ -86,18 +87,20 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
             </nav>
 
             {/* Language Switcher */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="ml-4">
-                  {language.toUpperCase()}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => setLanguage("en")}>English</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("ur")}>اردو</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("hi")}>हिन्दी</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+    <DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline" size="sm" className="ml-2">
+      {t("common.language")} ({language.toUpperCase()})
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem onClick={() => setLanguage("en")}>English</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => setLanguage("ur")}>اردو</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => setLanguage("hi")}>हिन्दी</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+
 
             {/* Donate Now */}
             <Button
@@ -112,18 +115,21 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center space-x-2">
             {/* Language Selector */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm">
-                  {language.toUpperCase()}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => setLanguage("en")}>English</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("ur")}>اردو</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("hi")}>हिन्दी</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline" size="sm" className="ml-2">
+      {/* Mobile: Language (Selected) | Desktop: Languages */}
+      <span className="block sm:hidden">{t("common.language")} ({language.toUpperCase()})</span>
+      <span className="hidden sm:block">{t("common.language")}</span>
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem onClick={() => setLanguage("en")}>English</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => setLanguage("ur")}>اردو</DropdownMenuItem>
+    <DropdownMenuItem onClick={() => setLanguage("hi")}>हिन्दी</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
 
             {/* Mobile Donate */}
             <Button size="sm" onClick={handleDonateClick} className="bg-[#1F7A53] text-white">

@@ -4,17 +4,17 @@ import {
   BookOpen,
   Building,
   Globe,
+  Hammer,
   Heart,
   Star,
   Target,
-  Users,
-  Hammer
+  Users
 } from 'lucide-react';
-import React, { useCallback, useMemo, useState, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardTitle } from '../ui/card';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
-import { useTranslation } from 'react-i18next';
 
 // Define the component's props interface.
 interface MissionVisionPageProps {
@@ -34,7 +34,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
 
   // WhatsApp Donation for Construction Project
   const handleDonateProject = useCallback(() => {
-    const phoneNumber = '9155649575';
+    const phoneNumber = '9452463669';
     const message = encodeURIComponent(t('resources.whatsappProjectDonationMessage'));
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   }, [t]);

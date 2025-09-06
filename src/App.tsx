@@ -10,6 +10,7 @@ import ProgramsPage from "./components/pages/ProgramsPage";
 import ResourcesPage from "./components/pages/ResourcesPage";
 import NoticePage from "./components/pages/NoticePage";
 import ContactPage from "./components/pages/ContactPage";
+import GalleryPage from "./components/pages/GalleryPage";
 import "./i18n";
 
 const pageVariants = {
@@ -43,6 +44,8 @@ export default function App() {
         return <NoticePage onPageChange={setCurrentPage} />;
       case "contact":
         return <ContactPage onPageChange={setCurrentPage} />;
+      case 'gallery':
+        return <GalleryPage />;
       default:
         return <HomePage onPageChange={setCurrentPage} />;
     }

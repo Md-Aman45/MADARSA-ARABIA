@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import {
     Award,
@@ -9,9 +8,10 @@ import {
     Phone,
     Users
 } from 'lucide-react';
-import { Button } from './ui/button';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Button } from './ui/button';
 
 interface FooterProps {
     onPageChange: (page: string) => void;
@@ -186,7 +186,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
                                 <Phone className="w-5 h-5 text-[#1E5FA8] flex-shrink-0" />
                                 <div>
                                     <p className="text-gray-300 text-sm">+91 9452463669</p>
-                                    <p className="text-gray-300 text-sm">+91 7880927738</p>
+                                   
                                 </div>
                             </li>
                             <li className="flex items-center space-x-3">
