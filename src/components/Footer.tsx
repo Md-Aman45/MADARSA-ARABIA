@@ -19,7 +19,7 @@ interface FooterProps {
 
 // WhatsApp Donation Handler
 const handleDonateClick = () => {
-    const phoneNumber = '918423370548';
+    const phoneNumber = '919452463669';
     const message = encodeURIComponent("Assalamu Alaikum! I want to donate to your madrasa. Please provide me with the details where I can donate and earn good deeds.");
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 };

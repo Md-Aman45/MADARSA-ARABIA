@@ -1,18 +1,18 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import {
-  ArrowRight,
-  BookOpen,
-  Calendar,
-  ChevronLeft,
-  ChevronRight,
-  Heart,
-  Star,
-  Play,
-  Pause,
-  GraduationCap,
-  Users // Added the missing Users import
+    ArrowRight,
+    BookOpen,
+    Calendar,
+    ChevronLeft,
+    ChevronRight,
+    GraduationCap,
+    Heart,
+    Pause,
+    Play,
+    Star,
+    Users // Added the missing Users import
 } from 'lucide-react';
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -414,7 +414,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
 
   const handleDonateClick = () => {
     const message = encodeURIComponent(t('cta.donateNowMessage'));
-    window.open(`https://wa.me/918423370548?text=${message}`, '_blank');
+    window.open(`https://wa.me/919452463669?text=${message}`, '_blank');
   };
 
   return (

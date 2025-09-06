@@ -1,29 +1,27 @@
 import { motion } from 'framer-motion';
 import {
-  CheckCircle,
-  Clock,
-  ExternalLink,
-  Heart,
-  Mail,
-  MapPin,
-  Phone,
-  Send
+    CheckCircle,
+    Clock,
+    ExternalLink,
+    Heart,
+    Mail,
+    MapPin,
+    Phone,
+    Send
 } from 'lucide-react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
-import { Badge } from '../ui/badge';
 import ArticleView from './news/ArticleView';
-import NewsCard from './news/NewsCard';
 import CategoryTabs from './news/CategoryTabs';
+import NewsCard from './news/NewsCard';
 import Pagination from './news/Pagination';
 import { ITEMS_PER_PAGE } from './news/constants';
-import { FALLBACK_NEWS_DATA } from './news/fallbackData';
-import { filterNews, paginateNews } from './news/utils';
 
 interface ContactPageProps {
   onPageChange: (page: string) => void;
@@ -114,7 +112,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
     Contact me at: ${formData.email} ${formData.phone ? `or ${formData.phone}` : ''}`;
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/918423370548?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/919452463669?text=${encodedMessage}`, '_blank');
     setIsSubmitted(true);
 
     setTimeout(() => {
@@ -487,7 +485,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onPageChange }) => {
               <Button
                 size="lg"
                 className="bg-[#1F7A53] hover:bg-[#1F7A53]/90 text-white"
-                onClick={() => window.open(`https://wa.me/918423370548?text=${encodeURIComponent(t('contactPage.donation.whatsappMessage'))}`, '_blank')}
+                onClick={() => window.open(`https://wa.me/919452463669?text=${encodeURIComponent(t('contactPage.donation.whatsappMessage'))}`, '_blank')}
               >
                 <Heart className="w-5 h-5 mr-2" />
                 {t('contactPage.donation.whatsappButton')}

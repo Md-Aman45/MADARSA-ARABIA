@@ -37,7 +37,7 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
 
   // WhatsApp Donation Handler
   const handleDonateClick = useCallback(() => {
-    const phoneNumber = '918423370548';
+    const phoneNumber = '919452463669';
     const message = encodeURIComponent(t('cta.donateNowMessage'));
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   }, [t]);
@@ -367,7 +367,7 @@ const ProgramsPage: React.FC<ProgramsPageProps> = ({ onPageChange }) => {
     const IconComponent = ICON_MAP[department.slug] || BookOpen;
 
     const handleContactClick = useCallback(() => {
-      const phoneNumber = '918423370548';
+      const phoneNumber = '919452463669';
       const message = encodeURIComponent(t('programsPage.programDetail.whatsappMessage', { programName: department.name }));
       window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
     }, [department.name, t]);

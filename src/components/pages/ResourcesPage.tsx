@@ -27,7 +27,7 @@ const ResourcesPage: React.FC<MissionVisionPageProps> = ({ onPageChange }) => {
 
   // WhatsApp Donation Handler
   const handleDonateClick = useCallback(() => {
-    const phoneNumber = '918423370548';
+    const phoneNumber = '919452463669';
     const message = encodeURIComponent(t('resources.whatsappDonationMessage'));
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   }, [t]);

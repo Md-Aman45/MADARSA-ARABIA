@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Heart } from "lucide-react";
-import { Button } from "./ui/button";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { Heart, Menu, X } from "lucide-react";
+import React, { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 interface HeaderProps {
@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
 
   const handleDonateClick = () => {
     const message = encodeURIComponent(t("cta.donateNowMessage"));
-    window.open(`https://wa.me/918423370548?text=${message}`, "_blank");
+    window.open(`https://wa.me/919452463669?text=${message}`, "_blank");
   };
 
   return (
