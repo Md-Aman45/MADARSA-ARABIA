@@ -1,5 +1,5 @@
 
-# Educational Institute Website
+# Madarsa Arabia Tajweedul Quran Masauni,kalinjar, district Banda(UP) 
 
   This project is a web application for an educational institute, designed to showcase its courses, facilities, and events. It is built using React and Vite, utilizing various Radix UI components for a modern and accessible user interface.
 
